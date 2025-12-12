@@ -1,0 +1,3267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI创意工场 - 量子奇点</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- 量子奇点主题: CSS变量 --- */
+        :root {
+            --bg-dark: #0a0a0f;
+            --bg-medium: #1a1a2e;
+            --accent-cyan: #00ffff;
+            --accent-magenta: #ff00ff;
+            --text-primary: #f0f0f0;
+            --text-secondary: #b0b0c0;
+            --font-headline: 'Orbitron', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+            --glow: 0 0 15px var(--accent-cyan);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-headline);
+            font-weight: 900;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* --- 通用动画 --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* --- 页面切换逻辑 --- */
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+
+        /* --- 导航栏 --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 0;
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            animation: slideDown 1s ease-out;
+        }
+        @keyframes slideDown { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--font-headline);
+            font-size: 1.8rem;
+            color: var(--accent-cyan);
+            text-shadow: var(--glow);
+            cursor: pointer;
+        }
+        .logo span {
+            color: var(--accent-magenta);
+            text-shadow: 0 0 15px var(--accent-magenta);
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-family: var(--font-headline);
+            font-weight: 700;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        nav a:hover { color: var(--accent-cyan); }
+
+        /* --- 英雄区域 --- */
+        #hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.1) 0%, transparent 70%);
+        }
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            background: linear-gradient(45deg, var(--accent-cyan), var(--accent-magenta));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            animation: glitch 2s infinite;
+        }
+        @keyframes glitch {
+            0%, 100% { text-shadow: 0.05em 0 0 var(--accent-cyan), -0.05em 0 0 var(--accent-magenta); }
+            50% { text-shadow: -0.05em 0 0 var(--accent-cyan), 0.05em 0 0 var(--accent-magenta); }
+        }
+        .hero-content p { font-size: 1.5rem; color: var(--text-secondary); }
+        .scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); animation: bounce 2s infinite; }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+
+        /* --- 主页内容区样式 --- */
+        .section { padding: 6rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; }
+        .story-block { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 3rem; margin-bottom: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; transition: transform 0.3s, box-shadow 0.3s; position: relative; }
+        .story-block:hover { transform: translateY(-5px); box-shadow: 0 0 40px rgba(0, 255, 255, 0.2); }
+        .story-block::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-magenta)); }
+        .story-content h3 { font-family: var(--font-headline); font-size: 2rem; color: var(--accent-cyan); margin-bottom: 1rem; }
+        .story-content p { color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; }
+        .story-media { position: relative; }
+        .story-media img, .story-media video { width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .media-controls { display: flex; gap: 1rem; margin-top: 1rem; }
+        .media-control-btn { padding: 0.7rem 1.2rem; border: 1px solid var(--accent-cyan); background: transparent; color: var(--accent-cyan); border-radius: 8px; cursor: pointer; font-family: var(--font-headline); transition: all 0.3s; }
+        .media-control-btn:hover { background: var(--accent-cyan); color: var(--bg-dark); box-shadow: var(--glow); }
+        .engine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; } /* 缩小网格间距 */
+        .engine-card {
+            background: var(--bg-medium);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            padding: 1.1rem 1rem;              /* 减少内边距，缩短卡片高度 */
+            text-align: center;
+            transition: transform .28s ease, box-shadow .28s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .engine-card:hover { transform: translateY(-6px); border-color: rgba(124,92,255,0.9); box-shadow: 0 8px 28px rgba(124,92,255,0.06); }
+        .engine-card .icon { font-size: 2.6rem; margin: 0.45rem 0 0.6rem; color: rgba(255,255,255,0.95); }
+        .engine-card h4 { font-family: var(--font-headline); font-size: 1.12rem; margin: 0.25rem 0 0.4rem; }
+        .engine-card p { color: var(--text-secondary); font-size: 0.96rem; margin: 0 0 0.8rem; line-height: 1.45; max-width: 92%; }
+ 
+    /* 卡片封面：限制高度并保持 16:9，留出更小的空白 */
+    .engine-card .card-cover{
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        max-height: 140px;       /* 缩小封面高度，避免遮挡文字并减少留白 */
+        overflow: hidden;
+        border-radius: 10px;
+        margin-bottom: 0.6rem;
+        background: #0b0b0d;
+        display:block;
+    }
+    .engine-card .card-cover img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+ 
+     /* 兼容直接在 <img class="card-cover"> 的写法（不建议，但兼容） */
+    .engine-card img.card-cover{
+        width: 100%;
+        height: auto;
+        max-height: 140px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 0.6rem;
+        display: block;
+    }
+
+        /* --- 案例展示页面样式 --- */
+        #case-study-page .case-header {
+            margin-top: 6rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        #case-study-page .back-btn {
+            background: none;
+            border: 1px solid var(--text-secondary);
+            color: var(--text-primary);
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: var(--font-headline);
+            transition: all 0.3s;
+        }
+        #case-study-page .back-btn:hover {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+        #case-study-page .case-tabs {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            overflow-x: auto;
+            padding-bottom: 1rem;
+        }
+        #case-study-page .case-tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-headline);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+            transition: color 0.3s;
+        }
+        #case-study-page .case-tab-btn.active {
+            color: var(--accent-cyan);
+        }
+        #case-study-page .case-tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem; /* Aligns with the border of the container */
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--accent-cyan);
+        }
+        #case-study-page .case-content-area {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        #case-study-page .case-content-area h3 {
+            font-size: 2rem;
+            color: var(--accent-cyan);
+            margin-bottom: 1rem;
+        }
+        #case-study-page .case-content-area p.description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 800px;
+            margin-bottom: 3rem;
+        }
+        #case-study-page .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        #case-study-page .case-item {
+            border-radius: 15px;
+            overflow: hidden;
+            background: var(--bg-medium);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        #case-study-page .case-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.2);
+            border-color: var(--accent-cyan);
+        }
+        #case-study-page .case-item img, #case-study-page .case-item video {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        /* --- 新增：图片说明文字样式 --- */
+        #case-study-page .case-item .image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            font-family: var(--font-body);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            transition: all 0.3s ease;
+            opacity: 0.9;
+        }
+        
+        #case-study-page .case-item:hover .image-caption {
+            background: rgba(0, 0, 0, 0.85);
+            opacity: 1;
+        }
+
+        /* --- 模态窗口 --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.4s;
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 900px;
+            max-height: 90vh;
+            margin-top: 5vh;
+            position: relative; /* Needed for positioning controls */
+        }
+        .modal-content img, .modal-content video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            display: block; /* Ensures no extra space below */
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: var(--text-primary);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001; /* Ensure it's on top */
+        }
+        .modal-close:hover { color: var(--accent-cyan); }
+
+        /* --- 新增：模态框内画廊导航样式 --- */
+        .modal-gallery-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+            padding: 16px;
+            user-select: none;
+            -webkit-user-select: none;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .modal-gallery-nav:hover {
+            color: var(--accent-cyan);
+            text-shadow: var(--glow);
+        }
+        #modal-gallery-prev { left: 20px; }
+        #modal-gallery-next { right: 40px; }
+        #modal-gallery-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-family: var(--font-headline);
+            font-size: 1.2rem;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- 修改：File 样式（匹配图像2）--- */
+        .file-cover-wrapper {
+            position: relative;
+            cursor: zoom-in;
+            display: block;
+            border-radius: 12px 12px 0 0;
+            overflow: hidden;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+        }
+        .file-cover-wrapper img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.35s ease;
+            transform-origin: center;
+        }
+        .file-cover-wrapper:hover img { transform: scale(1.03); }
+
+        /* 左上角小角标（更小、更精致）*/
+        .file-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(90deg,#7c5cff,#16f2ff);
+            color: #fff;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: none; /* 不强制大写，按数据中 badge 字段原样显示 */
+            box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+            border: 1px solid rgba(255,255,255,0.06);
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        .file-info-container {
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(8,10,18,0.9), rgba(10,12,22,0.95));
+            min-height: 86px;
+            border-radius: 0 0 12px 12px;
+            border-top: 1px solid rgba(255,255,255,0.02);
+        }
+        .file-title {
+            color: var(--text-primary);
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* 按钮样式：左边描边，右边实色 */
+        .file-actions { display:flex; gap:10px; align-items:center; justify-content:center; width:100%; }
+        .file-action-btn {
+            padding: 8px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            transition: all .18s ease;
+        }
+        .file-action-btn.view {
+            background: transparent;
+            color: var(--accent-cyan);
+            border: 1px solid rgba(16, 240, 240, 0.85);
+            box-shadow: 0 6px 18px rgba(0,255,255,0.04) inset;
+        }
+        .file-action-btn.view:hover {
+            background: rgba(0,255,255,0.06);
+            color: #eaffff;
+            transform: translateY(-2px);
+        }
+        .file-action-btn.download {
+            background: linear-gradient(90deg, #00f0ff, #00ffd1);
+            color: #071017;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .file-action-btn.download:hover {
+            filter: brightness(0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,255,255,0.18);
+        }
+
+/* --- 页脚 --- */
+        footer { text-align: center; padding: 3rem 0; border-top: 1px solid rgba(255, 255, 255, 0.1); font-family: var(--font-headline); color: var(--text-secondary); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('hero-page')"><span>AI</span>Lab</div>
+            <nav>
+                <a onclick="scrollToSection('capabilities')">核心能力</a>
+                <a onclick="scrollToSection('engine')">核心引擎</a>
+                <a href="#" onclick="openModal('images/%E5%B8%85%E5%93%A5.png','image'); return false;">联系帅哥</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 页面1: 主页 -->
+        <div id="hero-page" class="page-section active">
+            <!-- 英雄区域 -->
+            <section id="hero">
+                <canvas id="particles-canvas"></canvas>
+                <div class="hero-content fade-in">
+                    <h1>量子奇点</h1>
+                    <p>AI赋能，重塑创意边界</p>
+                </div>
+                <div class="scroll-indicator fade-in">
+                    <i class="fas fa-chevron-down fa-2x"></i>
+                </div>
+            </section>
+
+            <!-- 核心能力展示篇章 -->
+            <section id="capabilities" class="section">
+                <div class="container">
+                    <h2 class="section-title fade-in">核心能力展示</h2>
+                    <div class="story-block fade-in">
+                        <div class="story-content">
+                            <h3>运营赋能</h3>
+                            <p>通过AI能够解构抖音、小红书、视频号爆款文案的逻辑、情感与结构。一键仿写，生产符合平台调性的高吸引力内容。</p>
+                            <div class="media-controls">
+                                <button class="media-control-btn" onclick="showCasePage('operations')">查看案例</button>
+                            </div>
+                        </div>
+                        <div class="story-media">
+                            <video controls muted loop poster="images/封面.png">
+                                <source src="images/封面-视频.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <!-- 其他篇章... -->
+                     <div class="story-block fade-in">
+                        <div class="story-content">
+                            <h3>设计赋能</h3>
+                            <p>告别高昂的拍摄成本与漫长的设计周期，从服装平铺图到超写实AI商拍，我们让视觉创意的实现成本趋近于零。</p>
+                            <div class="media-controls">
+                                <button class="media-control-btn" onclick="showCasePage('design')">查看案例</button>
+                            </div>
+                        </div>
+                        <div class="story-media">
+                            <img src="images/封面-2.png" alt="AI Design Showcase">
+                        </div>
+                    </div>
+                    <div class="story-block fade-in">
+                        <div class="story-content">
+                            <h3>剪辑赋能</h3>
+                            <p>解放生产力，聚焦于创意本身，自动完成批量化字幕添加与翻译，通过数字人技术生成无懈可击的口播视频。</p>
+                            <div class="media-controls">
+                                <button class="media-control-btn" onclick="showCasePage('editing')">查看案例</button>
+                            </div>
+                        </div>
+                        <div class="story-media">
+                            <video controls muted loop poster="images/封面-3.png">
+                                <source src="images/TVC广告.mp4" type="video/mp4">
+                            </video>
+                        </div>
+                    </div>
+                    <!-- 新增：作品集 -->
+                    <div class="story-block fade-in">
+                        <div class="story-content">
+                            <h3>提示词</h3>
+                            <p>通过可视化作品集，展示不同模型与提示词生成的成片效果，一键复制提示词即可复用同款画面风格。</p>
+                            <div class="media-controls">
+                                <button class="media-control-btn" onclick="showCasePage('portfolio')">查看案例</button>
+                            </div>
+                        </div>
+                        <div class="story-media">
+                            <img src="images/作品集.png" alt="AI Design Showcase">
+                </div>
+            </section>
+
+            <!-- 核心AI引擎板块 -->
+            <section id="engine" class="section">
+                <div class="container">
+                    <h2 class="section-title fade-in">核心AI引擎</h2>
+                    <div class="engine-grid">
+                        <div class="engine-card fade-in" onclick="showCasePage('llm')">
+                            <img class="card-cover" src="images/封面-大模型.png" alt="大模型封面">
+                            <div class="icon"><i class="fas fa-brain"></i></div>
+                            <h4>大模型</h4>
+                            <p>全球热门的大模型，构建了兼具通用能力与行业特性的强大模型基座。</p>
+                        </div>
+                        <div class="engine-card fade-in" onclick="showCasePage('workflow')">
+                            <img class="card-cover" src="images/封面-工作流.png" alt="自动化工作流封面">
+                            <div class="icon"><i class="fas fa-project-diagram"></i></div>
+                            <h4>自动化工作流</h4>
+                            <p>基于事件搭建可视化工作流，将复杂的多步骤任务串联成自动化生产线。</p>
+                        </div>
+                        <div class="engine-card fade-in" onclick="showCasePage('agent')">
+                            <img class="card-cover" src="images/封面-Agent.png" alt="Agent封面">
+                            <div class="icon"><i class="fas fa-robot"></i></div>
+                            <h4>Agent</h4>
+                            <p>超越单一工具的局限，Agent能够理解复杂目标，自主规划、分解任务。</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 页面2: 案例展示 -->
+        <div id="case-study-page" class="page-section">
+            <div class="container">
+                <div class="case-header">
+                    <button class="back-btn" onclick="showPage('hero-page')"><i class="fas fa-arrow-left"></i> 返回</button>
+                    <h2 style="margin:0;">案例展厅</h2>
+                </div>
+                <div class="case-tabs" id="case-tabs-container">
+                    <!-- Tab buttons will be generated by JS -->
+                </div>
+                <div class="case-content-area" id="case-content-container">
+                    <!-- Content will be generated by JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- The Modal -->
+    <div id="mediaModal" class="modal">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modal-content-container">
+            <div id="modal-media-placeholder"></div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <p>&copy; 2025 AI创意工场 - 量子奇点 | 想象力是唯一的边界</p>
+    </footer>
+
+    <script>
+    // ===================================================================
+    // === 用户自定义内容区 (User Customizable Content Area) ===
+    //
+    // 在这里添加、删除或修改您的案例内容。
+    // 每个板块下 'items' 数组中的每一项都是一个展示单元。
+    //
+    // type: 'text' (纯文本段落, 不会显示在网格中), 'image' (图片), 'video' (视频), 'file' (文件)
+    // src: 图片、视频或文件的URL链接。对于本地文件，请使用相对路径
+    // poster: 视频的封面图 (仅视频需要)
+    // alt: 描述文字
+    // content: 文本内容 (仅文本段落需要)
+    // caption: 说明文字，将显示在底部
+    // badge: 角标文字 (仅文件类型支持)
+    // filename: 文件名 (仅文件类型需要)
+    // cover: 封面图片路径 (仅文件类型需要)
+    // isGallery: (仅图片) 设置为 true 时，此图片将作为一个画廊入口
+    // galleryItems: (仅图片, 当 isGallery 为 true 时) 包含画廊所有图片的数组
+    //
+    // 修改后请保存文件并刷新浏览器即可看到效果。
+    // ===================================================================
+        const caseStudies = {
+            operations: {
+                title: '运营赋能',
+                description: '深入探索如何利用AI洞察市场趋势，打造病毒式传播内容，驱动品牌实现指数级增长的经典案例。每一次点击，都是一次成功的营销。',
+                items: [
+
+                ]
+            },
+            design: {
+                title: '设计赋能',
+                description: '见证从灵感到现实的魔法。AI设计工具帮助用户在短短数小时内完成过去需要数周的设计工作，释放无限的创意可能。',
+                items: [
+                    { type: 'text', content: '案例二：某快时尚服装品牌，使用我们的AI商拍工具，零成本生成春夏新品全系列模特图，上架周期缩短80%。' },
+                    { type: 'image', src: 'images/平铺图.png', alt: '多场景展示', caption: '产品平铺图' },
+                    { type: 'image', src: 'images/模特上身效果.png', alt: '多场景展示', caption: '模特上身效果' },
+                    { type: 'image', src: 'images/产品改款.png', alt: '多场景展示', caption: '产品改款' },
+                    { type: 'image', src: 'images/海报图.png', alt: '多场景展示', caption: '产品海报' },
+                    {
+                        type: 'image',
+                        src: 'images/商品主图.png', 
+                        alt: '多场景展示',
+                        caption: '主图',
+                        isGallery: true, 
+                        galleryItems: [ 
+                            { src: 'images/主图-1.png',   },
+                            { src: 'images/主图-2.png',   },
+                            { src: 'images/主图-3.png',   },
+                            { src: 'images/主图-4.png',   },
+                            { src: 'images/主图-5.png',   },
+                        ]
+                    },
+                    { type: 'image', src: 'images/LOGO.png', alt: '多场景展示', caption: 'LOGO设计' },
+                    { type: 'image', src: 'images/礼盒设计.png', alt: '多场景展示', caption: '礼盒设计' },
+                    { type: 'image', src: 'images/字体.png', alt: '多场景展示', caption: '字体设计' },
+                    { type: 'image', src: 'images/三视图.png', alt: '多场景展示', caption: '三视图' },
+                    { type: 'image', src: 'images/印花提取.png', alt: '多场景展示', caption: '印花提取' },
+                    {
+                        type: 'image',
+                        src: 'images/产品图.png',
+                        alt: '多场景展示',
+                        caption: '详情页',
+                        isGallery: true, 
+                        galleryItems: [ 
+                            { src: 'images/产品图-1.png',   },
+                            { src: 'images/产品图-2.png',   },
+                            { src: 'images/产品图-3.png',   },
+                            { src: 'images/产品图-4.png',   },
+                            { src: 'images/产品图-5.png',   },
+                            { src: 'images/产品图-6.png',   },
+                            { src: 'images/产品图-7.png',   },
+                            { src: 'images/产品图-8.png',   },
+                            { src: 'images/产品图-9.png',   },
+                            { src: 'images/产品图-10.png',  },
+                            { src: 'images/产品图-11.png',  },
+                            { src: 'images/产品图-12.png',  },
+                            { src: 'images/产品图-13.png',  },
+                            { src: 'images/产品图-14.png',  },
+                        ]
+                    },
+                    { type: 'image', src: 'images/高清放大.png', alt: '多场景展示', caption: '高清放大' },
+                    { type: 'image', src: 'images/扩图.png', alt: '多场景展示', caption: '扩图' },
+                    { type: 'image', src: 'images/去水印.png', alt: '多场景展示', caption: '去水印' },
+                    { type: 'image', src: 'images/物体移除.png', alt: '多场景展示', caption: '物体移除' },
+                    { type: 'image', src: 'images/换装.png', alt: '多场景展示', caption: '换装' },
+                    { type: 'image', src: 'images/更改肤色.png', alt: '多场景展示', caption: '更改肤色' },
+                    { type: 'image', src: 'images/更改人种.png', alt: '多场景展示', caption: '更改人种' },
+                    { type: 'image', src: 'images/服装尺码修改.png', alt: '多场景展示', caption: '服装尺码修改' },
+                    { type: 'image', src: 'images/身材修改.png', alt: '多场景展示', caption: '身材修改' },
+                    { type: 'image', src: 'images/换背景.png', alt: '多场景展示', caption: '换背景' },
+                    { type: 'image', src: 'images/打光.png', alt: '多场景展示', caption: '打光' },
+                    { type: 'image', src: 'images/换脸.png', alt: '多场景展示', caption: '换脸' },
+                    { type: 'image', src: 'images/元素替换.png', alt: '多场景展示', caption: '元素替换' },
+                    { type: 'image', src: 'images/AI复刻.png', alt: '多场景展示', caption: 'AI复刻' },
+                    { type: 'image', src: 'images/万物迁移.png', alt: '多场景展示', caption: '万物迁移' },
+                    { type: 'image', src: 'images/视角切换.png', alt: '多场景展示', caption: '视角切换' },
+                    {
+                        type: 'image',
+                        src: 'images/分镜头.png', 
+                        alt: '多场景展示',
+                        caption: '一张图分镜头制作',
+                        isGallery: true, 
+                        galleryItems: [ 
+                            { src: 'images/分镜头-1.png',   },
+                            { src: 'images/分镜头-2.png',   },
+                            { src: 'images/分镜头-3.png',   },
+                            { src: 'images/分镜头-4.png',   },
+                            { src: 'images/分镜头-5.png',   },
+                            { src: 'images/分镜头-6.png',   },
+                            { src: 'images/分镜头-7.png',   },
+                            { src: 'images/分镜头-8.png',   },
+                            { src: 'images/分镜头-9.png',   },
+                        ]
+                    },
+                ]
+            },
+            editing: {
+                title: '剪辑赋能',
+                description: '探索AI如何自动化繁琐的视频制作流程。从精准字幕到数字人主播，让视频内容的产出效率达到前所未有的高度。',
+                items: [
+                    { type: 'text', content: '案例三：为某知识付费博主生成全系列口播视频，AI数字人出镜，配合多语言字幕，全球同步发行。' },
+                    { type: 'video',src: 'images/TVC广告.mp4', alt: '多场景展示', caption: 'TVC广告' },
+                    { type: 'video',src: 'images/去字幕.mp4', alt: '多场景展示', caption: '去字幕' },
+                    { type: 'video',src: 'images/加字幕.mp4', alt: '多场景展示', caption: '加字幕' },
+                    { type: 'image',src: 'images/自动上传视频.gif', alt: '多场景展示', caption: '自动上传视频' },
+                    { type: 'video',src: 'images/对口型.mp4', alt: '多场景展示', caption: '对口型' },
+                    { type: 'video',src: 'images/换脸.mp4', alt: '多场景展示', caption: '换脸' },
+                    { type: 'video',src: 'images/扩展.mp4', alt: '多场景展示', caption: '扩展' },
+                    { type: 'video',src: 'images/更改毛发.mp4', alt: '多场景展示', caption: '更改毛发' },
+                    { type: 'video',src: 'images/动作迁移.mp4', alt: '多场景展示', caption: '动作迁移' },
+                    { type: 'video',src: 'images/创意视频.mp4', alt: '多场景展示', caption: '创意视频' },
+                    { type: 'video',src: 'images/数字人口播.mp4', alt: '多场景展示', caption: '数字人口播' },
+                    { type: 'video',src: 'images/爆款视频.mp4', alt: '多场景展示', caption: '爆款视频' },
+                    { type: 'video',src: 'images/音频克隆.mp4', alt: '多场景展示', caption: '音频克隆' },
+                    { type: 'video',src: 'images/多语言配音.mp4', alt: '多场景展示', caption: '多语言配音' },
+                    { type: 'video',src: 'images/一键成片.mp4', alt: '多场景展示', caption: '一键成片' },
+                    { type: 'video',src: 'images/产品-Sora.mp4', alt: '多场景展示', caption: '产品-Sora' },
+                    { type: 'video',src: 'images/妆造.mp4', alt: '多场景展示', caption: '妆造' },
+                    { type: 'video',src: 'images/删除元素.mp4', alt: '多场景展示', caption: '删除元素' },
+                    { type: 'video',src: 'images/服装-Sora.mp4', alt: '多场景展示', caption: '服装-Sora' },
+                    { type: 'video',src: 'images/高清放大.mp4', alt: '多场景展示', caption: '高清放大' },
+                ]
+            },
+            portfolio: {
+                title: '提示词',
+                description: '通过作品模块，集中展示不同大模型与提示词生成的成片效果，一键复制提示词，快速复用同款画面风格。',
+                items: [
+                    { type: 'text', content: '案例一：某女装店铺基于作品集沉淀出 20+ 套高转化视觉模板，运营与设计只需复制提示词即可批量生成同风格主图与海报。' },
+                    {
+                        type: 'image',
+                        src: 'images/穿搭拆分.png',
+                        alt: '穿搭拆分',
+                        caption: '穿搭拆分',
+                        model: 'Nano Banana Pro',
+                        copyText: `Act as a senior fashion photographer and layout designer. Analyze the uploaded reference image carefully.
+
+Create a "Hyper-Realistic Fashion Design Board" based on the character and outfit in the reference image. The output must be a single cohesive image with a clean, off-white studio background.
+
+Strictly follow this layout structure:
+
+1. CENTER ZONE (The Look):
+   Generate a full-body, photorealistic shot of the SAME character wearing the SAME outfit as the reference image. The character should be walking naturally towards the camera. The lighting is soft studio lighting.
+
+2. LEFT ZONE (Technical Specs):
+   Create a technical "Model Sheet" column.
+   - Show the character in a standard A-Pose (Front, Side, and Back views).
+   - Below the views, include 3 distinct facial expression close-ups (Happy, Neutral, Serious).
+   - Text Requirement: Write the Chinese text "三视图" (Three Views) neatly above the poses, and "表情" (Expressions) above the faces. The text should look like handwritten marker notes.
+
+3. RIGHT ZONE (Deconstruction/Knolling):
+   Create a "Knolling" style flat-lay photography section where the outfit is taken off and arranged neatly on the floor.
+   - Top Right: Arrange the outerwear, shoes, bag, and accessories (hats, glasses, props) exactly matching the reference. Text Requirement: Write the Chinese text "外搭与配饰" (Outerwear & Accessories) next to them.
+   - Bottom Right: Fold the inner layers (t-shirts, socks, pants) neatly. Text Requirement: Write the Chinese text "内搭" (Inner Layers) next to them.
+
+Style & Quality Guidelines:
+- Aesthetic: Industrial Design + High-End Fashion Photography.
+- Realism: This is NOT a drawing. It must look like a raw 8k photograph.
+- Consistency: The character's face, body type, and every detail of the clothing (texture, color, pattern) must perfectly match the uploaded reference image.
+- Text: Ensure all Chinese handwriting is clear, legible, and correctly written in black ink style.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/90年代氛围感.png',
+                        alt: '穿搭拆分',
+                        caption: '90年代氛围感图片',
+                        model: 'Nano Banana Pro',
+                        copyText: '1:1 aspect ratio, a Polaroid from the late 90s. The main character [SUBJECT] appears in the photo, caught in a casual, imperfect moment. The background shows a dirty house basement with people partying behind them. The photo has the authentic look of low-light Polaroid photography, with motion blur, harsh flash, grain, and the poor framing typical of real party snapshots.',
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/电商主图.png',
+                        alt: '穿搭拆分',
+                        caption: '电商主图',
+                        model: 'Nano Banana Pro',
+                        copyText: `Identify the main product in the uploaded photo (automatically removing any hands holding it or messy background details). Recreate it as a premium e-commerce product shot. Subject Isolation: Cleanly extract the product, completely removing any fingers, hands, or clutter. Background: Place the product on a pure white studio background (RGB 255, 255, 255) with a subtle, natural contact shadow at the base to ground it. Lighting: Use soft, commercial studio lighting to highlight the product's texture and material. Ensure even illumination with no harsh glare. Retouching: Automatically fix any lens distortion, improve sharpness, and color-correct to make the product look brand new and professional.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/物体迁移.png',
+                        alt: '穿搭拆分',
+                        caption: '物体迁移',
+                        model: 'Nano Banana Pro',
+                        copyText: `Composite Image 2 (the beige sofa) into Image 1 (the living room). Perspective Match : Place the sofa against the main back wall of the living room. Adjust its perspective and scale to look realistic within the room's existing geometry. Lighting Integration : Calculate the light source from the living room window and cast realistic shadows from the sofa onto the floor. Adjust the sofa's brightness and color temperature to match the room's ambient light. Style : Keep the rest of the room exactly as is. Do not change the walls or windows.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/全屋设计.png',
+                        alt: '穿搭拆分',
+                        caption: '全屋设计',
+                        model: 'Nano Banana Pro',
+                        copyText: `Based on the uploaded 2D floor plan, generate a professional interior design presentation board in a single image. Layout : The final image should be a collage with one large main image at the top, and several smaller images below it. Content of Each Panel :
+
+1. Main Image (Top) : A wide-angle perspective view of the main living area , showing the connection between the living room and dining area.
+
+2. Small Image (Bottom Left) : A view of the Master Bedroom , focusing on the bed and window.
+
+3. Small Image (Bottom Middle) : A view of the Home Office / Study room .
+
+4. Small Image (Bottom Right) : A 3D top-down floor plan view showing the furniture layout. Overall Style : Apply a consistent Modern Minimalist style with warm oak wood flooring and off-white walls across ALL images. Quality : Photorealistic rendering, soft natural lighting.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/人物姿势参考.png',
+                        alt: '穿搭拆分',
+                        caption: '人物姿势参考',
+                        model: 'Nano Banana Pro',
+                        copyText: `图一人物换成图二姿势，专业摄影棚拍摄`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/时尚黑白肖像.png',
+                        alt: '穿搭拆分',
+                        caption: '时尚黑白肖像',
+                        model: 'Nano Banana Pro',
+                        copyText: `Create a black and white high-fashion editorial portrait of me, keeping my real face exactly as in the reference photo (no edits, same features, no retouching). I am wearing a loose white blouse. My pose is bold and expressive, with one arm raised to hold my hair up, partially covering my face. My gaze is intense and directed at the camera, creating a strong and enigmatic aura. The background is a plain minimalist wall with sharp natural daylight casting defined shadows, adding depth and contrast.
+Lighting is harsh and high-contrast, highlighting my facial contours, sharp cheekbones, and the texture of the hair and fabric. The style should feel raw, dramatic, and artistic.
+The overall image is high-fashion editorial in monochrome, cinematic, and striking`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/时尚拼贴.png',
+                        alt: '穿搭拆分',
+                        caption: '时尚拼贴',
+                        model: 'Nano Banana Pro',
+                        copyText: `A fashion mood board collage. Surround a portrait with cutouts of the individual items the model is wearing. Add handwritten notes and sketches in a playful, marker-style font, and include the brand name and source of each item in English. The overall aesthetic should be creative and cute`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/光影参考.png',
+                        alt: '穿搭拆分',
+                        caption: '光影参考',
+                        model: 'Nano Banana Pro',
+                        copyText: `图一人物变成图二光影，深色为暗`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/东京模糊氛围照.png',
+                        alt: '穿搭拆分',
+                        caption: '东京模糊氛围照',
+                        model: 'Nano Banana Pro',
+                        copyText: `A blurry, high-grain snapshot taken in a Tokyo subway stairwell, charged with motion, humidity, and raw urban energy. The air feels thick and fluorescent, lit by overhead tube lights that cast a cold green-blue tint across the frame. The film grain, chromatic aberration, and lens distortion add a tactile sense of chaos — a fleeting instant suspended mid-run.
+
+At the center, a young woman in a tied white shirt and short plaid skirt is caught mid-step, descending the stairs. Her movement blurs, skirt flaring slightly, hair swept by motion. The focus drifts between her and the background, giving the shot a dreamlike disorientation, as if seen through memory or adrenaline.
+
+Her expression holds the entire frame together — eyes open, lips slightly parted, cheeks flushed, as if between alertness and vulnerability. There’s no posed awareness, only instinct — a moment stolen from time.
+
+Around her, commuters blur into silhouettes, the hallway tight and echoing, the walls reflecting harsh fluorescent glare. The composition feels accidental yet perfect: tilted, urgent, intimate.
+
+The atmosphere is electric and nostalgic, a mix of youth, motion, and fleeting emotion, like a fragment from a fever dream or an afterimage burned into film — not cinematic, but hyper-real, the kind of moment only disposable-camera photography captures: alive, imperfect, and painfully real`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/时尚摄影.png',
+                        alt: '穿搭拆分',
+                        caption: '时尚摄影',
+                        model: 'Nano Banana Pro',
+                        copyText: ` high-end editorial photo of (PRODUCT NAME OR IMAGE) placed on a white marble pedestal, resting on champagne-colored silk. It is surrounded by pastel flowers whose type and color naturally harmonize with the product’s primary colors (COLOR PALETTE) — complementing and enhancing its tones. Soft natural light from the upper left. 3D realism, luxury product photography, shallow depth of field, 1:1 format.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品特写.png',
+                        alt: '穿搭拆分',
+                        caption: '产品特写',
+                        model: 'Nano Banana Pro',
+                        copyText: `一张极其逼真的重庆火锅特写，红油翻滚，辣椒漂浮。画面正中央有一双筷子夹着一片毛肚，背景虚化的墙上有一块木质牌匾，上面写着书法字体“巴适”。色彩鲜艳，让人食欲大增`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/蔷薇少女.png',
+                        alt: '穿搭拆分',
+                        caption: '蔷薇少女',
+                        model: 'Nano Banana Pro',
+                        copyText: `一幅超高清晰度、摄影质感极强的街头壁画，画面呈现强烈的中国风韵味。
+
+画中描绘着一位绝美的卡通风女子正面特写头像，她神态柔美而宁静。墙体顶部被一大片盛开的蔷薇花覆盖，茂密的绿叶与繁盛的花朵向外舒展，部分枝条从墙顶垂落而下，与女子的头发巧妙融合，使她的秀发宛如由层层叠叠的蔷薇花组成。这些繁密的花朵簇拥着女子的头部，形成了一顶瑰丽的花冠，视觉效果华美浪漫。
+
+背景中蓝天澄澈，点缀着朵朵白云；地面为一条细节真实的沥青街道，上面散落着缤纷多彩的花瓣，行人悠然漫步其间。整体场景细节精致入微，光影明亮柔和，营造出犹如现实般的梦幻街景氛围`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/复古电影风.png',
+                        alt: '穿搭拆分',
+                        caption: '古电影风',
+                        model: 'Nano Banana Pro',
+                        copyText: `{
+  "image_description": {
+    "overall_composition": "A moody, cinematic 2x2 collage featuring the same young woman",
+    "subject": {
+      "appearance": {
+        "hair": "Short, tousled",
+        "makeup": "Bold red lipstick",
+        "style": "Striking, androgynous editorial look"
+      },
+      "attire": {
+        "suit": "Oversized black suit",
+        "shirt": "Loose white dress shirt with an open collar",
+        "tie": "Patterned tie hanging untied around her neck"
+      }
+    },
+    "environment": {
+      "setting": "Old stairway in a dimly lit interior",
+      "lighting": "Warm, amber-toned lighting",
+      "details": [
+        "Worn black railings",
+        "Textured walls",
+        "Soft ambient glow"
+      ]
+    },
+    "frames": {
+      "top_left": {
+        "pose": "Sitting on the steps, leaning forward with chin resting on hand",
+        "gaze": "Angled to the side",
+        "lighting_effect": "Warm shadows sculpting her features and highlighting messy hair texture"
+      },
+      "top_right": {
+        "pose": "Gripping her hair with both hands, elbows wide, leaning forward with intensity",
+        "lighting_effect": "Emphasizes her eyes and dramatic expression",
+        "clothing_detail": "Suit drapes loosely around her"
+      },
+      "bottom_left": {
+        "perspective": "Close-up from a lower angle",
+        "pose": "Face slightly tilted toward the camera",
+        "details": [
+          "Red lipstick contrasting with the dark suit",
+          "Hair falling freely across her cheeks"
+        ]
+      },
+      "bottom_right": {
+        "pose": "Sitting with legs apart, elbow resting on knee, one hand lightly touching her lips",
+        "expression": "Edgy, confident",
+        "background": "Railings and background blur softly behind her"
+      }
+    },
+    "visual_style": {
+      "lighting": "Warm low-key lighting",
+      "texture": "Textured shadows, slight grain",
+      "depth": "Cinematic depth",
+      "aspect_ratio": "1:1 per frame, arranged in a 2x2 grid",
+      "camera_settings": {
+        "lens": "35mm",
+        "aperture": "f/1.8",
+        "iso": "400",
+        "shutter_speed": "1/160s"
+      },
+      "overall_look": "Moody editorial collage with vintage tones, expressive posing, and rich atmosphere"
+    }
+  }
+}`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/人物产品图.png',
+                        alt: '穿搭拆分',
+                        caption: '人物产品图',
+                        model: 'Nano Banana Pro',
+                        copyText: `拍摄一张超逼真的镜前自拍照，照片中人物一手拿着产品。使用浴室的自然光线，并在镜子中呈现逼真的手持手机倒影。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/水中倒影.png',
+                        alt: '穿搭拆分',
+                        caption: '水中倒影',
+                        model: 'Nano Banana Pro',
+                        copyText: `一只体型娇小、毛色红棕色、有着卷曲毛发和炯炯有神的黑眼睛的贵宾犬，站在一条静谧的街道上，凝视着水洼。在水面的倒影中，它看到一头鬃毛飘逸、威风凛凛的雄狮。水洼中柔和的涟漪使倒影呈现出一种梦幻般的、充满隐喻的质感。光线柔和自然，带着一丝日落的金色光芒。这幅画面捕捉到了小家伙Vin娇小的身形与它内在的力量、勇气和决心之间的鲜明对比。——ar 1:1`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品摄影.png',
+                        alt: '穿搭拆分',
+                        caption: '产品摄影',
+                        model: 'Nano Banana Pro',
+                        copyText: `[产品] 的影棚拍摄照片，置于 [背景] 之上，周围环绕着柔和的阴影和渐变背景，采用高调布光、浅景深，主体清晰锐利，高端产品摄影，使用单反相机拍摄，简约美学，微妙的反射，商业照明设置`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/分屏照.png',
+                        alt: '穿搭拆分',
+                        caption: '分屏照',
+                        model: 'Nano Banana Pro',
+                        copyText: `一张构图完美的 4:3 电影感照片，拍摄于东京涩谷十字路口，当时正值一场突如其来的夏雨过后。
+整条街道都被一层如镜面般的雨水覆盖，将上方的一切映照得如同完美无瑕的玻璃。
+水线之上：超现实的 2026 年涩谷。
+高耸的弧形 8K 透明 OLED 广告牌，肉眼可见的 3D 全息影像，漂浮在半空中的日本流行偶像，身穿半透明雨衣、戴着 AR 单片眼镜的上班族，身穿科技服装、手持发光雨伞无人机的女孩，青色和品红色的霓虹灯渗入湿漉漉的沥青路面，成千上万把雨伞在完美的混乱中绽放。
+水线以下，完美地倒映着，却又无比真实：1926 年的涩谷。
+低矮的木制商店，推拉门，清酒店和和服店的招牌是手绘的汉字，人力车和早期的T型出租车，穿着振袖和服、梳着辫子的妇女撑着纸伞，穿着羽织袴和木屐的男人，柔和的煤气灯闪烁着，一切都笼罩在温暖的棕褐色调中。
+在水与现实交汇的正中心，界限消失了：
+一位身穿铬色羽绒服的 2026 年女孩跪在水坑边，触摸着水坑；她的倒影是一位 1926 年的艺伎，正向上伸出手；她们的指尖在水面上相遇，激起完美的同心涟漪，最终变成闪闪发光的像素。
+一名上班族低头一看，发现自己100岁时的脸正惊恐地盯着自己。
+一把 1926 年的纸伞从水中向上漂浮，变成了一把透明的伞状无人机。
+水滴从 1926 年向上落到 2026 年，变成 LED 粒子，爆炸成微小的全息图。
+过去和现在的所有人，都愣在了原地，目瞪口呆地望着镜中的世界，充满了震惊和惊奇。
+照片级真实感渲染，8K分辨率，锐利的反射细节，变形镜头，雨雾中微妙的体积光束，完美的水物理效果，色彩从上方的霓虹灯色过渡到下方的暖褐色，最大程度的情感强度。
+--ar 4:3 --stylize 650 --v 6 --q 2`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/服装广角摄影.png',
+                        alt: '穿搭拆分',
+                        caption: '服装广角摄影',
+                        model: 'Nano Banana Pro',
+                        copyText: `{
+  "meta_control": {
+    "generation_mode": "multi_panel_consistent",
+    "priority_stack": ["identity_lock", "perspective_physics", "material_fidelity", "environmental_coherence"],
+    "quality_target": "editorial_print_ready"
+  },
+  "intent": {
+    "primary": "High-fashion streetwear editorial with extreme wide-angle perspective study",
+    "secondary": "Technical demonstration of foreshortening and forced perspective",
+    "publication_context": "Double-page spread, fashion magazine collage layout"
+  },
+  "frame": {
+    "aspect_ratio": "3:4",
+    "layout": {
+      "type": "2x2 grid collage",
+      "gutter_width": "2px white or seamless",
+      "panel_uniformity": "identical dimensions per panel"
+    }
+  },
+  "subject": {
+    "type": "Human female fashion model",
+    "identity_lock": {
+      "enforcement_level": "strict",
+      "anchor_features": ["face_geometry", "skin_tone", "body_proportions", "hair_style"]
+    },
+    "biometrics": {
+      "age_presentation": "22-26",
+      "height_cm": 175,
+      "build": "Slender athletic, model proportions",
+      "ethnicity_presentation": "Northern European features"
+    },
+    "facial_signature": {
+      "structure": "Angular diamond face, high cheekbones, defined jawline",
+      "eyes": "Sharp almond, steel grey, graphic black winged liner extending 8mm",
+      "nose": "Refined, straight, small silver hoop piercing on left nostril",
+      "lips": "Natural shape, matte nude-pink",
+      "skin": "Fair, visible pores and natural texture, subtle peach fuzz, tiny freckle cluster left cheekbone",
+      "expression_default": "Cool confidence, intense direct eye contact, composed"
+    },
+    "hair": {
+      "style": "Platinum blonde straight bob, blunt bangs ending at eyebrows",
+      "texture": "Silky, light-catching, individual strand definition",
+      "behavior": "Natural movement responding to pose changes"
+    },
+    "wardrobe": {
+      "jacket": {
+        "item": "Oversized bomber jacket",
+        "material": "Ripstop nylon, high gloss",
+        "color": "Neon orange (vivid, saturated)",
+        "state": "Unzipped, hanging open",
+        "light_behavior": "Sharp specular highlights, visible weave texture"
+      },
+      "top": {
+        "item": "Crop top",
+        "material": "Black synthetic mesh, diamond pattern",
+        "fit": "Tight, stretched across torso",
+        "transparency": "Semi-sheer, skin visible through weave"
+      },
+      "pants": {
+        "item": "Tactical cargo pants",
+        "material": "Heavy cotton twill, matte",
+        "color": "Charcoal grey",
+        "details": "Multiple pockets, silver buckles, black nylon straps, baggy fit"
+      },
+      "footwear": {
+        "item": "Platform sneakers",
+        "color": "White, chunky sole",
+        "condition": "Clean but worn, realistic sole texture"
+      }
+    },
+    "accessories": {
+      "neck": "Layered heavy silver Cuban link chains, 3 chains varying thickness",
+      "hands": "Silver rings on index and middle fingers both hands"
+    }
+  },
+  "panels": [
+    {
+      "id": 1,
+      "position": "top-left",
+      "concept": "Extreme low-angle sneaker perspective",
+      "camera": {
+        "height_cm": 10,
+        "distance_cm": 35,
+        "angle": "Looking up at 75 degrees"
+      },
+      "composition": {
+        "foreground_dominant": "Right sneaker sole filling 40% of frame, laces in sharp focus",
+        "midground": "Legs receding upward",
+        "background": "Torso and face small in upper frame, looking down at camera"
+      },
+      "subject_pose": "Standing, weight back, right foot extended toward lens",
+      "expression": "Looking down, slight smirk"
+    },
+    {
+      "id": 2,
+      "position": "top-right",
+      "concept": "Bird's-eye reaching hand",
+      "camera": {
+        "height_cm": 200,
+        "distance_cm": 60,
+        "angle": "Looking straight down"
+      },
+      "composition": {
+        "foreground_dominant": "Hand reaching up, fingers spread, appearing oversized",
+        "midground": "Face looking up",
+        "background": "Body compressed, pavement visible around edges"
+      },
+      "subject_pose": "Deep squat, one arm reaching directly up to camera",
+      "expression": "Intense upward eye contact, serious"
+    },
+    {
+      "id": 3,
+      "position": "bottom-left",
+      "concept": "Fisheye face extreme close-up",
+      "camera": {
+        "height_cm": 150,
+        "distance_cm": 20,
+        "angle": "Dutch tilt 20 degrees"
+      },
+      "composition": {
+        "foreground_dominant": "Face filling 70% of frame, nose and eyes enlarged by proximity",
+        "background": "Environment warping and curving at edges, slight motion blur"
+      },
+      "subject_pose": "Leaning face toward camera, shoulders back",
+      "expression": "Piercing eye contact, one eyebrow slightly raised, confident"
+    },
+    {
+      "id": 4,
+      "position": "bottom-right",
+      "concept": "Seated knee-forward perspective",
+      "camera": {
+        "height_cm": 40,
+        "distance_cm": 50,
+        "angle": "Slight upward looking"
+      },
+      "composition": {
+        "foreground_dominant": "Knees and shins large in frame, cargo pant texture detailed",
+        "midground": "Torso leaning forward",
+        "background": "Face in upper third, hands resting on knees"
+      },
+      "subject_pose": "Seated on pavement, knees up, leaning toward camera",
+      "expression": "Relaxed confidence, soft direct gaze"
+    }
+  ],
+  "environment": {
+    "location_type": "Urban industrial alleyway",
+    "surfaces": {
+      "ground": "Weathered concrete pavement, cracks, texture, subtle debris",
+      "walls": "Concrete and brick, metallic rolling security doors, faded graffiti tags"
+    },
+    "atmosphere": "Gritty urban, authentic street context",
+    "consistency_rule": "Identical environment visible across all four panels"
+  },
+  "lighting": {
+    "source": "Natural afternoon sunlight",
+    "quality": "Hard directional light",
+    "direction": "High side-light, approximately 45 degrees from left",
+    "shadow_character": "Sharp-edged, deep shadows",
+    "color_temperature_kelvin": 5500,
+    "fill": "Minimal, ambient bounce from pavement only",
+    "specular_behavior": "Strong highlights on nylon jacket, chain jewelry, sneaker rubber"
+  },
+  "camera_global": {
+    "lens": "Ultra-wide rectilinear, 12-14mm equivalent",
+    "aperture": "f/8",
+    "depth_of_field": "Deep, foreground to background sharp",
+    "distortion": "Barrel distortion, edge stretching, exaggerated foreshortening",
+    "sensor": "Full-frame, high resolution"
+  },
+  "post_processing": {
+    "color_grade": {
+      "contrast": "High",
+      "saturation_subject": "Vivid, especially neon orange jacket",
+      "saturation_background": "Slightly desaturated, muted",
+      "blacks": "Deep, crushed slightly",
+      "highlights": "Preserved, not blown"
+    },
+    "texture": "8K resolution equivalent, visible skin texture, fabric weave, material detail",
+    "film_treatment": "Subtle RAW photo grain, not excessive"
+  },
+  "negative_constraints": {
+    "style_rejection": ["illustration", "anime", "cartoon", "painting", "drawing", "3d render", "CGI", "digital art", "AI art look", "smooth skin filter", "beauty filter"],
+    "anatomical_rejection": ["extra fingers", "missing fingers", "fused fingers", "extra limbs", "anatomical errors", "broken joints", "impossible body positions"],
+    "consistency_rejection": ["face change between panels", "different person", "clothing change", "hair color change", "inconsistent skin tone", "different lighting between panels"],
+    "technical_rejection": ["blur", "low resolution", "jpeg artifacts", "noise", "watermark", "text", "logo", "signature"],
+    "lens_rejection": ["telephoto compression", "portrait lens look", "85mm aesthetic", "no foreshortening", "flat perspective"]
+  }
+}`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/电影双重曝光海报.png',
+                        alt: '穿搭拆分',
+                        caption: '电影双重曝光海报',
+                        model: 'Nano Banana Pro',
+                        copyText: `{
+  "prompt": "A cinematic double-exposure portrait featuring a woman in profile on the left and a man in profile on the right, both turned away from each other. Their silhouettes, including detailed facial features and hair outlines, blend seamlessly into a dense forest landscape with an artistic, modern pattern. The woman's side glows with warm golden autumn hues, while the man's side is illuminated by cool, serene blue tones. Soft rays of sunlight filter through the trees, adding depth, contrast, and emotional atmosphere. Smooth, natural lighting transitions and a clean black backdrop. Modern, artistic, emotionally expressive poster aesthetic. Bold title text at the bottom: 'Ai Queen is Here…'.",
+  "style": [
+    "cinematic",
+    "double exposure",
+    "high-detail",
+    "artistic poster",
+    "emotional"
+  ],
+  "settings": {
+    "background": "clean black backdrop",
+    "lighting": "soft sun rays, warm vs cool contrast",
+    "composition": "woman profile left, man profile right, both facing outward",
+    "color_palette": {
+      "woman_side": "warm golden autumn tones",
+      "man_side": "cool serene blue tones"
+    }
+  },
+  "effects": [
+    "smooth transitions between silhouettes and forest landscape",
+    "high contrast artistic glow",
+    "poster-quality finish"
+  ],
+  "title_text": "Ai Queen is Here…",
+  "ratio": "3:4"
+}。`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/朋克大片.png',
+                        alt: '穿搭拆分',
+                        caption: '朋克大片',
+                        model: 'Nano Banana Pro',
+                        copyText: `A cyber-grunge surveillance fashion editorial featuring a cool, edgy young woman in her early 20s with a short chin-length bob haircut, straight with slight texture and casual bangs, partially obscured by thick black sunglasses and holding an iced coffee/chocolate plastic cup with a straw in her left hand and a half-eaten sandwich/pastry in her right hand. She wears an oversized white t-shirt with rust-red raglan sleeves and a small chest logo, tucked loosely into black, baggy carpenter/cargo denim jeans with white stitching details, and burgundy loafers, accessorized with a gold pendant necklace. She is captured in a full body walking stride, relaxed posture, facing slightly off-center with a casual, indifferent expression, head turned slightly to the side, looking downward, frozen mid-stride in an urban paved plaza with grey concrete and tiled pavement under bright sunny late afternoon golden hour light, creating high contrast shadows and long diagonal shadows to the left. The image is in 8K Ultra-HD quality, hyperrealistic, with a 4:5 aspect ratio and 1440x1920 resolution, styled in raw photoreal high fidelity, full color with cool urban tones and vibrant red UI accents, high-contrast daylight. The composition includes a main full body shot with multiple zoom-in crops (face/drink, torso, pants leg) in a fragmented layout, overlaid with tactical CCTV UI elements like red bounding boxes, telemetry data, and digital HUD overlays, simulating high-end surveillance footage with a 'Big Brother' observation vibe, candid urban documentation, and crisp daylight realism mixed with digital graphic design elements. The background is a sharp focus concrete cityscape with harsh shadow lines, and the lighting is natural harsh sunlight from a high angle, creating deep black cast shadows against bright pavement, with digital grain and scanline imperfections. The color grading features neutral urban greys, white, rust-red, denim black, and striking bright crimson red UI elements, with post-processing including high sharpness and red vector graphics overlays such as numbers '19 5 3 21 18 9 20 25', text 'CCWW', 'TR521', timecode '18/02', and bounding boxes with hashtags '#83575//' and '#25747//'. The overall theme is urban surveillance, Y2K streetwear, tactical data visualization, candid fashion moment, and dystopian chic, with a mood of cool detached observation, urban nonchalance, chaotic data stream, and privacy-invasion chic, captured from a high-angle surveillance perspective with a 35mm to 50mm lens, deep focus, and a layout of one main image plus three inset detail crops connected by red tactical line art and crosshairs.`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/四季花卷.png',
+                        alt: '穿搭拆分',
+                        caption: '四季花卷',
+                        model: 'Nano Banana Pro',
+                        copyText: `Hyper-realistic digital illustration of {Scene}, presented as a single continuous composition showcasing the cycle of seasons. The scene flows seamlessly from left to right in a natural progression: Winter, Spring, Summer, and Autumn. 
+
+The left side features cold snowy winter elements, gradually thawing into the fresh green buds and blooms of spring, then morphing into the lush vibrant vegetation and bright sunlight of summer, and finally transitioning into the golden, orange, and red hues of autumn on the far right. 
+
+There are no visible dividing lines between seasons; the weather, lighting, and vegetation blend smoothly to create a unified and harmonious panorama. Rich in detail, symbolic of the passage of time, cinematic lighting, 8k resolution, highly detailed textures. --ar 4:3`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/九宫格.png',
+                        alt: '穿搭拆分',
+                        caption: '九宫格',
+                        model: 'Nano Banana Pro',
+                        copyText: `基于[上传人物图片]并严苛保持面部特征不变，生成一张极具时尚感和网络热门度的3x3九宫格拼贴照片，九个独立画面分别展示该人物身着：酷飒街头风黑色Oversized卫衣配工装裤（涂鸦霓虹后巷背景）、清纯性感风白色丝绸吊带睡裙外搭针织衫（柔光慵懒卧室窗边背景）、紧身塑形时尚瑜伽套装（高端采光健身房背景）、复古Y2K辣妹短T恤配低腰牛仔裙（千禧风彩色充满CD的房间背景）、华丽黑色高开叉亮片晚礼服（城市天际线天台酒吧夜景背景）、前卫赛博朋克机能风束带装束（未来感雨夜街道蓝紫光背景）、都市摩登风廓形西装内搭露脐装（极简高级艺术馆背景）、热辣度假风比基尼配透明防晒罩衫（奢华海景泳池日落背景）以及静奢老钱风粗花呢小香风外套套装（古典欧式庄园庭院背景），整体画面追求高级杂志大片质感、光影迷人且富有潮流张力。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/时尚大片视角.png',
+                        alt: '穿搭拆分',
+                        caption: '时尚大片视角',
+                        model: 'Nano Banana Pro',
+                        copyText: `将原始照片转化为一个戏剧性的、逼真的、超广角镜头，具有极端的相机角度（包括从正下方或正上方的视角），其中一个或多个身体部位紧挨着镜头并且看起来巨大，身体的其余部分在透视中后退，并且同一个人在原始环境的一致的、扩展的版本中摆出一个时尚的、复杂的、有力的姿势。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/电影网格.png',
+                        alt: '穿搭拆分',
+                        caption: '电影网格',
+                        model: 'Nano Banana Pro',
+                        copyText: `Analyze the entire composition of the input image. Identify ALL key subjects present (whether it's a single person, a group/couple, a vehicle, or a specific object) and their spatial relationship/interaction.
+ 
+Generate a cohesive 3x3 grid "Cinematic Contact Sheet" featuring 9 distinct camera shots of exactly these subjects in the same environment.
+ 
+You must adapt the standard cinematic shot types to fit the content (e.g., if a group, keep the group together; if an object, frame the whole object):
+ 
+**Row 1 (Establishing Context):**
+ 
+**Extreme Long Shot (ELS):** The subject(s) are seen small within the vast environment.
+ 
+**Long Shot (LS):** The complete subject(s) or group is visible from top to bottom (head to toe / wheels to roof).
+ 
+**Medium Long Shot (American/3-4):** Framed from knees up (for people) or a 3/4 view (for objects).
+ 
+**Row 2 (The Core Coverage):** 4. **Medium Shot (MS):** Framed from the waist up (or the central core of the object). Focus on interaction/action. 5. **Medium Close-Up (MCU):** Framed from chest up. Intimate framing of the main subject(s). 6. **Close-Up (CU):** Tight framing on the face(s) or the "front" of the object.
+ 
+**Row 3 (Details & Angles):** 7. **Extreme Close-Up (ECU):** Macro detail focusing intensely on a key feature (eyes, hands, logo, texture). 8. **Low Angle Shot (Norm's Eye):** Looking up at the subject(s) from the ground (imposing/heroic). 9. **High Angle Shot (Bird's Eye):** Looking down on the subject(s) from above.
+ 
+Ensure strict consistency: The same people/objects, same clothes, and same lighting across all 9 panels. The depth of field should shift realistically (bokeh in close-ups). </Instruction>
+ 
+A professional 3x3 cinematic storyboard grid containing 9 panels.
+ 
+The grid showcases the specific subjects/scene from the input image in a comprehensive range of focal lengths.
+ 
+**Top Row:** Wide environmental shot, full view, 3/4 cut. **Middle Row:** Waist-up view, chest-up view, Face/Front close-up. **Bottom Row:** Macro detail, Low Angle, High Angle.
+ 
+All frames feature photorealistic textures, consistent cinematic color grading, and correct framing for the specific number of subjects or objects analyzed.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/千禧像素.png',
+                        alt: '穿搭拆分',
+                        caption: '千禧像素',
+                        model: 'Nano Banana Pro',
+                        copyText: `保持人物面部特征和发型。Y2K千禧年复古时尚风格，竖版拼贴画。模特穿着鲜艳的短款上衣，戴着彩色串珠项链，手持一个带闪钻的复古翻盖手机自拍。脸上装饰着复古的像素风贴纸（如像素爱心、吃豆人）。背景是全息镭射材质的纹理，散落着CD光盘和旧电脑窗口弹窗的图案。周围有3-4个拍立得风格的照片框展示不同角度。高饱和度色彩，迷幻电子感，时尚杂志封面感。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/微镜头.png',
+                        alt: '穿搭拆分',
+                        caption: '微镜头',
+                        model: 'Nano Banana Pro',
+                        copyText: `{
+ "subject": {
+ "main_character": "A photorealistic, living miniature man (Lilliputian size), not a plastic figure",
+ "attire": "Casual gardening clothes, blue jeans, white t-shirt",
+ "equipment": "A tiny, realistic red push-lawnmower"
+ },
+ "action": "The man is pushing the lawnmower over a giant human eyebrow, trimming the long eyebrow hairs as if mowing a lawn",
+ "setting": {
+ "location": "Extreme close-up macro view of a human forehead and closed eye",
+ "surface_details": "Giant-scale skin texture, visible pores, wrinkles, and coarse eyebrow hair"
+ },
+ "style": [
+ "Surreal conceptual photography",
+ "Hyper-realistic",
+ "Macro photography",
+ "Humorous",
+ "High contrast",
+ "Sharp focus"
+ ],
+ "technical_details": {
+ "lighting": "Hard, direct lighting mimicking sunlight to create distinct shadows on the skin",
+ "camera": "Macro lens, shallow depth of field, focus on the miniature man and the eyebrow",
+ "resolution": "8k, ultra-detailed"
+ }
+}`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/美妆广告.png',
+                        alt: '穿搭拆分',
+                        caption: '美妆广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `Create an editorial photoreal 3×3 storyboard contact sheet for a high end beauty e commerce ad featuring only the following products: {{product_main}} and {{product_secondary}}
+
+Background {{background}}.  
+Lighting  {{lighting}}.  
+
+generate as one evenly spaced 3×3 grid.  
+
+{{panels}}`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/工作室摄影.png',
+                        alt: '穿搭拆分',
+                        caption: '工作室摄影',
+                        model: 'Nano Banana Pro',
+                        copyText: `{
+  "image_specification": {
+    "reference_id": "Figure 1",
+    "mode": "100% Virtual Reality",
+    "base_settings": {
+      "focus": "Face Reference, Ear, Nose, Mouth",
+      "proportion": "+++",
+      "consistency": "Keep face 100% unchanged"
+    },
+    "technical_specs": {
+      "medium": "Professional studio photography",
+      "resolution": "32k sharp, HD level",
+      "lighting": "Bright lights shining on model, realistic shadows, luster fascination",
+      "background": "Clean bright white background"
+    },
+    "subject": {
+      "model_attributes": {
+        "skin": "Healthy focus, succulent skin, luster",
+        "body_features": "Clear clavicle, beautiful shoulder, tapered neck",
+        "hair": {
+          "color": "Blond",
+          "style": "Tall boxing bun in middle of head, heart-shaped",
+          "details": "Two thin straight tresses, moisturizing texture",
+          "bangs": false
+        },
+        "expression": {
+          "gaze": "Looking straight at the camera",
+          "emotion": "Seductive and alluring glint",
+          "makeup": "Twinkle Petch Slash"
+        }
+      },
+      "pose": {
+        "type": "Sitting position",
+        "action": "One arm pushing the floor",
+        "style": "Professional model posing, presenting torso luster"
+      }
+    },
+    "attire_and_accessories": {
+      "dress_code": {
+        "top": "Caramel strapless top or corset, style reinforces shape",
+        "bottom": "Matching very short skirt or corset-dress style",
+        "details": [
+          "Cross-ties on front and sides",
+          "Large floral decoration made of hip-level brown cloth (adds volume and romantic feelings)"
+        ]
+      },
+      "jewelry": [
+        "Fancy diamond necklace",
+        "Tiny diamond earrings",
+        "Small ring"
+      ]
+    }
+  }
+}`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/横切线图转3D.png',
+                        alt: '穿搭拆分',
+                        caption: '横切线图转3D',
+                        model: 'Nano Banana Pro',
+                        copyText: `{
+  "scene_description": "A photorealistic, high-end 3D product visualization of a perfectly assembled packaging box derived from a dieline, set in a pristine minimal studio.",
+  "subject": {
+    "type": "Assembled Packaging Box",
+    "material": "Premium matte paperboard",
+    "features": {
+      "structure": "Perfectly folded, accurate panel placement, sharp clean edges",
+      "surface": "Smooth matte texture with high-fidelity print rendering"
+    },
+    "position": "Upright, angled at a refined ¾ perspective view to show front and side panels",
+    "artwork_state": "Undistorted typography, preserving original design exactly"
+  },
+  "action": {
+    "primary": "Standing static on a surface",
+    "secondary": "Casting a gentle shadow",
+    "effect": "Demonstrates structural integrity and design elegance"
+  },
+  "environment": {
+    "setting": "Minimalist High-End Studio Void",
+    "foreground_elements": [
+      "Clean, smooth surface",
+      "Soft contact shadows"
+    ],
+    "background_elements": [
+      "Soft neutral seamless backdrop (light grey/cream)",
+      "Zero distractions",
+      "No extra props"
+    ]
+  },
+  "lighting": {
+    "style": "Soft Commercial Product Lighting (Global Illumination)",
+    "key_light": {
+      "type": "Large Diffused Softbox",
+      "color": "Neutral White (5500K)",
+      "illuminates": [
+        "The face of the box evenly",
+        "The matte texture of the paper"
+      ]
+    },
+    "fill_light": {
+      "type": "White Reflector",
+      "effect": "Softens shadows to ensure artwork visibility"
+    },
+    "shadows": "Subtle, soft gradient shadows anchoring the object"
+  },
+  "style": {
+    "medium": "3D Rendering / Product Photography",
+    "aesthetic": "Premium Editorial, Mockup Style, Minimalist Luxury",
+    "quality": "8k resolution, ray-traced optics, physically based rendering (PBR)",
+    "details": "Crisp folds, zero distortion, matte paper grain visibility"
+  },
+  "scene_composition": {
+    "subject_action": "Static presentation",
+    "camera_behavior": "Locked-off tripod shot",
+    "depth_layering": "Sharp Subject -> Infinite Soft Background"
+  },
+  "visual_description": {
+    "core_subject": "A flawless 3D box assembled from a flat dieline.",
+    "attire_physics": "N/A - Rigid Body physics.",
+    "surface_rendering": "Non-reflective matte finish that absorbs light softly, ensuring text is readable and colors are true."
+  },
+  "lighting_and_atmosphere": {
+    "type": "Clean Studio",
+    "specifics": "Even light distribution, ambient occlusion in the creases.",
+    "color_grade": "Natural, color-calibrated, neutral tones."
+  },
+  "attire_customization": {
+    "current_clothing": "N/A",
+    "customizable_clothing": "N/A"
+  },
+  "brand_product_customization": {
+    "current_brand_product": "Packaging Design",
+    "customizable_brand": "User: Insert Brand Name/Logo for the box",
+    "customizable_product": "User: Describe the box type (e.g., cosmetic box, tuck-end box)",
+    "product_placement_area": "All visible panels (Front, Side, Top)"
+  },
+  "objects_and_props": {
+    "main_objects": [
+      "The 3D Box"
+    ],
+    "secondary_objects": []
+  },
+  "camera_and_lens": {
+    "focal_length_feel": "85mm or 100mm (Telephoto to eliminate perspective distortion)",
+    "aperture_effect": "f/16 (Deep depth of field for edge-to-edge sharpness)",
+    "camera_angle": "Isometric or ¾ perspective",
+    "lens_type": "Studio Macro Lens",
+    "bokeh_style": "None (Smooth gradient background)"
+  },
+  "technical_tags": "--v 6 --ar 4:5 --stylize 150 --no warping, distortion, messy background, props, glossy reflection, low poly"
+}`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/配料合成食材.png',
+                        alt: '穿搭拆分',
+                        caption: '配料合成食材',
+                        model: 'Nano Banana Pro',
+                        copyText: `Premium Chinese noodle restaurant food poster featuring deconstructed layers of Dan Dan Noodles / Spicy Sichuan Noodles floating in vertical stack on pure black background (#000000). Seven distinct layers from top to bottom with extra spacing before the final dish:
+
+1) Top layer: pile of bright red dried chili flakes and golden-brown Sichuan peppercorn powder
+
+2) Second layer: light yellow crushed peanuts and vibrant green chopped scallions scattered
+
+3) Third layer: coiled handmade alkaline noodles in pale yellow, showing clear texture and strands
+
+4) Fourth layer: yellow bean sprouts (yacai) and bright green peas scattered - these vegetables would be placed in the bowl first
+
+5) Fifth layer: transparent glass bowl filled with deep red spicy chili oil broth, floating chili pieces visible, glossy surface with reflections - this soup base is poured over the vegetables, so it appears BELOW the vegetables in the vertical stack
+
+6) Sixth layer: EMPTY SPACE - a larger gap with only subtle floating oil droplets, steam wisps, and small ingredient particles drifting down, creating visual separation and breathing room
+
+7) Bottom/Final layer (with significantly larger gap above): a complete finished Dan Dan Noodles dish in a traditional dark brown ceramic bowl, viewed from the same 45-degree angled perspective as all other layers above. The bowl contains all ingredients combined - pale yellow noodles coated in glossy red chili oil, topped with crushed peanuts, bright green chopped scallions, bean sprouts, peas, and red chili flakes sprinkled on top. The noodles look freshly mixed and glistening with oil, subtle steam rising. This finished bowl is at the same scale and viewing angle as the deconstructed ingredients above. The extra spacing above emphasizes this as the final result, creating a dramatic reveal of the transformation from separated components to complete dish.
+
+Each layer separated with gaps revealing textures and details. Layers 1-5 have normal spacing between them. Layer 6 is an intentional empty transition space with double or triple the normal gap distance. Layer 7 (finished dish) sits at the bottom with clear visual separation. Chinese and English bilingual labels with elegant arrows pointing to each component: "辣椒油&花椒粉 Chili Oil & Sichuan Pepper Powder", "麻辣风味 Numbing & Spicy Flavor", "花生碎&葱花 Crushed Peanuts & Scallions", "手工碱面 Handmade Noodles", "芽菜&豌豆 Yacai & Peas", "丰富配料 Rich Toppings", "红油汤底 Spicy Red Broth", "成品 Finished Dish".
+
+NO white pedestal, NO platform base. All layers float freely in space against pure black background. Dramatic studio lighting from 45-degree angle, rim lighting highlighting textures and glass bowl transparency. All layers including the finished bowl share identical lighting, perspective angle, and photorealistic quality. Subtle steam effects, oil droplets floating around layers, with more particles in the empty transition space. Star sparkle effect in bottom right corner near the finished dish. Dark moody aesthetic, luxurious commercial food photography style, ultra-realistic, highly detailed, professional restaurant advertising quality, 9:16 vertical format.`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/复刻提示词.png',
+                        alt: '穿搭拆分',
+                        caption: '复刻提示词',
+                        model: 'Nano Banana Pro',
+                        copyText: `详细描述完整的图像复刻 JSON 提示词，包含物体、服装、头发、细节、配饰、摄像设备、环境、灯光、风格、身体动态，一切都要详细复刻原图，最终输出一个优化的元提示词， 800 字`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/杂志跨页.png',
+                        alt: '穿搭拆分',
+                        caption: '杂志跨页',
+                        model: 'Nano Banana Pro',
+                        copyText: `Pop Mart "The Monsters" x Real Human Fashion Editorial Generator
+
+Role: Senior Art Director & IP Collaboration Specialist. Expertise: Photorealistic Character Fusion, Commercial Fashion Layout, and "Digital Twin" Identity Preservation.
+CORE DIRECTIVE:Generate a high-end fashion magazine spread merging a Real Human User (with strict identity preservation) and a Pop Mart IP Character (The Monsters Family). They must be styled as "Fashion Partners" with active interaction.
+
+视觉总监控制台已接管。正在调用高端时尚影像生成引擎。
+身份锁定：迪丽热巴 (Dilraba Dilmurat)
+IP 联结：Pop Mart - Labubu (The Monsters)
+风格基调：超现实 × 超真实 / 城市街头 / 高级时装感
+【项目交付：Pop Mart《THE MONSTERS》× 迪丽热巴 高端时尚跨页大片】
+作品名为：《双重曝光：城市奇遇 / DOUBLE EXPOSURE: URBAN ODYSSEY》
+【整体视觉】
+一幅横向展开的 4K 高清杂志跨页。视觉语言融合了纪实街拍的粗颗粒胶片感与超现实主义的精致洁癖感。左右页之间被一道极具张力的“撕裂与颜料涂抹”艺术边界分割，仿佛现实世界被怪诞力量撕开一角。
+【左页 (60%)：主封面大片 Visual Focus】
+光影与场景：
+场景设定在东京涩谷或上海法租界的黄昏街头。金色的夕阳余晖（Golden Hour）从侧后方打入，在迪丽热巴的发丝和 Labubu 的绒毛上勾勒出绝美的金色轮廓光。背景是虚化但可辨识的繁忙十字路口、霓虹灯牌和移动的车流光影，景深极具电影感。
+人物主体（迪丽热巴）：
+面孔 100% 锁定迪丽热巴。她呈现出一种松弛而巨星的街拍状态，身体微侧，回头看向镜头，眼神里交织着酷感与被伙伴逗乐的笑意。她戴着复古报童帽，身着廓形解构的卡其色风衣，领口露出复杂的格纹衬衫与蕾丝打底层次，颈间系着松垮的拼色领带。
+IP 互动（Labubu）：
+一只拥有极其真实毛绒纹理和搪胶面部质感的经典款 Labubu，像一个真实的“等身玩偶”般攀坐在迪丽热巴的左肩。它穿着一套精细度极高的“微缩定制版”卡其风衣和迷你格纹领带。Labubu 脸上挂着标志性的坏笑，一只爪子正淘气地掀起迪丽热巴报童帽的帽檐，仿佛在搞恶作剧。
+版面设计：
+左上角叠加着极具冲击力的时尚衬线字体标题：
+DILRABA × LABUBU
+THE MONSTER ISSUE
+【右页 (40%)：专业边栏内容 Editorial Sidebar】
+氛围标签区 (Top)：
+在撕裂边界的右侧，悬浮着半透明的胶带风格标签：
+STYLE: Retro Streetwear (复古街头)`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/品牌广告.png',
+                        alt: '穿搭拆分',
+                        caption: '品牌广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `Creative 3D ad for [Brand Name], with surreal object made from it, matching background color, real slogan below, logo on top, miniature person interacting, minimal and clever concept`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/高级肖像.png',
+                        alt: '穿搭拆分',
+                        caption: '高级肖像',
+                        model: 'Nano Banana Pro',
+                        copyText: `一幅奢华的高级时尚肖像，[角色描述]优雅地坐在装饰华丽的大型长方形画框下边缘
+
+画框细节：
+• 巴洛克/洛可可风格长方形画框
+• 用[画框颜色和质地]绘制，与整体色调和谐
+
+环境：
+• 背景：优雅的工作室墙面，经典镶板[颜色]
+• 地板：略有反光，[地板颜色]
+
+灯光：
+• 电影式高调时尚光线
+• 主体柔和柔散光
+• 轻微轮廓分离
+
+相机：
+• 对称居中全身肖像
+• 干净的编辑时尚构图
+• 8K超清高端大片品质
+
+风格标签：单色 | 悬浮画框 | 电影工作室时尚 | 奢华编辑美学`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/动感广告.png',
+                        alt: '穿搭拆分',
+                        caption: '动感广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `Cinematic 3D action-packed advertisement of [PRODUCT], captured in a dramatic mid-motion scene that embodies its core energy. Use bold studio lighting with intense highlights and deep shadows, dynamic particles, and slow-motion effects to amplify impact. The environment should feel surreal yet hyperrealistic, designed to reflect the product’s personality (crunchy, energetic, fast, luxurious, refreshing, etc.). Integrate the brand logo crafted from product elements if possible, and place a sleek creative slogan beneath it that matches the mood. Composition in 1:1 aspect ratio, hyper-detailed, sharp, bold, and designed to go viral.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/食品广告.png',
+                        alt: '穿搭拆分',
+                        caption: '食品广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `Smooth 3D hyperrealistic food advertisement of [TYPE OF FOOD], shown with mouthwatering glossy textures and perfect lighting, placed on a dark moody surface with soft glow and cinematic blur in the background, high Kelvin lighting for golden highlights and sharp shadows, backlit to show delicious steam and dripping sauces, behind the food a bold slogan in elegant font with three words only, restaurant logo subtly placed on the plate or in the corner, rich color grading with appetite-inducing tones, ultra sharp, professional food styling, stylized render`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/概念广告.png',
+                        alt: '穿搭拆分',
+                        caption: '概念广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `“{BRAND or PRODUCT NAME}” — surreal minimal conceptual advertisement
+Create a 1:1 high-resolution poster that reimagines the brand/product as a surreal object of desire using minimal elements and symbolic storytelling.
+
+• Visual Style: ultra-clean background (light or muted tone), soft lighting, strong negative space
+• Scene Concept: transform the essence of the product into a metaphorical or dreamlike scene
+• Add a short, punchy slogan (2–3 words) that emotionally resonates with the concept
+• Include the brand’s logo in a clean, modern style (integrated naturally into the layout)
+• Composition: centered or rule-of-thirds alignment, use shadows and depth tastefully
+• Mood: artistic, elegant, and thought-provoking — like a museum installation
+• No clutter, no realism overload — just conceptual clarity`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/水旋涡广告.png',
+                        alt: '穿搭拆分',
+                        caption: '水旋涡广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `Create square image of studio-lit product photography of a [Product] suspended in mid-air, lots of thick dynamic water swirls surrounding it in slow-motion arcs, crystal-clear droplets glistening with light refraction, high-gloss finish, minimal backdrop, cinematic lighting with soft shadows and highlights, shot on a pure matching gradient background, ultra-realistic detail, commercial photography style, 85mm lens depth of field.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品概念广告.png',
+                        alt: '穿搭拆分',
+                        caption: '产品概念广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `A realistic product photo of a [brand name] [bottle or jar] sculpted entirely from fresh [ingredient name], arranged perfectly to form the shape of the original packaging, including a detailed and accurate label on the front. The background is a clean, soft light gray with a natural wooden surface. Studio lighting, soft shadows, 1:1 square composition, professional product photography style, ultra-detailed textures, vibrant and glossy finish`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/高冲击力广告.png',
+                        alt: '穿搭拆分',
+                        caption: '高冲击力广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `Create a hyperrealistic, high-impact image of a [subject] suspended mid-air, captured at the peak of an explosive moment. Surround it with dynamic [particles/splashes/fragments] that enhance motion and energy. macro-level detail, bold rim lighting, and a vibrant [background color] to emphasize form, texture, and contrast, cinematic, modern, and visually striking. perfect for premium product campaigns.`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/超现实电影海报.png',
+                        alt: '穿搭拆分',
+                        caption: '超现实电影海报',
+                        model: 'Nano Banana Pro',
+                        copyText: `“[MOVIE TITLE ]” — cinematic movie poster design in ultra-realistic, high-definition style. Capture a dramatic and emotionally charged scene based on the film’s title. Use a high Kelvin color temperature to eliminate yellow tint, favoring cold, bluish tones or neutral whites. Add volumetric fog, sharp shadows, and deep depth of field. Simulate a cinematic lens with soft bloom, subtle lens flare, and film grain.
+
+Render the title “[MOVIE TITLE ]” in expressive kinetic typography that visually embodies the meaning of the word (e.g. dissolving, cracked, melting, glowing). Typography should feel integrated into the environment, bold and iconic.
+
+Include a short, emotionally resonant tagline beneath the title. Overall composition must resemble a high-budget blockbuster movie poster, with a 2.35:1 aspect ratio and strong visual storytelling.`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/悬浮切片水果.png',
+                        alt: '穿搭拆分',
+                        caption: '悬浮切片水果',
+                        model: 'Nano Banana Pro',
+                        copyText: `A hyper-realistic photograph of a [FRUIT] sliced into five glossy layers, each slice floating vertically in mid-air with glistening juice droplets at the edges. The slices cast soft, natural shadows on each other. The [FRUIT] has a vibrant skin with appropriate interior details .Set against a softly blurred tropical garden background with hints of lush green leaves and dappled sunlight, the scene is lit with warm, directional golden-hour lighting, enhancing the vivid colors and depth`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/数字广告.png',
+                        alt: '穿搭拆分',
+                        caption: '数字广告',
+                        model: 'Nano Banana Pro',
+                        copyText: `A hyper-realistic, ultra-detailed 3D digital advertisement showcasing a Pepsi can bursting open at its center, sending a refreshing splash of carbonated cola into the air, with effervescent bubbles and ice cubes flying outward. The can’s metallic surface is rendered with sharp, photorealistic textures, complete with condensation droplets, light reflections, and subtle scratches. Surrounding the scene are cold, translucent ice shards and a twist of lemon zest caught mid-motion, adding a vibrant contrast. The background features a deep electric blue gradient with cinematic volumetric lighting and soft lens flares. Green mint leaves and misty vapors add a refreshing, natural accent. The entire scene is rendered in 4K UHD using advanced global illumination, HDR lighting, and realistic shadows. The composition evokes premium beverage advertising with a dramatic tone, created using tools like Unreal Engine + Octane Render for maximum visual impact.`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/拼图肖像.png',
+                        alt: '穿搭拆分',
+                        caption: '拼图肖像',
+                        model: 'Nano Banana Pro',
+                        copyText: `高分辨率的摄影棚人像，一位惊艳年轻模特「安妮海瑟薇」为主角。她拥有一头顺直的黑发，背景为白色，无任何可辨识的元素。她的脸略微侧转，但目光直视镜头，目光强烈而专注，毫无动摇。
+
+她整张脸由拼图块组成——每一块都清晰可见，边缘整齐，具备细腻的立体感。她轻柔地用手指捏着一块刚从脸颊取下的拼图块，露出其下方一个空洞的黑色虚空。
+
+光线集中且具方向性，几乎不产生阴影，但准确地勾勒出皮肤的轮廓与拼图结构的立体感。整体氛围超现实、精准且高度写实。
+
+顶部有像时尚杂志一样的标题“ZHOGUE”（在人物后面）`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/短片图文故事.png',
+                        alt: '穿搭拆分',
+                        caption: '短片图文故事',
+                        model: 'Nano Banana Pro',
+                        copyText: `创作一个引人入胜的12部分故事，包含经典黑白黑色电影侦探故事中的这些角色。把故事围绕着他们在过程中获得线索，最终发现失踪宝藏。故事贯穿始终令人振奋，情感起伏迭起，结尾充满了精彩的反转和高潮。图片上不要使用任何文字或文字，而是通过图像本身讲述故事`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-9.png',
+                        alt: '穿搭拆分',
+                        caption: '产品痛点',
+                        model: 'Nano Banana',
+                        copyText: `核心概念：
+打造一款精致复合的时尚电商主图，完美融合高端模特摄影与清晰的信息化图文叠加设计。
+
+主体 - 模特与产品照片：
+模特与状态：聚焦一位优雅自信的亚裔女性（约28-30岁）。她双眸轻闭，唇畔漾开柔和满足的微笑，传递全然舒适与自在从容的气质。
+产品与穿着：身着燕麦色修身罗纹半高领毛衣，肩头随意搭挂一件纹理丰富的深色粗花呢外套，另一只手优雅轻抚胸前。毛衣下摆束入橄榄绿高腰长裤，配以带独特金色扣饰的棕褐色细皮带。点缀精致金色项链与经典金表。
+构图与光线：专业影棚人像摄影。采用柔和温暖的定向光线，细腻勾勒面部轮廓并凸显罗纹毛衣的丰盈质感。背景为纯色极简暖灰褐色。
+
+叠加层 - 图形与文字：
+图形元素精准叠加于照片之上
+
+顶部信息卡：
+
+定位：画面顶部区域
+
+卡片样式：圆角柔和的纯净白色卡片
+
+卡片内容（左侧）： minimalist深棕色线条绵羊图标
+
+卡片内容（右侧）：三列清单项目，每项起始处搭配亮红色对勾图标(✓)
+
+清单文本：
+"✓ 版型：修身剪裁 凸显曲线"
+"✓ 搭配：单穿叠穿 皆成风尚"
+"✓ 色彩：甄选色调 诠释优雅"
+
+右下角文本块：
+
+定位：画面右下象限
+
+内容：
+主文案："修身不臃肿 叠穿亦轻盈"
+辅助文本："贴合身形曲线 完美适配各类外套"
+
+文字风格：现代无衬线白色字体，主文案字号更大且加粗
+
+整体风格与品质：
+整体美学融合高端时尚杂志摄影风格与清晰直观的UI/UX设计
+氛围定位：优雅自信、值得信赖
+图像须以超高清画质呈现，符合高端品牌主视觉横幅标准`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-6.png',
+                        alt: '穿搭拆分',
+                        caption: '产品对比',
+                        model: 'Nano Banana',
+                        copyText: `1. 核心概念：
+一张适用于电子商务场景的专业级产品原料对比图。
+
+2. 核心构图：
+采用垂直居中分割的「分屏式构图」，画面被精准划分为左右两个对称区域。
+
+3. 对比项A（左侧 - 我们的产品）：
+
+视觉描述：
+左侧区域呈现经精细处理的顶级「云柔羊毛」纤维特写。材质需呈现极度蓬松、洁白无瑕的云絮质感，纤维细腻纯净无杂质。
+
+文本内容与排版：
+
+定位： 左侧画面上半部分
+
+标题： "云柔羊毛"
+
+核心优势： "细腻纯净 / 抗起球"
+
+4. 对比项B（右侧 - 普通产品）：
+
+视觉描述：
+右侧区域展示未经处理的劣质「原生羊毛」纤维。呈现粗糙暗沉、泛黄纠结的纤维状态，其中明显夹杂黑色杂质。
+
+文本内容与排版：
+
+定位： 右侧画面上半部分
+
+标题： "原生羊毛"
+
+材质缺陷： "粗糙含杂 / 穿着刺痒"
+
+5. 整体风格与排版：
+
+摄影风格：
+采用超高清微距摄影技术，确保两种羊毛的纤维细节得到极致呈现
+
+光线与背景：
+搭配简约暖色调纯色背景，运用明亮均匀的专业影棚灯光，营造科学严谨的视觉信任感
+
+文字风格：
+全部使用洁净简约的现代无衬线字体，通过精准对齐的版式设计体现专业品质`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-14.png',
+                        alt: '穿搭拆分',
+                        caption: '产品面料',
+                        model: 'Nano Banana',
+                        copyText: `1. 核心概念：
+一张用于电子商务的创意产品功能展示图，通过视觉化手法生动演绎产品的「抗静电」 特性。
+
+2. 背景层 - 产品实拍：
+画面下半部分呈现超高清微距摄影——米色罗纹针织面料的柔软褶皱与细腻肌理在景深镜头下纤毫毕现，焦点精准锐利。
+
+3. 叠加层 - 图形与插画：
+在产品实拍图上方叠加一组简约干净的白色创意图形元素：
+
+核心图形： 采用代表羊毛产品的简笔画风格绵羊图标
+
+互动图形： 在绵羊周围散布卡通风格的白色闪电图标，象征秋冬静电
+
+关键创意： 用半透明微光「能量防护罩」将绵羊与闪电隔开，可视化呈现抗静电原理
+
+4. 顶层 - 文本与排版：
+
+位置： 画面顶部纯净色块区域
+
+内容： "抗静电防护 / 无惧静电，从容过冬"
+
+文字风格： 使用洁净清晰、略带圆润感的现代无衬线白色字体，与图标视觉语言保持统一
+
+5. 整体风格与氛围：
+以温暖柔和的奶油色调为主旋律，营造秋冬温馨感。画面融合极简主义与趣味插画，通过直观的视觉叙事传递专业功能，兼具专业度与亲和力。`,
+                        funcType: '文生图'
+                    }, 
+                    {
+                        type: 'image',
+                        src: 'images/产品图-13.png',
+                        alt: '穿搭拆分',
+                        caption: '产品细节',
+                        model: 'Nano Banana',
+                        copyText: `1. 核心概念（Core Concept）
+一款专业化的多面板电商示意图，旨在通过视觉形式展示面料的关键耐用性特点：抗起球、保形性与色牢度。
+2. 整体布局（Overall Layout）
+该图像由三个独立面板以拼贴形式构成。顶部并列放置两个尺寸较小、近似正方形的面板，底部则设置一个尺寸更大、宽度更宽的长方形面板。
+3. 各个面板的详细指令（Detailed Instructions for Each Panel）
+通用指令
+三个面板中展示的面料，必须与我上传的主产品图中的罗纹针织面料完全一致，精准还原其质感与纹理设计。
+面板 1（左上角 - 抗起球）
+视觉内容：一张近距离微距特写镜头。一只手握着一把干净的白色面料刷，正在主动刷拭米色罗纹面料的表面。尽管经过刷拭，面料仍需呈现出极为平整的状态，完全无任何起球或毛絮，通过视觉直观证明其耐用性。
+文字内容：以简洁的白色字体叠加在图像上方，文字内容应为：“Resists Pilling（抗起球）”。
+面板 2（右上角 - 抗变形）
+视觉内容：一张富有动感的特写镜头。一双手正用力拉伸一块同款罗纹针织面料，但该面料样品需采用浓郁鲜亮的红色，以形成视觉对比。面料应展现出强韧且富有弹性的质感，清晰体现其高弹性特点及不易变形、无损伤的保形能力。
+文字内容：以简洁的白色字体叠加在图像上方，文字内容应为：“Resists Deformation（抗变形）”。
+面板 3（底部 - 抗褪色）
+视觉内容：一张具有视觉冲击力的宽幅特写镜头。米色罗纹面料被紧紧拧绞，仿佛在浸泡后被拧干的状态。清澈干净的水滴正从面料的底边滴落。关键要求是，水滴必须完全清澈透明，绝不能带有任何米色或黄色的染色痕迹，以此有力证明面料的色牢度。
+文字内容：以简洁的白色字体叠加在面板底部位置，文字内容应为：“Resists Fading（抗褪色）”。
+4. 整体风格与品质（Overall Style & Quality）
+整体美学风格简洁、明亮，兼具科学严谨的实验室测试感，以此建立消费者的信任与产品可信度。
+所有面板的光线均需均匀且专业，极致细致地突出面料的纹理细节。
+字体设计需现代简约，且具备极高的可读性。图像必须以超高分辨率呈现`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-12.png',
+                        alt: '穿搭拆分',
+                        caption: '产品场景',
+                        model: 'Nano Banana',
+                        copyText: `核心概念：
+打造明亮、洁净、令人安心的电商生活方式图景。首要目标是通过视觉语言传达毛衣“易于打理”与“可机洗”的核心卖点。
+
+核心画面 - 场景搭建：
+前景：视觉焦点处精心叠放5-6件毛衣。将一件陶土红色毛衣从叠放中自然展开，优雅展示其标志性罗纹肌理与半高领设计。
+产品规范（关键！）：所有叠放毛衣必须严格遵循上传主图产品的版型、罗纹纹理与设计细节。叠装需呈现多元色彩组合，包括原色米白、陶土红、灰绿色、深棕、乳白及纯黑。
+中景：毛衣堆后方放置一台现代风格高端滚筒洗衣机。机身保持洁净雅致，通过虚化处理确保毛衣始终处于视觉核心。洗衣机作为关键视觉锚点，直观传递“可机洗”属性。
+背景：场景设定于明亮整洁的现代洗衣房或家居角落。左上角置物架摆放时尚玻璃藤条香薰，为空间注入精致生活气息。
+
+顶层 - 图文叠加：
+信息卡定位：悬浮于画面上部，与洗衣机产生局部叠压
+卡片样式：圆角设计的半透明白色卡片
+卡片内容：
+
+图标：嵌入简约深棕色线条绵羊图案
+
+品牌标识：图标下方标注“您的品牌”等占位文字
+
+卖点清单：采用圆点/勾选式排列核心优势：
+“可直接机洗”
+“抗缩水抗起球”
+“版型持久稳定”
+“耐磨耐穿”
+主标题：
+
+定位：白色卡片上方
+
+文案：“轻松打理 / 悦享安心”
+
+字体：选用深暖褐色现代无衬线字体
+
+整体风格与品质：
+整体视觉呈现明亮洁净、通透轻盈的质感，传递现代井井有条的家居美学
+氛围营造需体现值得信赖、实用安心之感
+画面须以超高清画质渲染，确保毛衣纹理与细节达到纤毫毕现的呈现效果`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-8.png',
+                        alt: '穿搭拆分',
+                        caption: '产品展示',
+                        model: 'Nano Banana',
+                        copyText: `1. 核心概念：
+打造一款聚焦感官体验的高端电商主图。核心目标是通过视觉语言传递毛衣的极致柔软与亲肤舒适，与观众建立深层情感共鸣。
+
+2. 主体 - 模特与产品照片：
+
+模特与状态：
+聚焦一位优雅自信的亚裔女性（约28-30岁）。她眼帘轻阖，唇角漾开幸福微笑，仿佛正沉醉于某种美妙感受。其表情至关重要——必须传递出深度舒适与感官愉悦。
+
+产品与穿着（关键！）：
+她身着与上传产品图完全一致的米色罗纹半高领毛衣。需精准复刻其特定色彩、罗纹肌理与插肩袖设计。毛衣以高级穿搭方式呈现——下摆束入橄榄绿高腰长裤，配以带优雅金扣的棕褐色细皮带，点缀精致金色项链与经典金表。
+
+“感官”动作：
+手臂自然抬起，手掌轻抚胸前锁骨处的织物。姿态松弛自然，直接传递对面料触感的喜爱。
+
+构图与光线：
+专业影棚人像摄影。采用柔和温暖的侧向主光，塑造细腻阴影以强调毛衣罗纹肌理与模特面部轮廓。背景为极简的暖灰褐/米色墙面。
+
+3. 叠加层 - 图形与文字：
+图形元素以高端简洁的设计感叠加于照片之上
+
+左上角文本块：
+
+内容：
+"云感羊毛科技"
+"亲肤暖意"
+"零刺痒体验"
+
+图标：在文字旁配置简约白色线条绵羊图标
+
+左下角文本块：
+
+内容：
+品牌宣言："温柔*"
+标语："至柔羊毛基础层"
+
+文字风格： 全部使用洁净的现代无衬线白色字体。"温柔*"作为底部最突出的视觉文字元素。
+
+4. 整体风格与品质：
+整体美学需呈现高端、优雅且深具感官吸引力的特质，融合时尚大片质感与高端品牌广告的清晰度。
+图像须以超高清画质渲染，确保从织物罗纹到肌肤纹理的所有细节都纤毫毕现。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-11.png',
+                        alt: '穿搭拆分',
+                        caption: '产品扩展',
+                        model: 'Nano Banana',
+                        copyText: `核心概念：
+打造简洁专业的电商产品图，集中展示毛衣的多元配色选择。
+
+核心画面：
+主要内容：多件毛衣整齐排列，以相同简约的白色衣架紧密悬挂。
+产品规范（关键！）：所有毛衣必须严格遵循上传主图产品的版型与罗纹肌理。需精准复刻每件单品的半高领设计与插肩袖结构。
+颜色系列：呈现8-10种和谐配色组合，除原版米色外，还需包含乳白、驼褐、柔雾紫、炭灰色、陶土红、深巧克力棕、活力正红及经典纯黑等流行色调。
+构图：采用微侧视角展现肩线、领型与侧身轮廓，形成如参考图般富有韵律的视觉阵列。
+
+背景与光线：
+背景：虚化处理的温暖中性色背景，营造高端简约的影棚/买手店氛围
+光线：明亮均匀的柔光照明，确保所有织物色彩呈现饱满准确的视觉效果
+
+顶层 - 文本与排版：
+定位：画面顶部居中区域
+内容：
+
+主标题：「多元配色选择」
+
+副标题：「轻松缔造高级感穿搭」
+文字风格：选用现代无衬线字体，采用与整体色调相融的深暖褐/炭灰色。主标题字号略大且加粗。
+
+整体风格与品质：
+整体呈现整洁有序的高端质感，有效传递产品多样性与卓越品质
+图像须以超高清画质输出，确保每件毛衣的罗纹肌理都清晰可见`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-10.png',
+                        alt: '穿搭拆分',
+                        caption: '产品材质',
+                        model: 'Nano Banana',
+                        copyText: `核心概念：
+打造面向电商场景的高科技抽象3D可视化画面，旨在解析两大创新面料科技——发热纤维与中空纱的科学原理。
+
+基础层 - 3D织物结构：
+背景主体由细腻交织的纱线束特写宏观3D渲染构成。材质呈现极致柔软蓬松的质感，仿若高级法兰绒或毛巾绒，采用柔白色或浅粉色系渲染。
+
+技术层 1 - “发热纤维”：
+数道半透明红橙色能量流带在场景中动态穿梭。
+流带内部流淌着闪耀的金色粒子，象征湿气转化为热量的过程。
+周边散布着莹光环绕的暖橙色核心能量球体，强化动态能量感。
+
+技术层 2 - “中空纱”：
+画面底部将主要白色纱束进行透明化或剖视处理，显露出贯穿纱芯的璀璨金色能量丝线，直观呈现“中空纱锁存热量、形成空气隔热层”的原理。
+
+顶层 - 文本与排版：
+文字分为两个独立板块解析各项科技
+
+A区（画面上部）：
+
+定位：画面顶部
+
+标题："发热纤维科技"
+
+说明："将湿气转化为热能 / 抗起球耐磨韧 / 升温达8.8°C"
+
+B区（画面左下）：
+
+定位：画面左下区域
+
+标题："中空纱技术"
+
+说明："形成锁温空气层 / 有效隔绝冷空气保持体温"
+
+文字风格：全部使用现代简约的深灰/黑色无衬线字体，版式专业整洁，标题与正文层级分明。
+
+整体风格与氛围：
+整体呈现高科技感、纯净度与动态美学，媲美高端科技产品广告视觉
+色彩体系以柔白、暖粉与活力橙金为主调，营造温暖能量感
+超高清画质渲染，细节锐利分明，光影效果莹润夺目`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-1.png',
+                        alt: '穿搭拆分',
+                        caption: '产品海报',
+                        model: 'Nano Banana ',
+                        copyText: `1. 核心概念：
+打造一款时尚大刊风格的电商业视觉主图。旨在营造兼具摩登自信、优雅型格与艺术气息的强烈氛围。
+
+2. 主体 - 模特与产品照片：
+
+模特与状态：
+聚焦一位仪态优雅、自信从容的亚裔女性。姿态充满张力：一手利落扶胯，另一手持握厚重简约的时尚刊物或艺术画册。微仰的面庞与向上眺望的目光，勾勒出向往与沉静自信交织的神韵。
+
+产品与穿着（关键！）：
+身着与上传产品图完全一致的米色罗纹半高领毛衣。需精准复刻其特定色彩与肌理。毛衣以无可挑剔的穿搭方式呈现——下摆束入高腰修身黑色长裤，搭配饰有醒目金色扣饰的黑色皮革腰带，点缀设计含蓄的金色耳环与戒指。
+
+构图与光线（核心！）：
+场景设定于极简建筑空间内，如现代阶梯或充满几何线条的居所。光线成为重中之重：必须营造戏剧性高对比度。一束强烈的对角线自然光从右上方窗扉倾泻而入，在模特与背景上投射出利落光痕。此举形成艺术性的深郁阴影与明亮高光，赋予画面极具电影感的时尚「明暗对比」效果。
+
+3. 整体风格与品质：
+整体美学延续《VOGUE》《Harper's Bazaar》等奢侈时尚刊物的编辑大片质感。图像需呈现昂贵、艺术且氛围浓厚的特质。
+
+画面情绪：自信从容、精致老练、引人向往。
+
+成像须以超高清画质呈现，确保丰富的光影交织与所有细节的完美还原。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-7.png',
+                        alt: '穿搭拆分',
+                        caption: '产品卖点',
+                        model: 'Nano Banana ',
+                        copyText: `核心概念：
+打造一款高端多彩的电商视觉图，在优雅展现产品美感的同时，清晰传递其核心耐用特性与创新面料科技。
+
+核心画面 - 场景搭建：
+主要内容：三件毛衣并排悬挂于简约雅致的白色衣架，最前方的毛衣略微突出于另外两件。
+产品规范（关键！）：所有毛衣必须严格遵循上传主图产品的版型、罗纹纹理与半高领设计。
+颜色与造型：前景毛衣采用原色米白，下摆系以优雅的柔感绳结，增添时尚松弛感；后方悬挂两件互补色毛衣——浓郁陶土红与深邃炭灰/橄榄绿。
+背景与光线：织物悬置于带细微肌理的暖棕/灰褐色极简摄影棚背景前，专业定向柔光精准勾勒罗纹质感与面料丰盈色彩。
+
+顶层 - 文字与排版：
+定位：文字系统专业排布于画面左上方区域
+内容与层级：
+
+主标题1：「可直接机洗」
+
+核心卖点：「抗缩水、抗起球、抗变形」
+
+主标题2：「持久耐穿」
+
+技术说明：「创新面料科技 / 采用柔弹纤维科学配比，缔造持久弹性与舒适体验」
+文字风格：全部使用洁净的现代白色无衬线字体，版式经过精密规划，层级分明易读，主副文本关系清晰。
+
+整体风格与品质：
+整体美学融合高端时尚大片的精致感与值得信赖的产品信息传达
+氛围定位：高端品质、可靠保障、自在型格
+画面须以超高清画质渲染，确保织物肌理与每个细节都得到纤毫毕现的呈现`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-15.png',
+                        alt: '穿搭拆分',
+                        caption: '产品结构',
+                        model: 'Nano Banana ',
+                        copyText: `核心概念：
+打造面向电商场景的高科技抽象3D可视化画面，旨在解析两大创新面料科技——发热纤维与中空纱的科学原理。
+
+基础层 - 3D织物结构：
+背景主体由细腻交织的纱线束特写宏观3D渲染构成。材质呈现极致柔软蓬松的质感，仿若高级法兰绒或毛巾绒，采用柔白色或浅粉色系渲染。
+
+技术层 1 - “发热纤维”：
+数道半透明红橙色能量流带在场景中动态穿梭。
+流带内部流淌着闪耀的金色粒子，象征湿气转化为热量的过程。
+周边散布着莹光环绕的暖橙色核心能量球体，强化动态能量感。
+
+技术层 2 - “中空纱”：
+画面底部将主要白色纱束进行透明化或剖视处理，显露出贯穿纱芯的璀璨金色能量丝线，直观呈现“中空纱锁存热量、形成空气隔热层”的原理。
+
+顶层 - 文本与排版：
+文字分为两个独立板块解析各项科技
+
+A区（画面上部）：
+
+定位：画面顶部
+
+标题："发热纤维科技"
+
+说明："将湿气转化为热能 / 抗起球耐磨韧 / 升温达8.8°C"
+
+B区（画面左下）：
+
+定位：画面左下区域
+
+标题："中空纱技术"
+
+说明："形成锁温空气层 / 有效隔绝冷空气保持体温"
+
+文字风格：全部使用现代简约的深灰/黑色无衬线字体，版式专业整洁，标题与正文层级分明。
+
+整体风格与氛围：
+整体呈现高科技感、纯净度与动态美学，媲美高端科技产品广告视觉
+色彩体系以柔白、暖粉与活力橙金为主调，营造温暖能量感
+超高清画质渲染，细节锐利分明，光影效果莹润夺目`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-16.png',
+                        alt: '穿搭拆分',
+                        caption: '产品信息',
+                        model: 'Nano Banana ',
+                        copyText: `核心概念：
+采用极简主义科技风格的信息图卡，通过清晰卡片布局直观呈现产品发热与锁温双重功能。
+
+背景：
+整体背景采用纯色暖褐/咖啡棕朦胧质感，营造简约高端视觉氛围
+
+前景 - 信息卡：
+画面中央设置凸起的纯净白色圆角卡片，占据画布核心区域
+
+卡片内部的布局与内容：
+卡片内容采用左右分栏布局
+
+左侧图标：放置简约深棕色线条风格绵羊图案
+右侧列表：建立双行垂直清单，每行包含：
+
+亮红色对勾图标(✓)
+
+加粗核心关键词
+
+辅助说明短句
+
+清单具体内容：
+
+首行："✓ 发热：自发热纤维"
+
+次行："✓ 锁温：中空锁温结构"
+
+顶层 - 标题文本：
+定位：白色卡片上方，直接呈现于棕色背景区域
+内容："科技温感系统"
+文字风格：选用现代无衬线白色粗体字体，呈现洁净科技感
+
+整体风格与排版：
+整体设计遵循极简主义与专业性原则，契合高科技品牌UI元素特征。所有文字与图标保持精准对齐，预留充足呼吸空间`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品图-17.png',
+                        alt: '穿搭拆分',
+                        caption: '产品特征',
+                        model: 'Nano Banana ',
+                        copyText: `1. 核心概念：
+一张用于电子商务的、具有专业质感的产品特性说明图，采用卡片式设计。
+
+整体布局：
+画面分为上下两个清晰区域。上半部分为文字信息区，下半部分为产品细节展示区。
+
+2. 核心产品图（下半部分）：
+
+视觉描述：
+画面下半部分呈现超高清微距产品摄影——四种不同颜色的高品质罗纹针织面料（铁锈橙、炭灰色、燕麦米、奶油白）以优雅卷曲的姿态柔叠交织。用光技艺精湛，清晰勾勒每根纤维与织法纹理，极致凸显面料的柔软触感与高级质感。
+
+边框/风格：
+此产品照片嵌入一个带有柔和圆角的纯净白色相框内。
+
+3. 背景：
+整个画布底层铺陈抽象的暖色调背景，其纹理与针织肌理相呼应，经朦胧处理后营造出柔和温暖的整体氛围。
+
+4. 文本与排版指令（上半部分）：
+
+位置：
+所有文字元素精准排布于画面上半部分的文字专区。
+
+内容与层级：
+
+主标题： "云感羊毛科技"
+
+区域标题1： "面料成分"
+成分说明： "5.3% 美利奴羊毛 / 58.1% 腈纶 / 36.6% 锦纶"
+
+区域标题2： "核心特性"
+卖点列表：
+"零刺痒亲肤感 / 高效蓄热锁温 / 高弹塑形不移位 / 抗静电抗起球"
+
+文字风格：
+全部采用锐利清晰的现代无衬线字体。版式设计预留充足呼吸空间，通过明晰的层级结构呈现科技感与专业度，契合高端电子产品或护肤品成分说明的精致风格。`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/电影海报.png',
+                        alt: '穿搭拆分',
+                        caption: '电影海报',
+                        model: '海螺AI',
+                        copyText: `电影海报风格的双重曝光。[一位女性]的侧面剪影，但她的身体内部不是皮肤，而是充满了[茂密的森林和飞鸟/汹涌的海浪]。人物的轮廓清晰，边缘与白色背景融合。自然景观的纹理细节（树叶、泡沫）清晰可见，且与人物的情绪相呼应。色彩淡雅，高调摄影，充满诗意和情感张力。`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/微缩世界.png',
+                        alt: '穿搭拆分',
+                        caption: '微缩世界',
+                        model: '海螺AI',
+                        copyText: `一张超写实的产品摄影。一个复古的玻璃灯泡/玻璃瓶放置在木桌上。玻璃瓶内部包含着一个完整、繁荣的微缩世界：里面有[北京]的标志性建筑。瓶内的光线是暖黄色的夕阳，与瓶外冷色调的室内光线形成对比。玻璃表面有指纹和灰尘细节，增加了真实感。微距摄影，焦点在瓶内景观，背景虚化。`,
+                        funcType: '文生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/产品海报.png',
+                        alt: '穿搭拆分',
+                        caption: '产品海报',
+                        model: '海螺AI',
+                        copyText: `以（产品）为绝对主角的超逼真商业照片，营造出电影般的氛围，自动适应产品特性；高色温照明呈现纯净无黄的白色调；纹理细节极其丰富，清晰度惊人；极致锐利，展现每一个微小细节；HDR 和画面增强效果，打造完美无瑕的高端质感；戏剧性的影棚灯光，辅以轮廓光和柔和的电影级阴影；强大的构图突出产品；氛围完美契合产品形象；醒目的创意标语熠熠生辉；品牌标识置于醒目的中心位置；超现实的高端质感，赋予产品超越现实的震撼力；针对社交媒体进行优化，打造出标志性且令人难忘的视觉效果。`,
+                        funcType: '图生图'
+                    },
+                ]
+            },
+            llm: {
+                title: '大模型基座',
+                description: '深入了解构建的强大模型基座，如何为上层应用提供稳定、高效、且安全的智能核心，是所有创新能力的基石。',
+                items: [
+                    { type: 'text', content: '我们的模型基座集成了GPT-4、Claude 3，并结合行业数据进行了深度精调，尤其在电商和营销领域表现卓越。' },
+                    {
+                        type: 'download-card',
+                        src: 'files/MinFaDian_data.tar',           
+                        alt: '民法典模型',
+                        cover: 'images/民法典模型.png',  
+                        filename: 'MinFaDian_data.tar',
+                        filesize: '14 GB',                    
+                        caption: '微调Qwen-2.5-7B-Instruct'
+                    }
+                ]
+            },
+            workflow: {
+                title: '自动化工作流',
+                description: '可视化工作流引擎如何将复杂任务串联成自动化生产线，实现从输入到输出的一键式智能处理。',
+                items: [
+                    {
+                        type: 'file',
+                        src: 'files/自动批量裁切旋正面部.json',   
+                        alt: '工作流 JSON',
+                        caption: '批量裁切面部',
+                        badge: 'Comfyui',  
+                        filename: '自动批量裁切旋正面部.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/一张图出人物全角度-人物一致性-.json',   
+                        alt: '工作流 JSON',
+                        caption: '一张人物图出全视角',
+                        badge: 'Comfyui',  
+                        filename: '一张图出人物全角度-人物一致性-.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/物品消除_移除_去水印_Kontext技术.json',   
+                        alt: '工作流 JSON',
+                        caption: '物体移除去水印',
+                        badge: 'Comfyui',  
+                        filename: '物品消除_移除_去水印_Kontext技术.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Kontext双图编辑.json',   
+                        alt: '工作流 JSON',
+                        caption: 'Kontext',
+                        badge: 'Comfyui',  
+                        filename: 'Kontext双图编辑.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/OneReward-ACE++万物迁移.json',   
+                        alt: '工作流 JSON',
+                        caption: 'OneRward万物迁移',
+                        badge: 'Comfyui',  
+                        filename: 'OneReward-ACE++万物迁移.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Krea文生图+LORA.json',   
+                        alt: '工作流 JSON',
+                        caption: 'Krea',
+                        badge: 'Comfyui',  
+                        filename: 'Krea文生图+LORA.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Flux.1-生图矩阵.json',   
+                        alt: '工作流 JSON',
+                        caption: 'FLUX',
+                        badge: 'Comfyui',  
+                        filename: 'Flux.1-生图矩阵.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/CHEN-Kontext-极限电商模特姿势扩展.json',   
+                        alt: '工作流 JSON',
+                        caption: '模特姿势扩展',
+                        badge: 'Comfyui',  
+                        filename: 'CHEN-Kontext-极限电商模特姿势扩展.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Kontext-服装提取款式.json',   
+                        alt: '工作流 JSON',
+                        caption: '服装印花提取',
+                        badge: 'Comfyui',  
+                        filename: 'Kontext-服装提取款式.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/服装面料迁移工作流，面料试衣，实现模特服装一键换面料.json',   
+                        alt: '工作流 JSON',
+                        caption: '服装面料更换',
+                        badge: 'Comfyui',  
+                        filename: '服装面料迁移工作流，面料试衣，实现模特服装一键换面料.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Wan2.2-图生视频.json',   
+                        alt: '工作流 JSON',
+                        caption: 'WAN 2.2图生视频',
+                        badge: 'Comfyui',  
+                        filename: 'Wan2.2-图生视频.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Wan2.2-视频重绘（去油腻）.json',   
+                        alt: '工作流 JSON',
+                        caption: 'WAN 2.2视频重绘',
+                        badge: 'Comfyui',  
+                        filename: 'Wan2.2-视频重绘（去油腻）.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Flux+TTP高清放大.json',   
+                        alt: '工作流 JSON',
+                        caption: 'Flux+TTP高清放大',
+                        badge: 'Comfyui',  
+                        filename: 'Flux+TTP高清放大.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/SUPIR超级高清放大修复.json',   
+                        alt: '工作流 JSON',
+                        caption: 'SUPIR高清放大',
+                        badge: 'Comfyui',  
+                        filename: 'SUPIR超级高清放大修复.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/动慢放大.json',   
+                        alt: '工作流 JSON',
+                        caption: '二次元高清放大',
+                        badge: 'Comfyui',  
+                        filename: '动慢放大.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/FLUX-提示词生成背景.json',   
+                        alt: '工作流 JSON',
+                        caption: 'FLUX-提示词生成背景',
+                        badge: 'Comfyui',  
+                        filename: 'FLUX-提示词生成背景.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/SD-提示词生成背景.json',   
+                        alt: '工作流 JSON',
+                        caption: 'SD-提示词生成背景',
+                        badge: 'Comfyui',  
+                        filename: 'SD-提示词生成背景.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/一键换背景（保留人物服饰细节）.json',   
+                        alt: '工作流 JSON',
+                        caption: '一键换背景',
+                        badge: 'Comfyui',  
+                        filename: '一键换背景（保留人物服饰细节）.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/专业人像换脸.json',   
+                        alt: '工作流 JSON',
+                        caption: '换脸',
+                        badge: 'Comfyui',  
+                        filename: '专业人像换脸.json',
+                        cover: 'images/工作流.png'  
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Qwen-Image-Edit-2509-镜头切换.json',   
+                        alt: '工作流 JSON',
+                        caption: '镜头切换',
+                        badge: 'Comfyui',  
+                        filename: 'Qwen-Image-Edit-2509-镜头切换.json',
+                        cover: 'images/工作流.png'  
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/换鞋.json',   
+                        alt: '工作流 JSON',
+                        caption: '换鞋',
+                        badge: 'Comfyui',  
+                        filename: '换鞋.json',
+                        cover: 'images/工作流.png'  
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/人物皮肤质感 去AI化工作流.json',   
+                        alt: '工作流 JSON',
+                        caption: '增加人物皮肤质感',
+                        badge: 'Comfyui',  
+                        filename: '人物皮肤质感 去AI化工作流.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/导入图片一键抠图.json',   
+                        alt: '工作流 JSON',
+                        caption: '抠图',
+                        badge: 'Comfyui',  
+                        filename: '导入图片一键抠图.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Flux-Fill无痕扩图 .json',  
+                        alt: '工作流 JSON',
+                        caption: '扩图',
+                        badge: 'Comfyui',  
+                        filename: 'Flux-Fill无痕扩图 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/FLUX一键洗图 .json',   
+                        alt: '工作流 JSON',
+                        caption: '洗图',
+                        badge: 'Comfyui',  
+                        filename: 'FLUX一键洗图 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/FLUX电商模特三视图 .json',   
+                        alt: '工作流 JSON',
+                        caption: '三视图',
+                        badge: 'Comfyui', 
+                        filename: 'FLUX电商模特三视图 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/去水印logo .json',   
+                        alt: '工作流 JSON',
+                        caption: '去水印',
+                        badge: 'Comfyui',  
+                        filename: '去水印logo .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/视频扩展 .json',   
+                        alt: '工作流 JSON',
+                        caption: '视频扩展',
+                        badge: 'Runninghub',  
+                        filename: '视频扩展 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/线稿 .json',   
+                        alt: '工作流 JSON',
+                        caption: '线稿',
+                        badge: 'Comfyui',  
+                        filename: '线稿 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/万物迁移 .json',   
+                        alt: '工作流 JSON',
+                        caption: '万物迁移',
+                        badge: 'Comfyui',  
+                        filename: '万物迁移 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/修手 .json',   
+                        alt: '工作流 JSON',
+                        caption: '修手',
+                        badge: 'Comfyui',  
+                        filename: '修手 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/修脚 .json',   
+                        alt: '工作流 JSON',
+                        caption: '修脚',
+                        badge: 'Comfyui',  
+                        filename: '修脚 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/换模特人种 .json',   
+                        alt: '工作流 JSON',
+                        caption: '换模特人种',
+                        badge: 'Comfyui',  
+                        filename: '换模特人种 .json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/FLXU redux+ACE++ 换装.json',  
+                        alt: '工作流 JSON',
+                        caption: '换装',
+                        badge: 'Comfyui',  
+                        filename: 'FLXU redux+ACE++ 换装.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/产品溶图.json',   
+                        alt: '工作流 JSON',
+                        caption: '产品溶图',
+                        badge: 'Comfyui',  
+                        filename: '产品溶图.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/分镜制作.json',   
+                        alt: '工作流 JSON',
+                        caption: '分镜头',
+                        badge: 'Comfyui',  
+                        filename: '分镜制作.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/视频高清.json',   
+                        alt: '工作流 JSON',
+                        caption: '视频高清',
+                        badge: 'Comfyui',  
+                        filename: '视频高清.json',
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Workflow-X1_Wshipintiqu_url_1-draft-349.zip',   
+                        alt: '工作流 ZIP',
+                        caption: '批量无水印视频下载（抖音、小红书、B站、快手）',
+                        badge: 'Coze',
+                        filename: 'Workflow-X1_Wshipintiqu_url_1-draft-349.zip',   
+                        cover: 'images/工作流.png'  
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Workflow-X3_Tdouyinshuju_table_1-draft-4849.zip', 
+                        alt: '工作流 ZIP',
+                        caption: '批量提取抖音博主数据信息到飞书',
+                        badge: 'Coze',
+                        filename: 'Workflow-X3_Tdouyinshuju_table_1-draft-4849.zip',   
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Workflow-X4_Tdouyinfeishu_table_1-draft-4893.zip',   
+                        alt: '工作流 ZIP',
+                        caption: '提取抖音博主主页视频文案到飞书',
+                        badge: 'Coze',
+                        filename: 'Workflow-X4_Tdouyinfeishu_table_1-draft-4893.zip',  
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Workflow-X5_TDYwushuiyin_table_1-draft-4995.zip',  
+                        alt: '工作流 ZIP',
+                        caption: '提取抖音博主主页作品标题、封面、无水印视频文案到飞书',
+                        badge: 'Coze',
+                        filename: 'Workflow-X5_TDYwushuiyin_table_1-draft-4995.zip',  
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Workflow-X7_W_red_word_1-draft-5085.zip',  
+                        alt: '工作流 ZIP',
+                        caption: '提取小红书笔记仿写到飞书',
+                        badge: 'Coze',
+                        filename: 'Workflow-X7_W_red_word_1-draft-5085.zip',  
+                        cover: 'images/工作流.png'   
+                    },
+                    {
+                        type: 'file',
+                        src: 'files/Workflow-X9_Wgongzhonghao_word_1-draft-5156.zip',   
+                        alt: '工作流 ZIP',
+                        caption: '公众号自动发文',
+                        badge: 'Coze',
+                        filename: 'Workflow-X9_Wgongzhonghao_word_1-draft-5156.zip',   
+                        cover: 'images/工作流.png'  
+                    },
+                ]
+            },
+            agent: {
+                title: '智能Agent',
+                description: '遇见您的创意合伙人。AI Agent能够理解目标、自主规划，并调用工具为您完成复杂的创意任务，开启人机协作新纪元。',
+                items: [
+                    { type: 'text', content: '向Agent下达"为我的咖啡店策划一周的社交媒体内容"指令，它将自主完成竞品分析、选题、文案、配图、排期全部工作。' },
+                    
+                ]
+            }
+        };
+
+    // ===================================================================
+    // === 页面逻辑 (Page Logic) - 通常无需修改 ===
+    // ===================================================================
+
+        // Particle Background
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+        const particles = []; const particleCount = 100; const connectionDistance = 150;
+        class Particle { constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.vx = (Math.random() - 0.5) * 0.5; this.vy = (Math.random() - 0.5) * 0.5; } update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx; if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy; } draw() { ctx.fillStyle = 'rgba(0, 255, 255, 0.5)'; ctx.beginPath(); ctx.arc(this.x, this.y, 2, 0, Math.PI * 2); ctx.fill(); } }
+        function initParticles() { for (let i = 0; i < particleCount; i++) { particles.push(new Particle()); } }
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update(); particles[i].draw();
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x; const dy = particles[i].y - particles[j].y; const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < connectionDistance) { ctx.strokeStyle = `rgba(0, 255, 255, ${1 - distance / connectionDistance})`; ctx.lineWidth = 0.5; ctx.beginPath(); ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y); ctx.stroke(); }
+                }
+            } requestAnimationFrame(animateParticles);
+        }
+        initParticles(); animateParticles();
+
+        // Page Switching
+        function showPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(page => page.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if (pageId === 'hero-page') {
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Show Case Page
+        function showCasePage(key) {
+            renderCaseContent(key);
+            setActiveTab(key);
+            showPage('case-study-page');
+        }
+        
+        // Smooth Scroll
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // --- 【修改开始】Gallery 相关变量 ---
+        let galleryItems = [];
+        let currentImageIndex = 0;
+        // --- 【修改结束】---
+
+        // Case Study Logic
+        const tabsContainer = document.getElementById('case-tabs-container');
+        const contentContainer = document.getElementById('case-content-container');
+
+        function initializeCaseTabs() {
+            tabsContainer.innerHTML = '';
+            Object.keys(caseStudies).forEach(key => {
+                const btn = document.createElement('button');
+                btn.className = 'case-tab-btn';
+                btn.textContent = caseStudies[key].title;
+                btn.onclick = () => {
+                    renderCaseContent(key);
+                    setActiveTab(key);
+                };
+                tabsContainer.appendChild(btn);
+            });
+        }
+
+        function renderCaseContent(key) {
+            const data = caseStudies[key];
+            if (!data) return;
+
+            let contentHTML = `<h3>${data.title}</h3><p class="description">${data.description}</p><div class="case-grid">`;
+            data.items.forEach(item => {
+                if (item.type === 'image') {
+                    if (item.isGallery && item.galleryItems) {
+                        contentHTML += `<div class="case-item" onclick="openGalleryModal(event, ${JSON.stringify(item).replace(/"/g, '&quot;')})">
+                            <img src="${item.src}" alt="${item.alt || 'Case Image'}">
+                            <div class="image-caption">${item.caption || ''} <i class="fas fa-images"></i></div>
+                        </div>`;
+                    } else {
+                        // 【新增】portfolio 专用格式：左下角两段文字（caption + model），右下角复制 + 功能按钮
+                        const modelName = item.model ? item.model : '';
+                        const captionText = item.caption || item.filename || '';
+                        const copyText = item.copyText ? item.copyText : '';
+                        const funcType = item.funcType || '文生图'; // 功能类型（默认文生图）
+
+                        let overlayHTML = '';
+                        if (modelName || captionText || copyText) {
+                            // 用 encodeURIComponent 转义 copyText，避免字符串被破坏
+                            const encodedCopyText = encodeURIComponent(copyText);
+
+                            // 仅在作品集（portfolio）页显示功能类型按钮；其它板块（如 design）不显示
+                            const showFuncButton = (key === 'portfolio');
+                            const funcButtonHTML = showFuncButton ? `<button style="background:rgba(0,255,255,0.2); color:var(--accent-cyan); padding:7px 10px; border:1px solid rgba(0,255,255,0.6); border-radius:6px; cursor:pointer; font-size:11px; font-weight:700; display:inline-flex; align-items:center; gap:4px; transition:all .18s ease; white-space:nowrap;">${funcType}</button>` : '';
+
+                            overlayHTML = `<div style="position:absolute; bottom:0; left:0; right:0; height:70px; display:flex; justify-content:space-between; align-items:flex-end; padding:12px 14px; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.8) 100%); pointer-events:auto; z-index:10;">
+                                
+                                <!-- 左下：两段文字（caption 在上，model 在下且较小） -->
+                                <div style="display:flex; flex-direction:column; gap:3px; max-width:55%; z-index:12;">
+                                    ${captionText ? `<div style="color:rgba(255,255,255,0.95); font-size:14px; font-weight:700; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${captionText}</div>` : ''}
+                                    ${modelName ? `<div style="color:rgba(255,255,255,0.7); font-size:11px; font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${modelName}</div>` : ''}
+                                </div>
+
+                                <!-- 右下：复制按钮 + 可选功能按钮 -->
+                                <div style="display:flex; gap:8px; z-index:13;">
+                                    ${copyText ? `<button class="copy-btn" data-copy="${encodedCopyText}" onclick="event.stopPropagation();" style="background:var(--accent-cyan); color:#071017; padding:7px 10px; border:none; border-radius:6px; cursor:pointer; font-size:12px; font-weight:700; display:inline-flex; align-items:center; gap:4px; transition:all .18s ease; white-space:nowrap;"><i class="fas fa-copy"></i> 复制</button>` : ''}
+                                    ${funcButtonHTML}
+                                </div>
+                            </div>`;
+                        }
+
+                        contentHTML += `<div class="case-item" onclick="openModal('${item.src}', 'image')" style="position:relative;">
+                            <img src="${item.src}" alt="${item.alt || 'Case Image'}" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
+                            ${overlayHTML}
+                        </div>`;
+                    }
+                } else if (item.type === 'video') {
+                    const posterAttr = item.poster ? item.poster : '';
+                    contentHTML += `<div class="case-item" onclick="openModal('${item.src}', 'video', '${posterAttr}')">
+                        <video src="${item.src}" poster="${posterAttr}" muted preload="metadata" controls></video>
+                        ${item.caption ? `<div class="image-caption">${item.caption}</div>` : ''}
+                    </div>`;
+                } else if (item.type === 'file') {
+                    const fileUrl = item.src;
+                    const captionText = item.caption || item.filename || '下载文件';
+                    const cover = item.cover ? item.cover : '';
+                    const badgeText = item.badge ? item.badge : 'File';
+
+                    // 根据文件后缀决定是否显示“查看”按钮（压缩包通常无法网页预览）
+                    const ext = (fileUrl.split('.').pop() || '').toLowerCase();
+                    const canPreview = !['zip','rar','7z','exe'].includes(ext);
+
+                    const viewBtn = canPreview
+                      ? `<a href="${fileUrl}" target="_blank" rel="noopener noreferrer" class="file-action-btn view"><i class="fas fa-eye"></i> 查看</a>`
+                      : ''; // 压缩包不显示查看
+
+                    contentHTML += `<div class="case-item" style="padding:0; cursor:default;">
+                        <div class="file-cover-wrapper" onclick="openModal('${cover}', 'image')">
+                            ${cover ? `<img src="${cover}" alt="${captionText}">` : ''}
+                            ${badgeText ? `<span class="file-badge">${badgeText}</span>` : ''}
+                        </div>
+                        <div class="file-info-container">
+                            <div class="file-title">${captionText}</div>
+                            <div class="file-actions">
+                                ${viewBtn}
+                                <a href="${fileUrl}" download="${item.filename || ''}" class="file-action-btn download"><i class="fas fa-download"></i> 下载</a>
+                            </div>
+                        </div>
+                      </div>`;
+                } else if (item.type === 'download-card') {
+                    // 图片左下角文字（caption + filesize），右下角下载按钮，底部渐变阴影
+                    const fileUrl = item.src;
+                    const cover = item.cover || '';
+                    const filesize = item.filesize || '';
+                    const captionText = item.caption || item.filename || '下载';
+                    
+                    contentHTML += `<div class="case-item download-card-wrapper" style="position:relative; overflow:hidden; border-radius:10px;">
+                        ${cover ? `<img src="${cover}" alt="${item.alt || 'Download'}" style="width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; display:block;">` : ''}
+
+                        <!-- 底部渐变阴影（从透明到深黑） -->
+                        <div style="position:absolute; bottom:0; left:0; right:0; height:100px; background:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.75) 100%); pointer-events:none; z-index:11;"></div>
+
+                        <!-- 左下：caption + filesize（无额外背景，依靠上方渐变阴影衬托） -->
+                        <div style="position:absolute; left:9px; bottom:16px; z-index:12; color:#fff; text-align:left;">
+                            <div style="font-weight:700; font-size:14px; line-height:1.1; margin-bottom:4px;">${captionText}</div>
+                            <div style="font-size:12px; opacity:0.95;">${filesize}</div>
+                        </div>
+
+                        <!-- 右下：下载按钮 -->
+                        <a href="${fileUrl}" download="${item.filename || ''}" style="position:absolute; right:16px; bottom:16px; z-index:13; background:linear-gradient(90deg,#00f0ff,#00ffd1); color:#071017; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:700; font-size:13px; display:inline-flex; align-items:center; gap:8px; box-shadow:0 10px 30px rgba(0,255,255,0.18); transition:all .18s ease;">
+                            <i class="fas fa-download"></i> 下载
+                        </a>
+                    </div>`;
+                }
+            });
+            contentHTML += `</div>`;
+            contentContainer.innerHTML = contentHTML;
+        }
+        
+        function setActiveTab(key) {
+            const tabs = tabsContainer.querySelectorAll('.case-tab-btn');
+            tabs.forEach((tab, index) => {
+                if (Object.keys(caseStudies)[index] === key) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
+            });
+        }
+
+        // Modal Logic
+        function openModal(src, type, poster) {
+            const modal = document.getElementById('mediaModal');
+            const placeholder = document.getElementById('modal-media-placeholder');
+            if (type === 'image') {
+                // 交由 CSS 控制尺寸
+                placeholder.innerHTML = `<img src="${src}" alt="查看图片">`;
+            } else if (type === 'video') {
+                // video 使用 controls + autoplay（浏览器策略可能会阻止自动播放，controls 保证可操作）
+                placeholder.innerHTML = `<video src="${src}" poster="${poster || ''}" controls autoplay></video>`;
+            }
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // --- 【修改开始】新增：画廊模态框函数 ---
+        function openGalleryModal(event, item) {
+            event.stopPropagation(); // 防止事件冒泡
+            galleryItems = item.galleryItems;
+            currentImageIndex = 0; // 从第一张开始
+
+            const modal = document.getElementById('mediaModal');
+            const placeholder = document.getElementById('modal-media-placeholder');
+
+            // 构建画廊的HTML结构
+            placeholder.innerHTML = `
+                <img id="modal-gallery-image" src="${galleryItems[currentImageIndex].src}" alt="${galleryItems[currentImageIndex].alt}">
+                <a id="modal-gallery-prev" class="modal-gallery-nav">&#10094;</a>
+                <a id="modal-gallery-next" class="modal-gallery-nav">&#10095;</a>
+                <div id="modal-gallery-counter"></div>
+            `;
+
+            modal.style.display = 'block';
+            updateGalleryContent(); // 初始化内容
+
+            // 绑定事件
+            document.getElementById('modal-gallery-prev').onclick = showPrevImage;
+            document.getElementById('modal-gallery-next').onclick = showNextImage;
+            document.addEventListener('keydown', handleGalleryKeydown);
+        }
+
+        function updateGalleryContent() {
+            const img = document.getElementById('modal-gallery-image');
+            const counter = document.getElementById('modal-gallery-counter');
+            img.src = galleryItems[currentImageIndex].src;
+            img.alt = galleryItems[currentImageIndex].alt;
+            counter.textContent = `${currentImageIndex + 1} / ${galleryItems.length}`;
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + galleryItems.length) % galleryItems.length;
+            updateGalleryContent();
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryItems.length;
+            updateGalleryContent();
+        }
+
+        function handleGalleryKeydown(e) {
+            if (document.getElementById('mediaModal').style.display === 'block') {
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+            }
+        }
+        // --- 【修改结束】---
+
+        function closeModal() {
+            document.getElementById('mediaModal').style.display = 'none';
+            const placeholder = document.getElementById('modal-media-placeholder');
+            placeholder.innerHTML = ''; // 清空内容，停止视频等
+           
+            // --- 【修改开始】移除画廊的键盘监听 ---
+            document.removeEventListener('keydown', handleGalleryKeydown);
+            // --- 【修改结束】---
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('mediaModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // 复制到剪贴板函数（兼容回退）
+        function copyToClipboard(text) {
+            if (!text) {
+                alert('没有可复制的内容');
+                return;
+            }
+            // 优先使用异步 Clipboard API（需要 https 或 localhost）
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => {
+                    alert('提示词已复制到剪贴板！');
+                }).catch(err => {
+                    console.error('Clipboard API 复制失败:', err);
+                    // 回退到旧方法
+                    fallbackCopy(text);
+                });
+            } else {
+                // 回退方法（textarea + execCommand）
+                fallbackCopy(text);
+            }
+
+            function fallbackCopy(str) {
+                try {
+                    const ta = document.createElement('textarea');
+                    ta.value = str;
+                    ta.setAttribute('readonly', '');
+                    ta.style.position = 'absolute';
+                    ta.style.left = '-9999px';
+                    document.body.appendChild(ta);
+                    ta.select();
+                    const successful = document.execCommand('copy');
+                    document.body.removeChild(ta);
+                    if (successful) {
+                        alert('提示词已复制到剪贴板（回退方式）！');
+                    } else {
+                        throw new Error('execCommand 复制返回 false');
+                    }
+                } catch (err) {
+                    console.error('回退复制失败:', err);
+                    alert('复制失败：浏览器不支持或页面未在安全上下文（HTTPS/localhost）运行。');
+                }
+            }
+        }
+
+        // 放在页面脚本中（建议放在现有 DOMContentLoaded 外或末尾）
+(function(){
+  // 兼容复制函数（优先 Clipboard API，回退到 textarea）
+  function copyToClipboard(text) {
+    if (!text) {
+      alert('没有可复制的内容');
+      return;
+    }
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text).then(function(){
+        // 可替换为更友好的 UI 提示
+        alert('提示词已复制到剪贴板！');
+      }, function(err){
+        console.warn('Clipboard API 失败，使用回退', err);
+        fallbackCopy(text);
+      });
+    } else {
+      fallbackCopy(text);
+    }
+
+    function fallbackCopy(str) {
+      try {
+        const ta = document.createElement('textarea');
+        ta.value = str;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        const ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) {
+          alert('提示词已复制到剪贴板（回退）！');
+        } else {
+          throw new Error('execCommand 返回 false');
+        }
+      } catch (e) {
+        console.error('复制失败', e);
+        alert('复制失败：浏览器不支持剪贴板或页面需在 HTTPS/localhost 下运行。');
+      }
+    }
+  }
+
+  // 捕获式监听：在 capture 阶段拦截，优先处理复制按钮并阻止冒泡（避免触发外层 onclick）
+  document.addEventListener('click', function(e){
+    // 找到最接近的按钮元素
+    const btn = e.target.closest('button');
+    if (!btn) return;
+
+    // 判断按钮是否为复制按钮：优先检查 data-copy 属性或 class .copy-btn
+    const encoded = btn.getAttribute && btn.getAttribute('data-copy');
+    const isCopyClass = btn.classList && btn.classList.contains('copy-btn');
+    const textMatches = (btn.textContent || '').trim().indexOf('复制') !== -1;
+
+    if (encoded || isCopyClass || textMatches) {
+      // 阻止事件继续传播到外层（最关键）
+      e.stopPropagation();
+      e.preventDefault();
+
+      // 优先使用 data-copy，如果没有则尝试从 onclick 属性中解析（兼容旧版）
+      if (encoded) {
+        try {
+          const decoded = decodeURIComponent(encoded);
+          copyToClipboard(decoded);
+          return;
+        } catch (err) {
+          console.warn('decodeURIComponent 失败，尝试直接复制属性值', err);
+          copyToClipboard(encoded);
+          return;
+        }
+      }
+
+      // 如果没有 data-copy，尝试从 onclick 属性里解析 decodeURIComponent('...') 的字符串
+      const onclickAttr = btn.getAttribute && btn.getAttribute('onclick');
+      if (onclickAttr) {
+        const m = onclickAttr.match(/decodeURIComponent\(['"]([^'"]+)['"]\)/);
+        if (m && m[1]) {
+          try {
+            const decoded = decodeURIComponent(m[1]);
+            copyToClipboard(decoded);
+            return;
+          } catch (err) {
+            console.warn('从 onclick 解码失败，使用原始值', err);
+            copyToClipboard(m[1]);
+            return;
+          }
+        }
+      }
+
+      // 最后的回退：如果按钮有 data-copy-raw（未编码），或按钮附近有 hidden input
+      const raw = btn.getAttribute && btn.getAttribute('data-copy-raw');
+      if (raw) {
+        copyToClipboard(raw);
+        return;
+      }
+
+      // 如果以上均无，提示用户
+      // 不要打开 modal，已经阻止了事件
+      alert('未找到可复制的内容，请联系管理员或检查数据配置。');
+    }
+  }, true); // capture = true
+})();
+
+// 额外的冒泡阶段委托：如果按钮带有 data-copy 属性，则在冒泡阶段执行复制（确保 inline stopPropagation 能阻止父级 openModal）
+document.addEventListener('click', function(e){
+    const btn = e.target.closest && e.target.closest('.copy-btn');
+    if (!btn) return;
+    // 防止额外冒泡（保险）
+    e.stopPropagation();
+    e.preventDefault();
+    const encoded = btn.getAttribute('data-copy');
+    if (encoded) {
+        try {
+            const decoded = decodeURIComponent(encoded);
+            // 调用之前定义的 copyToClipboard（在 IIFE 中定义为内部函数; expose global fallback if necessary）
+            if (typeof copyToClipboard === 'function') {
+                copyToClipboard(decoded);
+            } else {
+                // 如果 copyToClipboard 在 IIFE 内部不可见，则使用临时方法
+                navigator.clipboard && navigator.clipboard.writeText(decoded).then(()=>{
+                    alert('提示词已复制到剪贴板！');
+                }).catch(()=>{
+                    const ta = document.createElement('textarea'); ta.value = decoded; ta.setAttribute('readonly',''); ta.style.position='absolute'; ta.style.left='-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); alert('提示词已复制到剪贴板（回退）！');
+                });
+            }
+        } catch (err) {
+            console.warn('decode or copy failed', err);
+            alert('复制失败');
+        }
+    }
+});
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeCaseTabs();
+        });
+
+    </script>
+</body>
+</html>
