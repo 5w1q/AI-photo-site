@@ -691,7 +691,7 @@
                     },
                     { 
                         type: 'image',
-                        src: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/images/LOGO.png',
+                        src: 'images/LOGO.png',
                         alt: '多场景展示',
                         caption: 'LOGO设计'
                     },
@@ -737,12 +737,28 @@
                     { type: 'image', src: 'images/元素替换.png', alt: '多场景展示', caption: '元素替换' },
                     { type: 'image', src: 'images/AI复刻.png', alt: '多场景展示', caption: 'AI复刻' },
                     { type: 'image', src: 'images/万物迁移.png', alt: '多场景展示', caption: '万物迁移' },
-                    { type: 'image', src: 'images/视角切换.png', alt: '多场景展示', caption: '视角切换' },
+                    {
+                        type: 'image',
+                        src: 'images/视角切换.png',
+                        alt: '多场景展示',
+                        caption: '视角切换',
+                        isGallery: true, 
+                        galleryItems: [ 
+                            { src: 'images/视角切换-1.png',   },
+                            { src: 'images/视角切换-2.png',   },
+                            { src: 'images/视角切换-3.png',   },
+                            { src: 'images/视角切换-4.png',   },
+                            { src: 'images/视角切换-5.png',   },
+                            { src: 'images/视角切换-6.png',   },
+                            { src: 'images/视角切换-7.png',   },
+                            { src: 'images/视角切换-8.png',   },
+                        ]
+                    },
                     {
                         type: 'image',
                         src: 'images/分镜头.png', 
                         alt: '多场景展示',
-                        caption: '一张图分镜头制作',
+                        caption: '分镜头制作',
                         isGallery: true, 
                         galleryItems: [ 
                             { src: 'images/分镜头-1.png',   },
@@ -754,6 +770,24 @@
                             { src: 'images/分镜头-7.png',   },
                             { src: 'images/分镜头-8.png',   },
                             { src: 'images/分镜头-9.png',   },
+                        ]
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/人脸多视角.png', 
+                        alt: '多场景展示',
+                        caption: '人脸多视角',
+                        isGallery: true, 
+                        galleryItems: [ 
+                            { src: 'images/人脸多视角-1.png',   },
+                            { src: 'images/人脸多视角-2.png',   },
+                            { src: 'images/人脸多视角-3.png',   },
+                            { src: 'images/人脸多视角-4.png',   },
+                            { src: 'images/人脸多视角-5.png',   },
+                            { src: 'images/人脸多视角-6.png',   },
+                            { src: 'images/人脸多视角-7.png',   },
+                            { src: 'images/人脸多视角-8.png',   },
+                            { src: 'images/人脸多视角-9.png',   },
                         ]
                     },
                 ]
@@ -3269,16 +3303,4 @@ document.addEventListener('click', function(e){
 
     </script>
 </body>
-<body>
-  <h1>页面联通测试</h1>
-
-  <!-- 直接从 Gitee 加载 LOGO 的测试 -->
-  <img
-    src="https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/images/LOGO.png"
-    alt="LOGO测试"
-    style="max-width: 200px; border: 2px solid red;"
-  >
-
-  <!-- 你原来的内容从这里往下保留 -->
-
 </html>
