@@ -534,13 +534,9 @@
                             </div>
                         </div>
                         <div class="story-media">
-                            <!-- 使用封面 + 播放按钮代替直接内嵌大文件，点击会在模态框中异步加载并播放视频 -->
-                            <div class="video-card" onclick="openModal('https://raw.githubusercontent.com/5w1q/AI-photo-site/main/images/封面-视频.mp4','video','images/封面.webp')" style="cursor:pointer; position:relative; border-radius:12px; overflow:hidden;">
-                                <img src="images/封面.webp" alt="封面视频" style="width:100%; display:block;">
-                                <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.5); border-radius:50%; padding:14px;">
-                                    <i class="fas fa-play" style="color:#fff; font-size:22px;"></i>
-                                </div>
-                            </div>
+                            <video controls muted loop poster="images/封面.webp">
+                                <source src="images/封面-视频.mp4" type="video/mp4">
+                            </video>
                         </div>
                     </div>
                     <!-- 其他篇章... -->
@@ -565,13 +561,9 @@
                             </div>
                         </div>
                         <div class="story-media">
-                            <!-- 使用封面 + 播放按钮代替直接内嵌大文件，点击会在模态框中异步加载并播放视频 -->
-                            <div class="video-card" onclick="openModal('https://raw.githubusercontent.com/5w1q/AI-photo-site/main/images/TVC广告.mp4','video','images/封面-3.webp')" style="cursor:pointer; position:relative; border-radius:12px; overflow:hidden;">
-                                <img src="images/封面-3.webp" alt="TVC 视频封面" style="width:100%; display:block;">
-                                <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.5); border-radius:50%; padding:14px;">
-                                    <i class="fas fa-play" style="color:#fff; font-size:22px;"></i>
-                                </div>
-                            </div>
+                            <video controls muted loop poster="images/封面-3.webp">
+                                <source src="images/TVC广告.mp4" type="video/mp4">
+                            </video>
                         </div>
                     </div>
                     <!-- 新增：作品集 -->
@@ -824,6 +816,7 @@
                     { type: 'video',src: 'images/删除元素.mp4', alt: '多场景展示', caption: '删除元素' },
                     { type: 'video',src: 'images/服装-Sora.mp4', alt: '多场景展示', caption: '服装-Sora' },
                     { type: 'video',src: 'images/高清放大.mp4', alt: '多场景展示', caption: '高清放大' },
+
                 ]
             },
             portfolio: {
@@ -1073,6 +1066,15 @@ The atmosphere is electric and nostalgic, a mix of youth, motion, and fleeting e
                         caption: '人物产品图',
                         model: 'Nano Banana Pro',
                         copyText: `拍摄一张超逼真的镜前自拍照，照片中人物一手拿着产品。使用浴室的自然光线，并在镜子中呈现逼真的手持手机倒影。`,
+                        funcType: '图生图'
+                    },
+                    {
+                        type: 'image',
+                        src: 'images/古画转真人.webp',
+                        alt: '穿搭拆分',
+                        caption: '古画转真人',
+                        model: 'Nano Banana Pro',
+                        copyText: `把这张古画转换为仿佛摄影师在真实的场景中拍摄的感觉:一切都如此真实`,
                         funcType: '图生图'
                     },
                     {
@@ -2972,11 +2974,8 @@ B区（画面左下）：
                     }
                 } else if (item.type === 'video') {
                     const posterAttr = item.poster ? item.poster : '';
-                    // 为避免在 GitHub 页面预览/渲染大文件时出现问题，使用封面图和播放按钮，点击时在模态框中加载原始文件（raw.githubusercontent）
-                    const videoRawUrl = 'https://raw.githubusercontent.com/5w1q/AI-photo-site/main/' + encodeURIComponent(item.src);
-                    contentHTML += `<div class="case-item" onclick="openModal('${videoRawUrl}', 'video', '${posterAttr}')" style="position:relative; cursor:pointer;">
-                        <img src="${posterAttr || 'images/video-placeholder.png'}" alt="${item.alt || 'Video'}" style="width:100%; aspect-ratio:16/9; object-fit:cover; display:block;">
-                        <div style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); background:rgba(0,0,0,0.5); border-radius:50%; padding:12px;"><i class="fas fa-play" style="color:#fff; font-size:20px;"></i></div>
+                    contentHTML += `<div class="case-item" onclick="openModal('${item.src}', 'video', '${posterAttr}')">
+                        <video src="${item.src}" poster="${posterAttr}" muted preload="metadata" controls></video>
                         ${item.caption ? `<div class="image-caption">${item.caption}</div>` : ''}
                     </div>`;
                 } else if (item.type === 'file') {
