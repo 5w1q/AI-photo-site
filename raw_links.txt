@@ -1,0 +1,46 @@
+
+/*
+    RAW_LINKS (browser-friendly):
+    1) This file now defines a global `window.RAW_LINKS` object which maps local paths to remote raw URLs.
+    2) Usage in `index.html`:
+             <script src="raw_links.txt"></script>
+             // then read window.RAW_LINKS from any inline script
+    3) Structure:
+             { images: [{path, url}], videos: [...], files: [{path, url}] }
+*/
+
+window.RAW_LINKS = {
+    images: [
+        { path: 'images/LOGO.png', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/images/LOGO.png' }
+    ],
+    videos: [
+        // add video entries here, e.g. { path: 'videos/xxx.mp4', url: 'https://...' }
+    ],
+    files: [
+        { path: 'files/Workflow-X1_Wshipintiqu_url_1-draft-349.zip', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/files/Workflow-X1_Wshipintiqu_url_1-draft-349.zip' },
+        { path: 'files/Workflow-X3_Tdouyinshuju_table_1-draft-4849.zip', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/files/Workflow-X3_Tdouyinshuju_table_1-draft-4849.zip' },
+        { path: 'files/Workflow-X4_Tdouyinfeishu_table_1-draft-4893.zip', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/files/Workflow-X4_Tdouyinfeishu_table_1-draft-4893.zip' },
+        { path: 'files/Workflow-X5_TDYwushuiyin_table_1-draft-4995.zip', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/files/Workflow-X5_TDYwushuiyin_table_1-draft-4995.zip' },
+        { path: 'files/Workflow-X7_W_red_word_1-draft-5085.zip', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/files/Workflow-X7_W_red_word_1-draft-5085.zip' },
+        { path: 'files/Workflow-X9_Wgongzhonghao_word_1-draft-5156.zip', url: 'https://gitee.com/wang-zongyu-Ab/AI-Photo-Site/raw/main/files/Workflow-X9_Wgongzhonghao_word_1-draft-5156.zip' }
+    ]
+};
+
+// Optional helper: generate simple HTML snippets and insert into an element
+window.insertRawLinksAsList = function(targetId) {
+    const t = document.getElementById(targetId);
+    if (!t) return console.warn('insertRawLinksAsList: target not found:', targetId);
+    let html = '<div class="raw-links-list">';
+    if (window.RAW_LINKS.images && window.RAW_LINKS.images.length) {
+        html += '<h3>Images</h3><div>' + window.RAW_LINKS.images.map(i => `<div><img src="${i.url}" alt="${i.path}" style="max-width:160px;display:block;border-radius:6px;margin:6px 0;"/><div>${i.path}</div></div>`).join('') + '</div>';
+    }
+    if (window.RAW_LINKS.videos && window.RAW_LINKS.videos.length) {
+        html += '<h3>Videos</h3><div>' + window.RAW_LINKS.videos.map(v => `<div><a href="${v.url}" target="_blank">${v.path}</a></div>`).join('') + '</div>';
+    }
+    if (window.RAW_LINKS.files && window.RAW_LINKS.files.length) {
+        html += '<h3>Files</h3><div>' + window.RAW_LINKS.files.map(f => `<div><a href="${f.url}" download>${f.path}</a></div>`).join('') + '</div>';
+    }
+    html += '</div>';
+    t.innerHTML = html;
+};
+
