@@ -1,0 +1,5838 @@
+{
+  "last_node_id": 87,
+  "last_link_id": 160,
+  "nodes": [
+    {
+      "id": 8,
+      "type": "VAELoader",
+      "pos": {
+        "0": -4481.7412109375,
+        "1": -609.4000244140625
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            8,
+            19
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.sft"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 40,
+      "type": "Context Big (rgthree)",
+      "pos": {
+        "0": -3043.9111328125,
+        "1": 479.2680969238281
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 466
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 49,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "base_ctx",
+          "type": "RGTHREE_CONTEXT",
+          "link": null,
+          "label": "上下文",
+          "dir": 3
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型",
+          "dir": 3
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP",
+          "dir": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE",
+          "dir": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件",
+          "dir": 3
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "负面条件",
+          "dir": 3
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": null,
+          "label": "Latent",
+          "dir": 3
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 83,
+          "label": "图像",
+          "dir": 3
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "label": "随机种",
+          "dir": 3
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": null,
+          "label": "步数",
+          "dir": 3
+        },
+        {
+          "name": "step_refiner",
+          "type": "INT",
+          "link": null,
+          "label": "Refiner步数",
+          "dir": 3
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "label": "CFG",
+          "dir": 3
+        },
+        {
+          "name": "ckpt_name",
+          "type": [
+            "01、药师の推荐模型/【精品漫画V2150】breakdomain_M2150.safetensors",
+            "01、药师の推荐模型/儿童摄影｜WFChild_v1.0.ckpt",
+            "01、药师の推荐模型/基础课必装模型/【欧美模特】realisticVisionV51_v51VAE.safetensors",
+            "01、药师の推荐模型/基础课必装模型/【锐利画风】revAnimated_v122.safetensors",
+            "3D可爱化模型_V4.0.safetensors",
+            "AD1.5_archi.OS.safetensors",
+            "ADXL_archi.OS.safetensors",
+            "CHEYENNE_v16VAEBaked.safetensors",
+            "DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-1024-no-watermark-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-512-no-watermark-fixed-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_interp_fp16_pruned.safetensors",
+            "DynamiCrafter/tooncrafter_512_interp-pruned-fp16.safetensors",
+            "F.1基础算法模型-哩布在线可运行_F.1-dev-fp8.safetensors",
+            "FaceSR_512_latest_net_G.pth",
+            "Kolors/网络开源/全能/电商摄影丨可图大模型/电商摄影丨可图大模型_1.0.ckpt",
+            "LEOSAM是只兔狲/LEOSAM AIArt 兔狲插画 SDXL大模型_v2.safetensors",
+            "LEOSAM是只兔狲/LEOSAM HelloWorld 新世界  SDXL大模型_v3.2 AutoDPO.safetensors",
+            "LEOSAM是只兔狲/LEOSAM's MoonFilm  胶片风真实感大模型_2.0.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldSDXL_helloworldSDXL32DPO.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "Realistic_lighting_fusion.safetensors",
+            "RealitiesEdgeXLLIGHTNING_TURBOV7.safetensors",
+            "SD1.5/Q版/mw_可爱Q版3D角色IP设计pro_1.1.safetensors",
+            "SD1.5/Q版/qteamixQ_omegaFp16.safetensors",
+            "SD1.5/一麻袋自研/Realisticporn V3.safetensors",
+            "SD1.5/人像/realisticVisionV60B1_v60B1VAE.safetensors",
+            "SD1.5/动漫/AnythingXL_xl.safetensors",
+            "SD1.5/动漫/Dream Anime XL  筑梦动漫XL_v4.0 - 余晖缱绻.safetensors",
+            "SD1.5/动漫/NoobAI-XL (NAI-XL)_Early AccessVer.safetensors",
+            "SD1.5/动漫/aio_v10.safetensors",
+            "SD1.5/动漫/animagineXLV31_v31.safetensors",
+            "SD1.5/动漫/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SD1.5/动漫/kohakuXLAlpha_nyan.safetensors",
+            "SD1.5/动漫/sdxlYamersAnime_stageAnima.safetensors",
+            "SD1.5/动漫/shikianimexl_v10.safetensors",
+            "SD1.5/动漫/xlVibratoryRollerHans_v20.safetensors",
+            "SD1.5/网络开源/二次元/revAnimated_v2Rebirth.safetensors",
+            "SD1.5/网络开源/产品/MooMooE-Commerce_v1.safetensors",
+            "SD1.5/网络开源/产品/七夜_3D电商展台 _ 多风格三维海报场景_V1.0.safetensors",
+            "SD1.5/网络开源/产品/水下特写_1.safetensors",
+            "SD1.5/网络开源/产品/电商产品摄影MAX_v1.0.safetensors",
+            "SD1.5/网络开源/人像/【真实系】中式审美 小红书风格 网红_v1.0.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家 V4 （更适合电商真写实摄影）_摄影玩家 Vfour.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家_Mix90(更真实写实，电商，摄影，美女)_Mix90（beta）.safetensors",
+            "SD1.5/网络开源/人像/极氪摄影PRO-V8纯净质感_极氪摄影PRO-V8纯净质感.safetensors",
+            "SD1.5/网络开源/人像/真实世界 _ real world_v1.0.safetensors",
+            "SD1.5/网络开源/室内/室内_v1.0.safetensors",
+            "SD1.5/网络开源/绘画/helloArtOil官方版_v1.0kVAE.safetensors",
+            "SD1.5/网络开源/通用/Realistic Vision_V6.0 B1.safetensors",
+            "SD1.5/网络开源/通用/chilloutmix_NiPrunedFp32_v1.0.safetensors",
+            "SD1.5/网络开源/通用/dreamshaper_8_v8.safetensors",
+            "SD1.5/网络开源/通用/majicMIX realistic 麦橘写实_v7.safetensors",
+            "SD1.5/网络开源/通用/photonLCM_v10.safetensors",
+            "SD1.5/网络开源/通用/photon_v1.safetensors",
+            "SD1.5/网络开源/通用/真实世界 _ real world_v1.0.safetensors",
+            "SD3.5/sd3.5_large.safetensors",
+            "SD3.5/sd3.5_large_turbo.safetensors",
+            "SDXL/4Guofeng4XL_v12.safetensors",
+            "SDXL/Adam-Doll.XL丨玩偶盲盒丨3D手办_V2.safetensors",
+            "SDXL/Cooi 二次元  SDXL_1.0.safetensors",
+            "SDXL/Juggernaut_X_RunDiffusion.safetensors",
+            "SDXL/MOHAWK_v20.safetensors",
+            "SDXL/MR 3DQ _SDXL V0.2.safetensors",
+            "SDXL/SDXL原神base丨漠北_v4.6.safetensors",
+            "SDXL/SDXL古风汉服MAX_V2.0.safetensors",
+            "SDXL/SDXL古风汉服MAX_v1.0.safetensors",
+            "SDXL/XLGufengxl_gufengxl10.safetensors",
+            "SDXL/YFilter_SDXL_RealMix_V2.safetensors",
+            "SDXL/aio_v10.safetensors",
+            "SDXL/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SDXL/kohakuXLAlpha_nyan.safetensors",
+            "SDXL/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "SDXL/sdxlYamersAnime_stageAnima.safetensors",
+            "SDXL/shikianimexl_v10.safetensors",
+            "SDXL/喵咔幻想与现实-XL_国风v1.0(分支模型).safetensors",
+            "SDXL/基础模型/基础模型XL _xl_1.0.safetensors",
+            "SDXL/梦碎 XL真实感大模型  NeverDream_FUSION-V1.safetensors",
+            "SDXL/竹羽原创插画艺术模型Illustration Art ZY SDXL V1.0_v1.0.safetensors",
+            "SDXL/网络开源/二次元/PVCStyleModelMovable_pony160.safetensors",
+            "SDXL/网络开源/二次元/autismmixSDXL_autismmixConfetti.safetensors",
+            "SDXL/网络开源/二次元/ponyDiffusionV6XL_v6StartWithThisOne.safetensors",
+            "SDXL/网络开源/二次元/prefectPonyXL_v2CleanedStyle.safetensors",
+            "SDXL/网络开源/产品/ChiyeMix-产品摄影XL-莫兰迪配色室内_1.0.safetensors",
+            "SDXL/网络开源/产品/SDXL电商摄影大模型MAX_v1.0.safetensors",
+            "SDXL/网络开源/产品/XL电商展台_v1.safetensors",
+            "SDXL/网络开源/产品/ZOZ_商业摄影设计_XL_001.safetensors",
+            "SDXL/网络开源/产品/jewelry黄金钻石珠宝水晶翡翠饰品_v1.0.safetensors",
+            "SDXL/网络开源/产品/珠宝大模型-XL_珠宝大模型-XL.ckpt",
+            "SDXL/网络开源/产品/电商产品摄影综合版-sdxl_1.0.safetensors",
+            "SDXL/网络开源/产品/真境写真XL Elite KV _ 电商产品摄影海报视觉设计_VisionX 万物绘.safetensors",
+            "SDXL/网络开源/人像/MYHuman-墨幽人造人XL_2020.safetensors",
+            "SDXL/网络开源/人像/Ming_全能人物光影模型_V1_sdxl_V1.safetensors",
+            "SDXL/网络开源/人像/RealMythXL_国风人像商业写实摄影古风武侠电影感_V7.safetensors",
+            "SDXL/网络开源/人像/RealVisXL V5.0_V5.0 闪电(内嵌VAE).safetensors",
+            "SDXL/网络开源/人像/SDSW1.1-更符合东亚人审美的摄影大模型（极速版）_SDSW1.1.safetensors",
+            "SDXL/网络开源/人像/SDXL 1.0 ArienMixXL 亚洲人像_V4.5.safetensors",
+            "SDXL/网络开源/人像/SDXL古风汉服MAX_v3.0.safetensors",
+            "SDXL/网络开源/人像/XXMix_9realisticSDXL_v1.safetensors",
+            "SDXL/网络开源/人像/人像摄影-电商模特_棚拍-超质感-服装电商_2.0.safetensors",
+            "SDXL/网络开源/人像/摄影玩家 Vision _ 商业电商摄影写真实写实大师_摄影玩家 Vone .safetensors",
+            "SDXL/网络开源/人像/摄影风_超写实人像_WDR_Turbo_灵犀世界_极速版.safetensors",
+            "SDXL/网络开源/人像/梦碎_ XL真实感大模型 _ NeverDream_FUSION-V1.safetensors",
+            "SDXL/网络开源/人像/真境写真XL Apex _ 商业电商摄影真实写实大师_真境写真XL_v4.safetensors",
+            "SDXL/网络开源/人像/真实人像-电商模特_1.0.safetensors",
+            "SDXL/网络开源/人像/绘梦胶片写真 _ FILM写实摄影大模型_V_0.5_film.safetensors",
+            "SDXL/网络开源/室内/ARC空间设计师XL _ 室内建筑景观Design大模型_ARC_0.4 .safetensors",
+            "SDXL/网络开源/室内/XL室内设计大模型（老陈）_V3.0.safetensors",
+            "SDXL/网络开源/艺术/SC-Countryside2.5D-XL _ V2田园畅想_V2.0.safetensors",
+            "SDXL/网络开源/通用/Dream Tech XL _ 筑梦工业XL_v7.0 - 逐光之途.safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2 Turbo DPMpp _v2 Turbo DPMpp .safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper10_SDXLHyper_v1.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper_XL_Lightning_inpaintinh_优秀Dreamshapher XL修复模型_V1.safetensors",
+            "SDXL/网络开源/通用/LEOSAM HelloWorld 新世界 _ SDXL大模型_v7.0.safetensors",
+            "SDXL/网络开源/通用/artUniverse_sdxlV40Photoart.safetensors",
+            "SDXL/网络开源/通用/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "SDXL/网络开源/通用/美女DreamShaper XL1.0_alpha2 (xl1.0).safetensors",
+            "SDXL_Hyper/Juggernaut_X_RunDiffusion_Hyper.safetensors",
+            "SDXL_Lighting/enjoyXLSuperRealistic_v50lightning.safetensors",
+            "SDXL_Lighting/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "SDXL_Turbo/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "SUPIR/SUPIR-v0F.ckpt",
+            "SUPIR/SUPIR-v0F_fp16.safetensors",
+            "SUPIR/SUPIR-v0Q.ckpt",
+            "SUPIR/SUPIR-v0Q_fp16.safetensors",
+            "Setting_9_epoch_100_latest_net_G.pth",
+            "anythingelseV4_v45.safetensors",
+            "bopbtl/detection/FT_Epoch_latest.pt",
+            "bopbtl/mapping_Patch_Attention/latest_net_D.pth",
+            "bopbtl/mapping_Patch_Attention/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_net_D.pth",
+            "bopbtl/mapping_quality/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_optimizer_D.pth",
+            "bopbtl/mapping_quality/latest_optimizer_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_net_D.pth",
+            "bopbtl/mapping_scratch/latest_net_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_D.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_mapping_net.pth",
+            "detection/FT_Epoch_latest.pt",
+            "dreamshaper8S+2FXL_v2.1Turbo.safetensors",
+            "dynamicrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "flux-dev-fp8.safetensors",
+            "flux1-dev-bnb-nf4.safetensors",
+            "flux1-dev-fp8-with_clip_vae.safetensors",
+            "flux1-schnell-fp8-with_clip_vae.safetensors",
+            "inpaint/XL_S_dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/epicrealism_pureEvolutionV5-inpainting.safetensors",
+            "juggernautXL_v9-Lightning_4S_V9 + RDPhoto 2.safetensors",
+            "juggerxlInpaint_juggerInpaintV8.safetensors",
+            "ltx-video-2b-v0.9.1.safetensors",
+            "majicMIX realistic 麦橘写实_v7.safetensors",
+            "noosphere.safetensors",
+            "noosphere_v42.safetensors",
+            "realvisxlV40_v40Bakedvae.safetensors",
+            "sd1.5/TQing_v3.4_v3.4.safetensors",
+            "sd1.5/chilloutmix_NiPrunedFp32Fix.safetensors",
+            "sd1.5/dreamshaper_8.safetensors",
+            "sd1.5/epicrealism_naturalSinRC1VAE.safetensors",
+            "sd1.5/ghostmix_v20Bakedvae.safetensors",
+            "sd1.5/helloArtOil官方版_v1.0kVAE.safetensors",
+            "sd1.5/majicmixRealistic_v7.safetensors",
+            "sd1.5/photonLCM_v10.safetensors",
+            "sd1.5/photon_v1.safetensors",
+            "sd1.5/v1-5-pruned-emaonly.safetensors",
+            "sd1.5/xsarchitectural_v11.ckpt",
+            "sd1.5/墨幽人造人_v1080.safetensors",
+            "sd1.5/手绘插画chinese_style_v1.0.safetensors",
+            "sd1.5/手绘插画chinese_style_v2.0.safetensors",
+            "sd3/sd3_medium.safetensors",
+            "sd3/sd3_medium_incl_clips.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp16.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp8.safetensors",
+            "sdxl/AdamMix_SDXL_doll丨玩偶盲盒_v1.1.safetensors",
+            "sdxl/AnythingXL_xl.safetensors",
+            "sdxl/Juggernaut_X_RunDiffusion.safetensors",
+            "sdxl/LEOSAM_HelloWorld_新世界_SDXL大模型_v7.0.safetensors",
+            "sdxl/LightningUltraHyperSD_lightningXLV2.safetensors",
+            "sdxl/PVCStyleModelMovable_beta27Realistic.safetensors",
+            "sdxl/PVC手办风格__万物皆可胶XL_BETA1.2.safetensors",
+            "sdxl/RealVisXL_V4.0.safetensors",
+            "sdxl/STOIQONewrealityxl_XLLight10.safetensors",
+            "sdxl/albedobaseXL_v21.safetensors",
+            "sdxl/amalgamationxl_v2XLightning2.safetensors",
+            "sdxl/animagineXLV31_v31.safetensors",
+            "sdxl/animeIllustDiffusion_v08.safetensors",
+            "sdxl/disneyrealcartoonmix_v10.safetensors",
+            "sdxl/dreamshaperXL_lightningDPMSDE.safetensors",
+            "sdxl/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "sdxl/epicrealismXL_v7FinalDestination.safetensors",
+            "sdxl/iniverseMixXLSFWNSFW_ponyV11XLLoraComp.safetensors",
+            "sdxl/juggernautXL_v8Rundiffusion.safetensors",
+            "sdxl/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "sdxl/juggernautXL_v9Rundiffusionphoto2.safetensors",
+            "sdxl/juggernautXL_version2.safetensors",
+            "sdxl/kohaku-xl-delta-base.safetensors",
+            "sdxl/kohaku-xl-delta-rev1.safetensors",
+            "sdxl/kohaku-xl-epsilon-rev3.safetensors",
+            "sdxl/kohakuXLEpsilon_rev2.safetensors",
+            "sdxl/photoRealisticXL_photoRealisticXLII.safetensors",
+            "sdxl/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "sdxl/pony-diffusion-v6.safetensors",
+            "sdxl/realismEngineSDXL_v30VAE.safetensors",
+            "sdxl/realvisxlV40_v40LightningBakedvae.safetensors",
+            "sdxl/sd_xl_base_0.9.safetensors",
+            "sdxl/sd_xl_base_1.0.safetensors",
+            "sdxl/sd_xl_base_1.0_0.9vae.safetensors",
+            "sdxl/starlightXLAnimated_v3.safetensors",
+            "sdxl/tPonynai3_v55.safetensors",
+            "sdxl/xxmix9realisticsdxl_v10.safetensors",
+            "sdxl/一站式电商大模型-场景-产品-主图_1.0.safetensors",
+            "sdxl/真境写真XL-vone_（专注电商真写实摄影）_真境写真XL_v3.safetensors",
+            "stablesr_768v_000139.ckpt",
+            "sv3d/sv3d_p.safetensors",
+            "sv3d/sv3d_u.safetensors",
+            "svd/AnimateLCM-SVD-xt-1-1_fp16_comfy.safetensors",
+            "svd/AnimateLCM-SVD-xt-1.1.safetensors",
+            "svd/AnimateLCM-SVD-xt.safetensors",
+            "svd/svd.safetensors",
+            "svd/svd_image_decoder.safetensors",
+            "svd/svd_xt.safetensors",
+            "svd/svd_xt_1_1.safetensors",
+            "svd/svd_xt_image_decoder.safetensors",
+            "svd_xt-fp16.safetensors",
+            "toonyouJP_alpha1.safetensors",
+            "whitepony4-classic.safetensors",
+            "xxmix9realistic_v40.safetensors",
+            "万享XL_超写实摄影V8.4_V8.4.safetensors",
+            "乱芳华_1.0.safetensors",
+            "比鲁斯建筑室内通用大模型SD1.5_SD1.5.safetensors",
+            "真境写真XL_Elite_KV_电商产品摄影海报视觉设计_VisionX_万物绘.safetensors",
+            "真界_Hyper-V1.2-mj.safetensors",
+            "真界_Hyper-V1.2.safetensors",
+            "老王_Architecutral_MIX V0.3_V0.3.safetensors",
+            "腾讯混元-DiT_HunyuanDiT-v1.2.safetensors",
+            "首发推荐｜SHMILY梦幻水彩_v1.0.safetensors"
+          ],
+          "link": null,
+          "label": "模型名称",
+          "dir": 3
+        },
+        {
+          "name": "sampler",
+          "type": [
+            "euler",
+            "euler_cfg_pp",
+            "euler_ancestral",
+            "euler_ancestral_cfg_pp",
+            "heun",
+            "heunpp2",
+            "dpm_2",
+            "dpm_2_ancestral",
+            "lms",
+            "dpm_fast",
+            "dpm_adaptive",
+            "dpmpp_2s_ancestral",
+            "dpmpp_2s_ancestral_cfg_pp",
+            "dpmpp_sde",
+            "dpmpp_sde_gpu",
+            "dpmpp_2m",
+            "dpmpp_2m_cfg_pp",
+            "dpmpp_2m_sde",
+            "dpmpp_2m_sde_gpu",
+            "dpmpp_3m_sde",
+            "dpmpp_3m_sde_gpu",
+            "ddpm",
+            "lcm",
+            "ipndm",
+            "ipndm_v",
+            "deis",
+            "res_multistep",
+            "ddim",
+            "uni_pc",
+            "uni_pc_bh2"
+          ],
+          "link": null,
+          "label": "采样器",
+          "dir": 3
+        },
+        {
+          "name": "scheduler",
+          "type": [
+            "normal",
+            "karras",
+            "exponential",
+            "sgm_uniform",
+            "simple",
+            "ddim_uniform",
+            "beta",
+            "linear_quadratic",
+            "kl_optimal"
+          ],
+          "link": null,
+          "label": "调度器",
+          "dir": 3
+        },
+        {
+          "name": "clip_width",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP宽度",
+          "dir": 3
+        },
+        {
+          "name": "clip_height",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP高度",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_g",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_l",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本L",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_g",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_l",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本L",
+          "dir": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 84,
+          "label": "遮罩",
+          "dir": 3
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": null,
+          "label": "ControlNet",
+          "dir": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTEXT",
+          "type": "RGTHREE_CONTEXT",
+          "links": [
+            85
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "上下文",
+          "dir": 4
+        },
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "模型",
+          "dir": 4
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP",
+          "dir": 4
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "VAE",
+          "dir": 4
+        },
+        {
+          "name": "POSITIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "正面条件",
+          "dir": 4
+        },
+        {
+          "name": "NEGATIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "负面条件",
+          "dir": 4
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "Latent",
+          "dir": 4
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 7,
+          "shape": 3,
+          "label": "图像",
+          "dir": 4
+        },
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "随机种",
+          "dir": 4
+        },
+        {
+          "name": "STEPS",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "步数",
+          "dir": 4
+        },
+        {
+          "name": "STEP_REFINER",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "Refiner步数",
+          "dir": 4
+        },
+        {
+          "name": "CFG",
+          "type": "FLOAT",
+          "links": null,
+          "shape": 3,
+          "label": "CFG",
+          "dir": 4
+        },
+        {
+          "name": "CKPT_NAME",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "模型名称",
+          "dir": 4
+        },
+        {
+          "name": "SAMPLER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "采样器",
+          "dir": 4
+        },
+        {
+          "name": "SCHEDULER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "调度器",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_WIDTH",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP宽度",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_HEIGHT",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP高度",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本L",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本L",
+          "dir": 4
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 21,
+          "shape": 3,
+          "label": "遮罩",
+          "dir": 4
+        },
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": null,
+          "shape": 3,
+          "label": "ControlNet",
+          "dir": 4
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 2,
+      "type": "UNETLoader",
+      "pos": {
+        "0": -4481.7412109375,
+        "1": -899.4008178710938
+      },
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            1
+          ],
+          "label": "模型"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "Flux Fill dev - fp8_黑森林官方重绘模型_fp8_e4m3fn",
+        "fp8_e4m3fn"
+      ],
+      "_widget_cache_map": {
+        "Flux Fill dev - fp8_黑森林官方重绘模型_fp8_e4m3fn": {
+          "name": "Flux Fill dev - fp8_黑森林官方重绘模型_fp8_e4m3fn",
+          "baseType": 19,
+          "value": "85f0cd6269694f8bb8143bbaf63fb19c"
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": "DualCLIPLoader",
+      "pos": {
+        "0": -4481.7412109375,
+        "1": -769.4005737304688
+      },
+      "size": {
+        "0": 315,
+        "1": 106
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            2,
+            115
+          ],
+          "slot_index": 0,
+          "label": "CLIP"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "t5xxl_fp8_e4m3fn",
+        "clip_l",
+        "flux"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 26,
+      "type": "GrowMaskWithBlur",
+      "pos": {
+        "0": -3101,
+        "1": -901
+      },
+      "size": {
+        "0": 290,
+        "1": 246
+      },
+      "flags": {},
+      "order": 44,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 66,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            44
+          ],
+          "label": "遮罩"
+        },
+        {
+          "name": "mask_inverted",
+          "type": "MASK",
+          "links": null,
+          "label": "反转遮罩"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GrowMaskWithBlur"
+      },
+      "widgets_values": [
+        5,
+        0.5,
+        true,
+        false,
+        1,
+        1,
+        1,
+        true
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 17,
+      "type": "PreviewImage",
+      "pos": {
+        "0": -2789,
+        "1": -901
+      },
+      "size": {
+        "0": 270,
+        "1": 350
+      },
+      "flags": {},
+      "order": 42,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 24,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 18,
+      "type": "MaskPreview+",
+      "pos": {
+        "0": -2785,
+        "1": -508
+      },
+      "size": {
+        "0": 260,
+        "1": 400
+      },
+      "flags": {},
+      "order": 43,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 26,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "MaskPreview+"
+      },
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 37,
+      "type": "Context Big (rgthree)",
+      "pos": {
+        "0": -3395,
+        "1": -228
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 466
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 54,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "base_ctx",
+          "type": "RGTHREE_CONTEXT",
+          "link": null,
+          "label": "上下文",
+          "dir": 3
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型",
+          "dir": 3
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP",
+          "dir": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE",
+          "dir": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件",
+          "dir": 3
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "负面条件",
+          "dir": 3
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": null,
+          "label": "Latent",
+          "dir": 3
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 75,
+          "label": "图像",
+          "dir": 3
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "label": "随机种",
+          "dir": 3
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": null,
+          "label": "步数",
+          "dir": 3
+        },
+        {
+          "name": "step_refiner",
+          "type": "INT",
+          "link": null,
+          "label": "Refiner步数",
+          "dir": 3
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "label": "CFG",
+          "dir": 3
+        },
+        {
+          "name": "ckpt_name",
+          "type": [
+            "01、药师の推荐模型/【精品漫画V2150】breakdomain_M2150.safetensors",
+            "01、药师の推荐模型/儿童摄影｜WFChild_v1.0.ckpt",
+            "01、药师の推荐模型/基础课必装模型/【欧美模特】realisticVisionV51_v51VAE.safetensors",
+            "01、药师の推荐模型/基础课必装模型/【锐利画风】revAnimated_v122.safetensors",
+            "3D可爱化模型_V4.0.safetensors",
+            "AD1.5_archi.OS.safetensors",
+            "ADXL_archi.OS.safetensors",
+            "CHEYENNE_v16VAEBaked.safetensors",
+            "DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-1024-no-watermark-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-512-no-watermark-fixed-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_interp_fp16_pruned.safetensors",
+            "DynamiCrafter/tooncrafter_512_interp-pruned-fp16.safetensors",
+            "F.1基础算法模型-哩布在线可运行_F.1-dev-fp8.safetensors",
+            "FaceSR_512_latest_net_G.pth",
+            "Kolors/网络开源/全能/电商摄影丨可图大模型/电商摄影丨可图大模型_1.0.ckpt",
+            "LEOSAM是只兔狲/LEOSAM AIArt 兔狲插画 SDXL大模型_v2.safetensors",
+            "LEOSAM是只兔狲/LEOSAM HelloWorld 新世界  SDXL大模型_v3.2 AutoDPO.safetensors",
+            "LEOSAM是只兔狲/LEOSAM's MoonFilm  胶片风真实感大模型_2.0.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldSDXL_helloworldSDXL32DPO.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "Realistic_lighting_fusion.safetensors",
+            "RealitiesEdgeXLLIGHTNING_TURBOV7.safetensors",
+            "SD1.5/Q版/mw_可爱Q版3D角色IP设计pro_1.1.safetensors",
+            "SD1.5/Q版/qteamixQ_omegaFp16.safetensors",
+            "SD1.5/一麻袋自研/Realisticporn V3.safetensors",
+            "SD1.5/人像/realisticVisionV60B1_v60B1VAE.safetensors",
+            "SD1.5/动漫/AnythingXL_xl.safetensors",
+            "SD1.5/动漫/Dream Anime XL  筑梦动漫XL_v4.0 - 余晖缱绻.safetensors",
+            "SD1.5/动漫/NoobAI-XL (NAI-XL)_Early AccessVer.safetensors",
+            "SD1.5/动漫/aio_v10.safetensors",
+            "SD1.5/动漫/animagineXLV31_v31.safetensors",
+            "SD1.5/动漫/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SD1.5/动漫/kohakuXLAlpha_nyan.safetensors",
+            "SD1.5/动漫/sdxlYamersAnime_stageAnima.safetensors",
+            "SD1.5/动漫/shikianimexl_v10.safetensors",
+            "SD1.5/动漫/xlVibratoryRollerHans_v20.safetensors",
+            "SD1.5/网络开源/二次元/revAnimated_v2Rebirth.safetensors",
+            "SD1.5/网络开源/产品/MooMooE-Commerce_v1.safetensors",
+            "SD1.5/网络开源/产品/七夜_3D电商展台 _ 多风格三维海报场景_V1.0.safetensors",
+            "SD1.5/网络开源/产品/水下特写_1.safetensors",
+            "SD1.5/网络开源/产品/电商产品摄影MAX_v1.0.safetensors",
+            "SD1.5/网络开源/人像/【真实系】中式审美 小红书风格 网红_v1.0.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家 V4 （更适合电商真写实摄影）_摄影玩家 Vfour.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家_Mix90(更真实写实，电商，摄影，美女)_Mix90（beta）.safetensors",
+            "SD1.5/网络开源/人像/极氪摄影PRO-V8纯净质感_极氪摄影PRO-V8纯净质感.safetensors",
+            "SD1.5/网络开源/人像/真实世界 _ real world_v1.0.safetensors",
+            "SD1.5/网络开源/室内/室内_v1.0.safetensors",
+            "SD1.5/网络开源/绘画/helloArtOil官方版_v1.0kVAE.safetensors",
+            "SD1.5/网络开源/通用/Realistic Vision_V6.0 B1.safetensors",
+            "SD1.5/网络开源/通用/chilloutmix_NiPrunedFp32_v1.0.safetensors",
+            "SD1.5/网络开源/通用/dreamshaper_8_v8.safetensors",
+            "SD1.5/网络开源/通用/majicMIX realistic 麦橘写实_v7.safetensors",
+            "SD1.5/网络开源/通用/photonLCM_v10.safetensors",
+            "SD1.5/网络开源/通用/photon_v1.safetensors",
+            "SD1.5/网络开源/通用/真实世界 _ real world_v1.0.safetensors",
+            "SD3.5/sd3.5_large.safetensors",
+            "SD3.5/sd3.5_large_turbo.safetensors",
+            "SDXL/4Guofeng4XL_v12.safetensors",
+            "SDXL/Adam-Doll.XL丨玩偶盲盒丨3D手办_V2.safetensors",
+            "SDXL/Cooi 二次元  SDXL_1.0.safetensors",
+            "SDXL/Juggernaut_X_RunDiffusion.safetensors",
+            "SDXL/MOHAWK_v20.safetensors",
+            "SDXL/MR 3DQ _SDXL V0.2.safetensors",
+            "SDXL/SDXL原神base丨漠北_v4.6.safetensors",
+            "SDXL/SDXL古风汉服MAX_V2.0.safetensors",
+            "SDXL/SDXL古风汉服MAX_v1.0.safetensors",
+            "SDXL/XLGufengxl_gufengxl10.safetensors",
+            "SDXL/YFilter_SDXL_RealMix_V2.safetensors",
+            "SDXL/aio_v10.safetensors",
+            "SDXL/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SDXL/kohakuXLAlpha_nyan.safetensors",
+            "SDXL/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "SDXL/sdxlYamersAnime_stageAnima.safetensors",
+            "SDXL/shikianimexl_v10.safetensors",
+            "SDXL/喵咔幻想与现实-XL_国风v1.0(分支模型).safetensors",
+            "SDXL/基础模型/基础模型XL _xl_1.0.safetensors",
+            "SDXL/梦碎 XL真实感大模型  NeverDream_FUSION-V1.safetensors",
+            "SDXL/竹羽原创插画艺术模型Illustration Art ZY SDXL V1.0_v1.0.safetensors",
+            "SDXL/网络开源/二次元/PVCStyleModelMovable_pony160.safetensors",
+            "SDXL/网络开源/二次元/autismmixSDXL_autismmixConfetti.safetensors",
+            "SDXL/网络开源/二次元/ponyDiffusionV6XL_v6StartWithThisOne.safetensors",
+            "SDXL/网络开源/二次元/prefectPonyXL_v2CleanedStyle.safetensors",
+            "SDXL/网络开源/产品/ChiyeMix-产品摄影XL-莫兰迪配色室内_1.0.safetensors",
+            "SDXL/网络开源/产品/SDXL电商摄影大模型MAX_v1.0.safetensors",
+            "SDXL/网络开源/产品/XL电商展台_v1.safetensors",
+            "SDXL/网络开源/产品/ZOZ_商业摄影设计_XL_001.safetensors",
+            "SDXL/网络开源/产品/jewelry黄金钻石珠宝水晶翡翠饰品_v1.0.safetensors",
+            "SDXL/网络开源/产品/珠宝大模型-XL_珠宝大模型-XL.ckpt",
+            "SDXL/网络开源/产品/电商产品摄影综合版-sdxl_1.0.safetensors",
+            "SDXL/网络开源/产品/真境写真XL Elite KV _ 电商产品摄影海报视觉设计_VisionX 万物绘.safetensors",
+            "SDXL/网络开源/人像/MYHuman-墨幽人造人XL_2020.safetensors",
+            "SDXL/网络开源/人像/Ming_全能人物光影模型_V1_sdxl_V1.safetensors",
+            "SDXL/网络开源/人像/RealMythXL_国风人像商业写实摄影古风武侠电影感_V7.safetensors",
+            "SDXL/网络开源/人像/RealVisXL V5.0_V5.0 闪电(内嵌VAE).safetensors",
+            "SDXL/网络开源/人像/SDSW1.1-更符合东亚人审美的摄影大模型（极速版）_SDSW1.1.safetensors",
+            "SDXL/网络开源/人像/SDXL 1.0 ArienMixXL 亚洲人像_V4.5.safetensors",
+            "SDXL/网络开源/人像/SDXL古风汉服MAX_v3.0.safetensors",
+            "SDXL/网络开源/人像/XXMix_9realisticSDXL_v1.safetensors",
+            "SDXL/网络开源/人像/人像摄影-电商模特_棚拍-超质感-服装电商_2.0.safetensors",
+            "SDXL/网络开源/人像/摄影玩家 Vision _ 商业电商摄影写真实写实大师_摄影玩家 Vone .safetensors",
+            "SDXL/网络开源/人像/摄影风_超写实人像_WDR_Turbo_灵犀世界_极速版.safetensors",
+            "SDXL/网络开源/人像/梦碎_ XL真实感大模型 _ NeverDream_FUSION-V1.safetensors",
+            "SDXL/网络开源/人像/真境写真XL Apex _ 商业电商摄影真实写实大师_真境写真XL_v4.safetensors",
+            "SDXL/网络开源/人像/真实人像-电商模特_1.0.safetensors",
+            "SDXL/网络开源/人像/绘梦胶片写真 _ FILM写实摄影大模型_V_0.5_film.safetensors",
+            "SDXL/网络开源/室内/ARC空间设计师XL _ 室内建筑景观Design大模型_ARC_0.4 .safetensors",
+            "SDXL/网络开源/室内/XL室内设计大模型（老陈）_V3.0.safetensors",
+            "SDXL/网络开源/艺术/SC-Countryside2.5D-XL _ V2田园畅想_V2.0.safetensors",
+            "SDXL/网络开源/通用/Dream Tech XL _ 筑梦工业XL_v7.0 - 逐光之途.safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2 Turbo DPMpp _v2 Turbo DPMpp .safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper10_SDXLHyper_v1.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper_XL_Lightning_inpaintinh_优秀Dreamshapher XL修复模型_V1.safetensors",
+            "SDXL/网络开源/通用/LEOSAM HelloWorld 新世界 _ SDXL大模型_v7.0.safetensors",
+            "SDXL/网络开源/通用/artUniverse_sdxlV40Photoart.safetensors",
+            "SDXL/网络开源/通用/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "SDXL/网络开源/通用/美女DreamShaper XL1.0_alpha2 (xl1.0).safetensors",
+            "SDXL_Hyper/Juggernaut_X_RunDiffusion_Hyper.safetensors",
+            "SDXL_Lighting/enjoyXLSuperRealistic_v50lightning.safetensors",
+            "SDXL_Lighting/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "SDXL_Turbo/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "SUPIR/SUPIR-v0F.ckpt",
+            "SUPIR/SUPIR-v0F_fp16.safetensors",
+            "SUPIR/SUPIR-v0Q.ckpt",
+            "SUPIR/SUPIR-v0Q_fp16.safetensors",
+            "Setting_9_epoch_100_latest_net_G.pth",
+            "anythingelseV4_v45.safetensors",
+            "bopbtl/detection/FT_Epoch_latest.pt",
+            "bopbtl/mapping_Patch_Attention/latest_net_D.pth",
+            "bopbtl/mapping_Patch_Attention/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_net_D.pth",
+            "bopbtl/mapping_quality/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_optimizer_D.pth",
+            "bopbtl/mapping_quality/latest_optimizer_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_net_D.pth",
+            "bopbtl/mapping_scratch/latest_net_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_D.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_mapping_net.pth",
+            "detection/FT_Epoch_latest.pt",
+            "dreamshaper8S+2FXL_v2.1Turbo.safetensors",
+            "dynamicrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "flux-dev-fp8.safetensors",
+            "flux1-dev-bnb-nf4.safetensors",
+            "flux1-dev-fp8-with_clip_vae.safetensors",
+            "flux1-schnell-fp8-with_clip_vae.safetensors",
+            "inpaint/XL_S_dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/epicrealism_pureEvolutionV5-inpainting.safetensors",
+            "juggernautXL_v9-Lightning_4S_V9 + RDPhoto 2.safetensors",
+            "juggerxlInpaint_juggerInpaintV8.safetensors",
+            "ltx-video-2b-v0.9.1.safetensors",
+            "majicMIX realistic 麦橘写实_v7.safetensors",
+            "noosphere.safetensors",
+            "noosphere_v42.safetensors",
+            "realvisxlV40_v40Bakedvae.safetensors",
+            "sd1.5/TQing_v3.4_v3.4.safetensors",
+            "sd1.5/chilloutmix_NiPrunedFp32Fix.safetensors",
+            "sd1.5/dreamshaper_8.safetensors",
+            "sd1.5/epicrealism_naturalSinRC1VAE.safetensors",
+            "sd1.5/ghostmix_v20Bakedvae.safetensors",
+            "sd1.5/helloArtOil官方版_v1.0kVAE.safetensors",
+            "sd1.5/majicmixRealistic_v7.safetensors",
+            "sd1.5/photonLCM_v10.safetensors",
+            "sd1.5/photon_v1.safetensors",
+            "sd1.5/v1-5-pruned-emaonly.safetensors",
+            "sd1.5/xsarchitectural_v11.ckpt",
+            "sd1.5/墨幽人造人_v1080.safetensors",
+            "sd1.5/手绘插画chinese_style_v1.0.safetensors",
+            "sd1.5/手绘插画chinese_style_v2.0.safetensors",
+            "sd3/sd3_medium.safetensors",
+            "sd3/sd3_medium_incl_clips.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp16.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp8.safetensors",
+            "sdxl/AdamMix_SDXL_doll丨玩偶盲盒_v1.1.safetensors",
+            "sdxl/AnythingXL_xl.safetensors",
+            "sdxl/Juggernaut_X_RunDiffusion.safetensors",
+            "sdxl/LEOSAM_HelloWorld_新世界_SDXL大模型_v7.0.safetensors",
+            "sdxl/LightningUltraHyperSD_lightningXLV2.safetensors",
+            "sdxl/PVCStyleModelMovable_beta27Realistic.safetensors",
+            "sdxl/PVC手办风格__万物皆可胶XL_BETA1.2.safetensors",
+            "sdxl/RealVisXL_V4.0.safetensors",
+            "sdxl/STOIQONewrealityxl_XLLight10.safetensors",
+            "sdxl/albedobaseXL_v21.safetensors",
+            "sdxl/amalgamationxl_v2XLightning2.safetensors",
+            "sdxl/animagineXLV31_v31.safetensors",
+            "sdxl/animeIllustDiffusion_v08.safetensors",
+            "sdxl/disneyrealcartoonmix_v10.safetensors",
+            "sdxl/dreamshaperXL_lightningDPMSDE.safetensors",
+            "sdxl/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "sdxl/epicrealismXL_v7FinalDestination.safetensors",
+            "sdxl/iniverseMixXLSFWNSFW_ponyV11XLLoraComp.safetensors",
+            "sdxl/juggernautXL_v8Rundiffusion.safetensors",
+            "sdxl/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "sdxl/juggernautXL_v9Rundiffusionphoto2.safetensors",
+            "sdxl/juggernautXL_version2.safetensors",
+            "sdxl/kohaku-xl-delta-base.safetensors",
+            "sdxl/kohaku-xl-delta-rev1.safetensors",
+            "sdxl/kohaku-xl-epsilon-rev3.safetensors",
+            "sdxl/kohakuXLEpsilon_rev2.safetensors",
+            "sdxl/photoRealisticXL_photoRealisticXLII.safetensors",
+            "sdxl/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "sdxl/pony-diffusion-v6.safetensors",
+            "sdxl/realismEngineSDXL_v30VAE.safetensors",
+            "sdxl/realvisxlV40_v40LightningBakedvae.safetensors",
+            "sdxl/sd_xl_base_0.9.safetensors",
+            "sdxl/sd_xl_base_1.0.safetensors",
+            "sdxl/sd_xl_base_1.0_0.9vae.safetensors",
+            "sdxl/starlightXLAnimated_v3.safetensors",
+            "sdxl/tPonynai3_v55.safetensors",
+            "sdxl/xxmix9realisticsdxl_v10.safetensors",
+            "sdxl/一站式电商大模型-场景-产品-主图_1.0.safetensors",
+            "sdxl/真境写真XL-vone_（专注电商真写实摄影）_真境写真XL_v3.safetensors",
+            "stablesr_768v_000139.ckpt",
+            "sv3d/sv3d_p.safetensors",
+            "sv3d/sv3d_u.safetensors",
+            "svd/AnimateLCM-SVD-xt-1-1_fp16_comfy.safetensors",
+            "svd/AnimateLCM-SVD-xt-1.1.safetensors",
+            "svd/AnimateLCM-SVD-xt.safetensors",
+            "svd/svd.safetensors",
+            "svd/svd_image_decoder.safetensors",
+            "svd/svd_xt.safetensors",
+            "svd/svd_xt_1_1.safetensors",
+            "svd/svd_xt_image_decoder.safetensors",
+            "svd_xt-fp16.safetensors",
+            "toonyouJP_alpha1.safetensors",
+            "whitepony4-classic.safetensors",
+            "xxmix9realistic_v40.safetensors",
+            "万享XL_超写实摄影V8.4_V8.4.safetensors",
+            "乱芳华_1.0.safetensors",
+            "比鲁斯建筑室内通用大模型SD1.5_SD1.5.safetensors",
+            "真境写真XL_Elite_KV_电商产品摄影海报视觉设计_VisionX_万物绘.safetensors",
+            "真界_Hyper-V1.2-mj.safetensors",
+            "真界_Hyper-V1.2.safetensors",
+            "老王_Architecutral_MIX V0.3_V0.3.safetensors",
+            "腾讯混元-DiT_HunyuanDiT-v1.2.safetensors",
+            "首发推荐｜SHMILY梦幻水彩_v1.0.safetensors"
+          ],
+          "link": null,
+          "label": "模型名称",
+          "dir": 3
+        },
+        {
+          "name": "sampler",
+          "type": [
+            "euler",
+            "euler_cfg_pp",
+            "euler_ancestral",
+            "euler_ancestral_cfg_pp",
+            "heun",
+            "heunpp2",
+            "dpm_2",
+            "dpm_2_ancestral",
+            "lms",
+            "dpm_fast",
+            "dpm_adaptive",
+            "dpmpp_2s_ancestral",
+            "dpmpp_2s_ancestral_cfg_pp",
+            "dpmpp_sde",
+            "dpmpp_sde_gpu",
+            "dpmpp_2m",
+            "dpmpp_2m_cfg_pp",
+            "dpmpp_2m_sde",
+            "dpmpp_2m_sde_gpu",
+            "dpmpp_3m_sde",
+            "dpmpp_3m_sde_gpu",
+            "ddpm",
+            "lcm",
+            "ipndm",
+            "ipndm_v",
+            "deis",
+            "res_multistep",
+            "ddim",
+            "uni_pc",
+            "uni_pc_bh2"
+          ],
+          "link": null,
+          "label": "采样器",
+          "dir": 3
+        },
+        {
+          "name": "scheduler",
+          "type": [
+            "normal",
+            "karras",
+            "exponential",
+            "sgm_uniform",
+            "simple",
+            "ddim_uniform",
+            "beta",
+            "linear_quadratic",
+            "kl_optimal"
+          ],
+          "link": null,
+          "label": "调度器",
+          "dir": 3
+        },
+        {
+          "name": "clip_width",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP宽度",
+          "dir": 3
+        },
+        {
+          "name": "clip_height",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP高度",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_g",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_l",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本L",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_g",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_l",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本L",
+          "dir": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 77,
+          "label": "遮罩",
+          "dir": 3
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": null,
+          "label": "ControlNet",
+          "dir": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTEXT",
+          "type": "RGTHREE_CONTEXT",
+          "links": [
+            79
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "上下文",
+          "dir": 4
+        },
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "模型",
+          "dir": 4
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP",
+          "dir": 4
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "VAE",
+          "dir": 4
+        },
+        {
+          "name": "POSITIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "正面条件",
+          "dir": 4
+        },
+        {
+          "name": "NEGATIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "负面条件",
+          "dir": 4
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "Latent",
+          "dir": 4
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 7,
+          "shape": 3,
+          "label": "图像",
+          "dir": 4
+        },
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "随机种",
+          "dir": 4
+        },
+        {
+          "name": "STEPS",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "步数",
+          "dir": 4
+        },
+        {
+          "name": "STEP_REFINER",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "Refiner步数",
+          "dir": 4
+        },
+        {
+          "name": "CFG",
+          "type": "FLOAT",
+          "links": null,
+          "shape": 3,
+          "label": "CFG",
+          "dir": 4
+        },
+        {
+          "name": "CKPT_NAME",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "模型名称",
+          "dir": 4
+        },
+        {
+          "name": "SAMPLER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "采样器",
+          "dir": 4
+        },
+        {
+          "name": "SCHEDULER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "调度器",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_WIDTH",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP宽度",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_HEIGHT",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP高度",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本L",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本L",
+          "dir": 4
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 21,
+          "shape": 3,
+          "label": "遮罩",
+          "dir": 4
+        },
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": null,
+          "shape": 3,
+          "label": "ControlNet",
+          "dir": 4
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 19,
+      "type": "InpaintCrop",
+      "pos": {
+        "0": -3091,
+        "1": -614
+      },
+      "size": {
+        "0": 270,
+        "1": 386
+      },
+      "flags": {},
+      "order": 47,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 120,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 44,
+          "label": "遮罩"
+        },
+        {
+          "name": "optional_context_mask",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "上下文遮罩(可选)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "stitch",
+          "type": "STITCH",
+          "links": [
+            134
+          ],
+          "slot_index": 0,
+          "label": "接缝"
+        },
+        {
+          "name": "cropped_image",
+          "type": "IMAGE",
+          "links": [
+            75
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "cropped_mask",
+          "type": "MASK",
+          "links": [
+            77
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintCrop"
+      },
+      "widgets_values": [
+        30,
+        1.25,
+        true,
+        16,
+        false,
+        16,
+        "bicubic",
+        "ranged size",
+        1024,
+        1024,
+        1,
+        512,
+        512,
+        768,
+        768,
+        32
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 63,
+      "type": "SetNode",
+      "pos": {
+        "0": -3082,
+        "1": -185
+      },
+      "size": {
+        "0": 258.78564453125,
+        "1": 58
+      },
+      "flags": {},
+      "order": 53,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "STITCH",
+          "type": "STITCH",
+          "link": 134
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null,
+          "label": "输出"
+        }
+      ],
+      "properties": {
+        "previousName": "接缝1"
+      },
+      "widgets_values": [
+        "接缝1"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 21,
+      "type": "SaveImage",
+      "pos": {
+        "0": -2434.955078125,
+        "1": -896.44873046875
+      },
+      "size": {
+        "0": 379.33953857421875,
+        "1": 474.58233642578125
+      },
+      "flags": {},
+      "order": 31,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 136,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 60,
+      "type": "GetNode",
+      "pos": {
+        "0": -2429.955078125,
+        "1": -378.44873046875
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            131
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "渲染好的图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 61,
+      "type": "GetNode",
+      "pos": {
+        "0": -2429.955078125,
+        "1": -176.44883728027344
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            132
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "缩放后图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 25,
+      "type": "Image Comparer (rgthree)",
+      "pos": {
+        "0": -2034.9556884765625,
+        "1": -899.44873046875
+      },
+      "size": {
+        "0": 470,
+        "1": 770
+      },
+      "flags": {},
+      "order": 32,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 137,
+          "label": "图像_A",
+          "dir": 3
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 132,
+          "label": "图像_B",
+          "dir": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "comparer_mode": "Slide"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_pbqbr_00003_.png&type=temp&subfolder=&rand=0.4978644141110782"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_pbqbr_00004_.png&type=temp&subfolder=&rand=0.8609351615751415"
+          }
+        ]
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 20,
+      "type": "InpaintStitch",
+      "pos": {
+        "0": -2201.955078125,
+        "1": -238.44883728027344
+      },
+      "size": {
+        "0": 260,
+        "1": 100
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 23,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "stitch",
+          "type": "STITCH",
+          "link": 135,
+          "label": "接缝"
+        },
+        {
+          "name": "inpainted_image",
+          "type": "IMAGE",
+          "link": 131,
+          "label": "图像"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            136,
+            137
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintStitch"
+      },
+      "widgets_values": [
+        "bislerp"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 28,
+      "type": "GroundingDinoSAMSegment (segment anything)",
+      "pos": {
+        "0": -3421.96044921875,
+        "1": 32.559688568115234
+      },
+      "size": {
+        "0": 315,
+        "1": 122
+      },
+      "flags": {},
+      "order": 25,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "sam_model",
+          "type": "SAM_MODEL",
+          "link": 54,
+          "label": "SAM模型"
+        },
+        {
+          "name": "grounding_dino_model",
+          "type": "GROUNDING_DINO_MODEL",
+          "link": 55,
+          "label": "G-Dino模型"
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 121,
+          "label": "图像"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            60
+          ],
+          "slot_index": 0,
+          "label": " 图像"
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            61,
+            67
+          ],
+          "slot_index": 1,
+          "label": "遮罩"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GroundingDinoSAMSegment (segment anything)"
+      },
+      "widgets_values": [
+        "(text:1.5),(word:1.5),(logo:1).5),(watermark:1.5)",
+        0.12
+      ],
+      "_widget_cache_map": {},
+      "color": "#322",
+      "bgcolor": "#533"
+    },
+    {
+      "id": 30,
+      "type": "GroundingDinoModelLoader (segment anything)",
+      "pos": {
+        "0": -3413.96044921875,
+        "1": 209.55975341796875
+      },
+      "size": {
+        "0": 315,
+        "1": 58
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "GROUNDING_DINO_MODEL",
+          "type": "GROUNDING_DINO_MODEL",
+          "links": [
+            55
+          ],
+          "slot_index": 0,
+          "label": "G-Dino模型"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GroundingDinoModelLoader (segment anything)"
+      },
+      "widgets_values": [
+        "GroundingDINO_SwinB (938MB)"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 29,
+      "type": "SAMLoader",
+      "pos": {
+        "0": -3419.96044921875,
+        "1": 320.5596923828125
+      },
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAM_MODEL",
+          "type": "SAM_MODEL",
+          "links": [
+            54
+          ],
+          "label": "SAM模型"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAMLoader"
+      },
+      "widgets_values": [
+        "sam_vit_h_4b8939.pth",
+        "AUTO"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 34,
+      "type": "GrowMaskWithBlur",
+      "pos": {
+        "0": -3411.96044921875,
+        "1": 454.5594482421875
+      },
+      "size": {
+        "0": 315,
+        "1": 246
+      },
+      "flags": {},
+      "order": 37,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 67,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            68
+          ],
+          "slot_index": 0,
+          "label": "遮罩"
+        },
+        {
+          "name": "mask_inverted",
+          "type": "MASK",
+          "links": null,
+          "label": "反转遮罩"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GrowMaskWithBlur"
+      },
+      "widgets_values": [
+        5,
+        0.5,
+        true,
+        false,
+        1,
+        1,
+        1,
+        true
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 33,
+      "type": "PreviewImage",
+      "pos": {
+        "0": -2767,
+        "1": 478.32818603515625
+      },
+      "size": {
+        "0": 244.24368286132812,
+        "1": 352.1594543457031
+      },
+      "flags": {},
+      "order": 35,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 60,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 32,
+      "type": "MaskPreview+",
+      "pos": {
+        "0": -2778,
+        "1": 23.328208923339844
+      },
+      "size": {
+        "0": 260,
+        "1": 400
+      },
+      "flags": {},
+      "order": 36,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 61,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "MaskPreview+"
+      },
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 64,
+      "type": "GetNode",
+      "pos": {
+        "0": -2429.955078125,
+        "1": -277.44873046875
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 7,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STITCH",
+          "type": "STITCH",
+          "links": [
+            135
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "接缝1"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 65,
+      "type": "SetNode",
+      "pos": {
+        "0": -3059,
+        "1": 529.3282470703125
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 48,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "STITCH",
+          "type": "STITCH",
+          "link": 138
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null,
+          "label": "输出"
+        }
+      ],
+      "properties": {
+        "previousName": "接缝2"
+      },
+      "widgets_values": [
+        "接缝2"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 35,
+      "type": "InpaintCrop",
+      "pos": {
+        "0": -3083.9111328125,
+        "1": 39.2676887512207
+      },
+      "size": {
+        "0": 210,
+        "1": 386
+      },
+      "flags": {},
+      "order": 45,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 122,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 68,
+          "label": "遮罩"
+        },
+        {
+          "name": "optional_context_mask",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "上下文遮罩(可选)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "stitch",
+          "type": "STITCH",
+          "links": [
+            138
+          ],
+          "slot_index": 0,
+          "label": "接缝"
+        },
+        {
+          "name": "cropped_image",
+          "type": "IMAGE",
+          "links": [
+            83
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "cropped_mask",
+          "type": "MASK",
+          "links": [
+            84
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintCrop"
+      },
+      "widgets_values": [
+        20,
+        1.2,
+        true,
+        16,
+        false,
+        16,
+        "bicubic",
+        "ranged size",
+        1024,
+        1024,
+        1,
+        512,
+        512,
+        768,
+        768,
+        32
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 13,
+      "type": "InpaintModelConditioning",
+      "pos": {
+        "0": -4131.70263671875,
+        "1": -899.3287963867188
+      },
+      "size": {
+        "0": 300,
+        "1": 138
+      },
+      "flags": {},
+      "order": 57,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 116,
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 109,
+          "label": "负面条件"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 19,
+          "label": "VAE"
+        },
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 80,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 81,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            15
+          ],
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            17
+          ],
+          "label": "负面条件"
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            18
+          ],
+          "label": "Latent"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintModelConditioning"
+      },
+      "widgets_values": [
+        true
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 51,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": -4116.7021484375,
+        "1": -709.328369140625
+      },
+      "size": {
+        "0": 243.15777587890625,
+        "1": 81
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 22,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 115,
+          "label": "CLIP"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            116
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 5,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": -3954.703857421875,
+        "1": -709.328369140625
+      },
+      "size": {
+        "0": 243.15777587890625,
+        "1": 81
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 21,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2,
+          "label": "CLIP"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            109
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        ""
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 9,
+      "type": "VAEDecode",
+      "pos": {
+        "0": -4122.70263671875,
+        "1": -651.328369140625
+      },
+      "size": {
+        "0": 310,
+        "1": 50
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 59,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 7,
+          "label": "Latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 8,
+          "label": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            127
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 57,
+      "type": "SetNode",
+      "pos": {
+        "0": -4039.47021484375,
+        "1": -545.3938598632812
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 60,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "link": 127
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [],
+          "slot_index": 0,
+          "label": "输出"
+        }
+      ],
+      "properties": {
+        "previousName": "渲染好的图像"
+      },
+      "widgets_values": [
+        "渲染好的图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 39,
+      "type": "Context Big (rgthree)",
+      "pos": {
+        "0": -4389.47021484375,
+        "1": -481.3935546875
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 466
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 56,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "base_ctx",
+          "type": "RGTHREE_CONTEXT",
+          "link": 82,
+          "label": "上下文",
+          "dir": 3
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型",
+          "dir": 3
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP",
+          "dir": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE",
+          "dir": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件",
+          "dir": 3
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "负面条件",
+          "dir": 3
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": null,
+          "label": "Latent",
+          "dir": 3
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": null,
+          "label": "图像",
+          "dir": 3
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "label": "随机种",
+          "dir": 3
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": null,
+          "label": "步数",
+          "dir": 3
+        },
+        {
+          "name": "step_refiner",
+          "type": "INT",
+          "link": null,
+          "label": "Refiner步数",
+          "dir": 3
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "label": "CFG",
+          "dir": 3
+        },
+        {
+          "name": "ckpt_name",
+          "type": [
+            "01、药师の推荐模型/【精品漫画V2150】breakdomain_M2150.safetensors",
+            "01、药师の推荐模型/儿童摄影｜WFChild_v1.0.ckpt",
+            "01、药师の推荐模型/基础课必装模型/【欧美模特】realisticVisionV51_v51VAE.safetensors",
+            "01、药师の推荐模型/基础课必装模型/【锐利画风】revAnimated_v122.safetensors",
+            "3D可爱化模型_V4.0.safetensors",
+            "AD1.5_archi.OS.safetensors",
+            "ADXL_archi.OS.safetensors",
+            "CHEYENNE_v16VAEBaked.safetensors",
+            "DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-1024-no-watermark-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-512-no-watermark-fixed-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_interp_fp16_pruned.safetensors",
+            "DynamiCrafter/tooncrafter_512_interp-pruned-fp16.safetensors",
+            "F.1基础算法模型-哩布在线可运行_F.1-dev-fp8.safetensors",
+            "FaceSR_512_latest_net_G.pth",
+            "Kolors/网络开源/全能/电商摄影丨可图大模型/电商摄影丨可图大模型_1.0.ckpt",
+            "LEOSAM是只兔狲/LEOSAM AIArt 兔狲插画 SDXL大模型_v2.safetensors",
+            "LEOSAM是只兔狲/LEOSAM HelloWorld 新世界  SDXL大模型_v3.2 AutoDPO.safetensors",
+            "LEOSAM是只兔狲/LEOSAM's MoonFilm  胶片风真实感大模型_2.0.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldSDXL_helloworldSDXL32DPO.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "Realistic_lighting_fusion.safetensors",
+            "RealitiesEdgeXLLIGHTNING_TURBOV7.safetensors",
+            "SD1.5/Q版/mw_可爱Q版3D角色IP设计pro_1.1.safetensors",
+            "SD1.5/Q版/qteamixQ_omegaFp16.safetensors",
+            "SD1.5/一麻袋自研/Realisticporn V3.safetensors",
+            "SD1.5/人像/realisticVisionV60B1_v60B1VAE.safetensors",
+            "SD1.5/动漫/AnythingXL_xl.safetensors",
+            "SD1.5/动漫/Dream Anime XL  筑梦动漫XL_v4.0 - 余晖缱绻.safetensors",
+            "SD1.5/动漫/NoobAI-XL (NAI-XL)_Early AccessVer.safetensors",
+            "SD1.5/动漫/aio_v10.safetensors",
+            "SD1.5/动漫/animagineXLV31_v31.safetensors",
+            "SD1.5/动漫/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SD1.5/动漫/kohakuXLAlpha_nyan.safetensors",
+            "SD1.5/动漫/sdxlYamersAnime_stageAnima.safetensors",
+            "SD1.5/动漫/shikianimexl_v10.safetensors",
+            "SD1.5/动漫/xlVibratoryRollerHans_v20.safetensors",
+            "SD1.5/网络开源/二次元/revAnimated_v2Rebirth.safetensors",
+            "SD1.5/网络开源/产品/MooMooE-Commerce_v1.safetensors",
+            "SD1.5/网络开源/产品/七夜_3D电商展台 _ 多风格三维海报场景_V1.0.safetensors",
+            "SD1.5/网络开源/产品/水下特写_1.safetensors",
+            "SD1.5/网络开源/产品/电商产品摄影MAX_v1.0.safetensors",
+            "SD1.5/网络开源/人像/【真实系】中式审美 小红书风格 网红_v1.0.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家 V4 （更适合电商真写实摄影）_摄影玩家 Vfour.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家_Mix90(更真实写实，电商，摄影，美女)_Mix90（beta）.safetensors",
+            "SD1.5/网络开源/人像/极氪摄影PRO-V8纯净质感_极氪摄影PRO-V8纯净质感.safetensors",
+            "SD1.5/网络开源/人像/真实世界 _ real world_v1.0.safetensors",
+            "SD1.5/网络开源/室内/室内_v1.0.safetensors",
+            "SD1.5/网络开源/绘画/helloArtOil官方版_v1.0kVAE.safetensors",
+            "SD1.5/网络开源/通用/Realistic Vision_V6.0 B1.safetensors",
+            "SD1.5/网络开源/通用/chilloutmix_NiPrunedFp32_v1.0.safetensors",
+            "SD1.5/网络开源/通用/dreamshaper_8_v8.safetensors",
+            "SD1.5/网络开源/通用/majicMIX realistic 麦橘写实_v7.safetensors",
+            "SD1.5/网络开源/通用/photonLCM_v10.safetensors",
+            "SD1.5/网络开源/通用/photon_v1.safetensors",
+            "SD1.5/网络开源/通用/真实世界 _ real world_v1.0.safetensors",
+            "SD3.5/sd3.5_large.safetensors",
+            "SD3.5/sd3.5_large_turbo.safetensors",
+            "SDXL/4Guofeng4XL_v12.safetensors",
+            "SDXL/Adam-Doll.XL丨玩偶盲盒丨3D手办_V2.safetensors",
+            "SDXL/Cooi 二次元  SDXL_1.0.safetensors",
+            "SDXL/Juggernaut_X_RunDiffusion.safetensors",
+            "SDXL/MOHAWK_v20.safetensors",
+            "SDXL/MR 3DQ _SDXL V0.2.safetensors",
+            "SDXL/SDXL原神base丨漠北_v4.6.safetensors",
+            "SDXL/SDXL古风汉服MAX_V2.0.safetensors",
+            "SDXL/SDXL古风汉服MAX_v1.0.safetensors",
+            "SDXL/XLGufengxl_gufengxl10.safetensors",
+            "SDXL/YFilter_SDXL_RealMix_V2.safetensors",
+            "SDXL/aio_v10.safetensors",
+            "SDXL/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SDXL/kohakuXLAlpha_nyan.safetensors",
+            "SDXL/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "SDXL/sdxlYamersAnime_stageAnima.safetensors",
+            "SDXL/shikianimexl_v10.safetensors",
+            "SDXL/喵咔幻想与现实-XL_国风v1.0(分支模型).safetensors",
+            "SDXL/基础模型/基础模型XL _xl_1.0.safetensors",
+            "SDXL/梦碎 XL真实感大模型  NeverDream_FUSION-V1.safetensors",
+            "SDXL/竹羽原创插画艺术模型Illustration Art ZY SDXL V1.0_v1.0.safetensors",
+            "SDXL/网络开源/二次元/PVCStyleModelMovable_pony160.safetensors",
+            "SDXL/网络开源/二次元/autismmixSDXL_autismmixConfetti.safetensors",
+            "SDXL/网络开源/二次元/ponyDiffusionV6XL_v6StartWithThisOne.safetensors",
+            "SDXL/网络开源/二次元/prefectPonyXL_v2CleanedStyle.safetensors",
+            "SDXL/网络开源/产品/ChiyeMix-产品摄影XL-莫兰迪配色室内_1.0.safetensors",
+            "SDXL/网络开源/产品/SDXL电商摄影大模型MAX_v1.0.safetensors",
+            "SDXL/网络开源/产品/XL电商展台_v1.safetensors",
+            "SDXL/网络开源/产品/ZOZ_商业摄影设计_XL_001.safetensors",
+            "SDXL/网络开源/产品/jewelry黄金钻石珠宝水晶翡翠饰品_v1.0.safetensors",
+            "SDXL/网络开源/产品/珠宝大模型-XL_珠宝大模型-XL.ckpt",
+            "SDXL/网络开源/产品/电商产品摄影综合版-sdxl_1.0.safetensors",
+            "SDXL/网络开源/产品/真境写真XL Elite KV _ 电商产品摄影海报视觉设计_VisionX 万物绘.safetensors",
+            "SDXL/网络开源/人像/MYHuman-墨幽人造人XL_2020.safetensors",
+            "SDXL/网络开源/人像/Ming_全能人物光影模型_V1_sdxl_V1.safetensors",
+            "SDXL/网络开源/人像/RealMythXL_国风人像商业写实摄影古风武侠电影感_V7.safetensors",
+            "SDXL/网络开源/人像/RealVisXL V5.0_V5.0 闪电(内嵌VAE).safetensors",
+            "SDXL/网络开源/人像/SDSW1.1-更符合东亚人审美的摄影大模型（极速版）_SDSW1.1.safetensors",
+            "SDXL/网络开源/人像/SDXL 1.0 ArienMixXL 亚洲人像_V4.5.safetensors",
+            "SDXL/网络开源/人像/SDXL古风汉服MAX_v3.0.safetensors",
+            "SDXL/网络开源/人像/XXMix_9realisticSDXL_v1.safetensors",
+            "SDXL/网络开源/人像/人像摄影-电商模特_棚拍-超质感-服装电商_2.0.safetensors",
+            "SDXL/网络开源/人像/摄影玩家 Vision _ 商业电商摄影写真实写实大师_摄影玩家 Vone .safetensors",
+            "SDXL/网络开源/人像/摄影风_超写实人像_WDR_Turbo_灵犀世界_极速版.safetensors",
+            "SDXL/网络开源/人像/梦碎_ XL真实感大模型 _ NeverDream_FUSION-V1.safetensors",
+            "SDXL/网络开源/人像/真境写真XL Apex _ 商业电商摄影真实写实大师_真境写真XL_v4.safetensors",
+            "SDXL/网络开源/人像/真实人像-电商模特_1.0.safetensors",
+            "SDXL/网络开源/人像/绘梦胶片写真 _ FILM写实摄影大模型_V_0.5_film.safetensors",
+            "SDXL/网络开源/室内/ARC空间设计师XL _ 室内建筑景观Design大模型_ARC_0.4 .safetensors",
+            "SDXL/网络开源/室内/XL室内设计大模型（老陈）_V3.0.safetensors",
+            "SDXL/网络开源/艺术/SC-Countryside2.5D-XL _ V2田园畅想_V2.0.safetensors",
+            "SDXL/网络开源/通用/Dream Tech XL _ 筑梦工业XL_v7.0 - 逐光之途.safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2 Turbo DPMpp _v2 Turbo DPMpp .safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper10_SDXLHyper_v1.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper_XL_Lightning_inpaintinh_优秀Dreamshapher XL修复模型_V1.safetensors",
+            "SDXL/网络开源/通用/LEOSAM HelloWorld 新世界 _ SDXL大模型_v7.0.safetensors",
+            "SDXL/网络开源/通用/artUniverse_sdxlV40Photoart.safetensors",
+            "SDXL/网络开源/通用/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "SDXL/网络开源/通用/美女DreamShaper XL1.0_alpha2 (xl1.0).safetensors",
+            "SDXL_Hyper/Juggernaut_X_RunDiffusion_Hyper.safetensors",
+            "SDXL_Lighting/enjoyXLSuperRealistic_v50lightning.safetensors",
+            "SDXL_Lighting/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "SDXL_Turbo/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "SUPIR/SUPIR-v0F.ckpt",
+            "SUPIR/SUPIR-v0F_fp16.safetensors",
+            "SUPIR/SUPIR-v0Q.ckpt",
+            "SUPIR/SUPIR-v0Q_fp16.safetensors",
+            "Setting_9_epoch_100_latest_net_G.pth",
+            "anythingelseV4_v45.safetensors",
+            "bopbtl/detection/FT_Epoch_latest.pt",
+            "bopbtl/mapping_Patch_Attention/latest_net_D.pth",
+            "bopbtl/mapping_Patch_Attention/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_net_D.pth",
+            "bopbtl/mapping_quality/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_optimizer_D.pth",
+            "bopbtl/mapping_quality/latest_optimizer_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_net_D.pth",
+            "bopbtl/mapping_scratch/latest_net_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_D.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_mapping_net.pth",
+            "detection/FT_Epoch_latest.pt",
+            "dreamshaper8S+2FXL_v2.1Turbo.safetensors",
+            "dynamicrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "flux-dev-fp8.safetensors",
+            "flux1-dev-bnb-nf4.safetensors",
+            "flux1-dev-fp8-with_clip_vae.safetensors",
+            "flux1-schnell-fp8-with_clip_vae.safetensors",
+            "inpaint/XL_S_dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/epicrealism_pureEvolutionV5-inpainting.safetensors",
+            "juggernautXL_v9-Lightning_4S_V9 + RDPhoto 2.safetensors",
+            "juggerxlInpaint_juggerInpaintV8.safetensors",
+            "ltx-video-2b-v0.9.1.safetensors",
+            "majicMIX realistic 麦橘写实_v7.safetensors",
+            "noosphere.safetensors",
+            "noosphere_v42.safetensors",
+            "realvisxlV40_v40Bakedvae.safetensors",
+            "sd1.5/TQing_v3.4_v3.4.safetensors",
+            "sd1.5/chilloutmix_NiPrunedFp32Fix.safetensors",
+            "sd1.5/dreamshaper_8.safetensors",
+            "sd1.5/epicrealism_naturalSinRC1VAE.safetensors",
+            "sd1.5/ghostmix_v20Bakedvae.safetensors",
+            "sd1.5/helloArtOil官方版_v1.0kVAE.safetensors",
+            "sd1.5/majicmixRealistic_v7.safetensors",
+            "sd1.5/photonLCM_v10.safetensors",
+            "sd1.5/photon_v1.safetensors",
+            "sd1.5/v1-5-pruned-emaonly.safetensors",
+            "sd1.5/xsarchitectural_v11.ckpt",
+            "sd1.5/墨幽人造人_v1080.safetensors",
+            "sd1.5/手绘插画chinese_style_v1.0.safetensors",
+            "sd1.5/手绘插画chinese_style_v2.0.safetensors",
+            "sd3/sd3_medium.safetensors",
+            "sd3/sd3_medium_incl_clips.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp16.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp8.safetensors",
+            "sdxl/AdamMix_SDXL_doll丨玩偶盲盒_v1.1.safetensors",
+            "sdxl/AnythingXL_xl.safetensors",
+            "sdxl/Juggernaut_X_RunDiffusion.safetensors",
+            "sdxl/LEOSAM_HelloWorld_新世界_SDXL大模型_v7.0.safetensors",
+            "sdxl/LightningUltraHyperSD_lightningXLV2.safetensors",
+            "sdxl/PVCStyleModelMovable_beta27Realistic.safetensors",
+            "sdxl/PVC手办风格__万物皆可胶XL_BETA1.2.safetensors",
+            "sdxl/RealVisXL_V4.0.safetensors",
+            "sdxl/STOIQONewrealityxl_XLLight10.safetensors",
+            "sdxl/albedobaseXL_v21.safetensors",
+            "sdxl/amalgamationxl_v2XLightning2.safetensors",
+            "sdxl/animagineXLV31_v31.safetensors",
+            "sdxl/animeIllustDiffusion_v08.safetensors",
+            "sdxl/disneyrealcartoonmix_v10.safetensors",
+            "sdxl/dreamshaperXL_lightningDPMSDE.safetensors",
+            "sdxl/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "sdxl/epicrealismXL_v7FinalDestination.safetensors",
+            "sdxl/iniverseMixXLSFWNSFW_ponyV11XLLoraComp.safetensors",
+            "sdxl/juggernautXL_v8Rundiffusion.safetensors",
+            "sdxl/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "sdxl/juggernautXL_v9Rundiffusionphoto2.safetensors",
+            "sdxl/juggernautXL_version2.safetensors",
+            "sdxl/kohaku-xl-delta-base.safetensors",
+            "sdxl/kohaku-xl-delta-rev1.safetensors",
+            "sdxl/kohaku-xl-epsilon-rev3.safetensors",
+            "sdxl/kohakuXLEpsilon_rev2.safetensors",
+            "sdxl/photoRealisticXL_photoRealisticXLII.safetensors",
+            "sdxl/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "sdxl/pony-diffusion-v6.safetensors",
+            "sdxl/realismEngineSDXL_v30VAE.safetensors",
+            "sdxl/realvisxlV40_v40LightningBakedvae.safetensors",
+            "sdxl/sd_xl_base_0.9.safetensors",
+            "sdxl/sd_xl_base_1.0.safetensors",
+            "sdxl/sd_xl_base_1.0_0.9vae.safetensors",
+            "sdxl/starlightXLAnimated_v3.safetensors",
+            "sdxl/tPonynai3_v55.safetensors",
+            "sdxl/xxmix9realisticsdxl_v10.safetensors",
+            "sdxl/一站式电商大模型-场景-产品-主图_1.0.safetensors",
+            "sdxl/真境写真XL-vone_（专注电商真写实摄影）_真境写真XL_v3.safetensors",
+            "stablesr_768v_000139.ckpt",
+            "sv3d/sv3d_p.safetensors",
+            "sv3d/sv3d_u.safetensors",
+            "svd/AnimateLCM-SVD-xt-1-1_fp16_comfy.safetensors",
+            "svd/AnimateLCM-SVD-xt-1.1.safetensors",
+            "svd/AnimateLCM-SVD-xt.safetensors",
+            "svd/svd.safetensors",
+            "svd/svd_image_decoder.safetensors",
+            "svd/svd_xt.safetensors",
+            "svd/svd_xt_1_1.safetensors",
+            "svd/svd_xt_image_decoder.safetensors",
+            "svd_xt-fp16.safetensors",
+            "toonyouJP_alpha1.safetensors",
+            "whitepony4-classic.safetensors",
+            "xxmix9realistic_v40.safetensors",
+            "万享XL_超写实摄影V8.4_V8.4.safetensors",
+            "乱芳华_1.0.safetensors",
+            "比鲁斯建筑室内通用大模型SD1.5_SD1.5.safetensors",
+            "真境写真XL_Elite_KV_电商产品摄影海报视觉设计_VisionX_万物绘.safetensors",
+            "真界_Hyper-V1.2-mj.safetensors",
+            "真界_Hyper-V1.2.safetensors",
+            "老王_Architecutral_MIX V0.3_V0.3.safetensors",
+            "腾讯混元-DiT_HunyuanDiT-v1.2.safetensors",
+            "首发推荐｜SHMILY梦幻水彩_v1.0.safetensors"
+          ],
+          "link": null,
+          "label": "模型名称",
+          "dir": 3
+        },
+        {
+          "name": "sampler",
+          "type": [
+            "euler",
+            "euler_cfg_pp",
+            "euler_ancestral",
+            "euler_ancestral_cfg_pp",
+            "heun",
+            "heunpp2",
+            "dpm_2",
+            "dpm_2_ancestral",
+            "lms",
+            "dpm_fast",
+            "dpm_adaptive",
+            "dpmpp_2s_ancestral",
+            "dpmpp_2s_ancestral_cfg_pp",
+            "dpmpp_sde",
+            "dpmpp_sde_gpu",
+            "dpmpp_2m",
+            "dpmpp_2m_cfg_pp",
+            "dpmpp_2m_sde",
+            "dpmpp_2m_sde_gpu",
+            "dpmpp_3m_sde",
+            "dpmpp_3m_sde_gpu",
+            "ddpm",
+            "lcm",
+            "ipndm",
+            "ipndm_v",
+            "deis",
+            "res_multistep",
+            "ddim",
+            "uni_pc",
+            "uni_pc_bh2"
+          ],
+          "link": null,
+          "label": "采样器",
+          "dir": 3
+        },
+        {
+          "name": "scheduler",
+          "type": [
+            "normal",
+            "karras",
+            "exponential",
+            "sgm_uniform",
+            "simple",
+            "ddim_uniform",
+            "beta",
+            "linear_quadratic",
+            "kl_optimal"
+          ],
+          "link": null,
+          "label": "调度器",
+          "dir": 3
+        },
+        {
+          "name": "clip_width",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP宽度",
+          "dir": 3
+        },
+        {
+          "name": "clip_height",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP高度",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_g",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_l",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本L",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_g",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_l",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本L",
+          "dir": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": null,
+          "label": "遮罩",
+          "dir": 3
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": null,
+          "label": "ControlNet",
+          "dir": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTEXT",
+          "type": "RGTHREE_CONTEXT",
+          "links": [],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "上下文",
+          "dir": 4
+        },
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "模型",
+          "dir": 4
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP",
+          "dir": 4
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "VAE",
+          "dir": 4
+        },
+        {
+          "name": "POSITIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "正面条件",
+          "dir": 4
+        },
+        {
+          "name": "NEGATIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "负面条件",
+          "dir": 4
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "Latent",
+          "dir": 4
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            80
+          ],
+          "slot_index": 7,
+          "shape": 3,
+          "label": "图像",
+          "dir": 4
+        },
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "随机种",
+          "dir": 4
+        },
+        {
+          "name": "STEPS",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "步数",
+          "dir": 4
+        },
+        {
+          "name": "STEP_REFINER",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "Refiner步数",
+          "dir": 4
+        },
+        {
+          "name": "CFG",
+          "type": "FLOAT",
+          "links": null,
+          "shape": 3,
+          "label": "CFG",
+          "dir": 4
+        },
+        {
+          "name": "CKPT_NAME",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "模型名称",
+          "dir": 4
+        },
+        {
+          "name": "SAMPLER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "采样器",
+          "dir": 4
+        },
+        {
+          "name": "SCHEDULER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "调度器",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_WIDTH",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP宽度",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_HEIGHT",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP高度",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本L",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本L",
+          "dir": 4
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            81
+          ],
+          "slot_index": 21,
+          "shape": 3,
+          "label": "遮罩",
+          "dir": 4
+        },
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": null,
+          "shape": 3,
+          "label": "ControlNet",
+          "dir": 4
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 59,
+      "type": "GetNode",
+      "pos": {
+        "0": -2430,
+        "1": 770
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            130
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "渲染好的图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 66,
+      "type": "GetNode",
+      "pos": {
+        "0": -2430,
+        "1": 660
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 9,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STITCH",
+          "type": "STITCH",
+          "links": [
+            139
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "接缝2"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 67,
+      "type": "GetNode",
+      "pos": {
+        "0": -2430,
+        "1": 560
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 10,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            140
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "缩放后图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 44,
+      "type": "InpaintStitch",
+      "pos": {
+        "0": -2207,
+        "1": 695
+      },
+      "size": {
+        "0": 300,
+        "1": 80
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 24,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "stitch",
+          "type": "STITCH",
+          "link": 139,
+          "label": "接缝"
+        },
+        {
+          "name": "inpainted_image",
+          "type": "IMAGE",
+          "link": 130,
+          "label": "图像"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            102,
+            103
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintStitch"
+      },
+      "widgets_values": [
+        "bislerp"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 47,
+      "type": "Image Comparer (rgthree)",
+      "pos": {
+        "0": -2030,
+        "1": 35
+      },
+      "size": {
+        "0": 457.5345153808594,
+        "1": 791.759521484375
+      },
+      "flags": {},
+      "order": 34,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 103,
+          "label": "图像_A",
+          "dir": 3
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 140,
+          "label": "图像_B",
+          "dir": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "comparer_mode": "Slide"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_rhmtz_00013_.png&type=temp&subfolder=&rand=0.10508670066189385"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_rhmtz_00014_.png&type=temp&subfolder=&rand=0.3289126165764331"
+          }
+        ]
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 56,
+      "type": "GetNode",
+      "pos": {
+        "0": -3403,
+        "1": 753.3282470703125
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 11,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            121,
+            122
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "缩放后图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 74,
+      "type": "LayerUtility: ImageScaleByAspectRatio V2",
+      "pos": {
+        "0": -2899.86279296875,
+        "1": 975.9073486328125
+      },
+      "size": {
+        "0": 210.0386199951172,
+        "1": 330
+      },
+      "flags": {},
+      "order": 27,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 146,
+          "shape": 7,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 147,
+          "shape": 7,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            148
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            149
+          ],
+          "slot_index": 1,
+          "label": "遮罩"
+        },
+        {
+          "name": "original_size",
+          "type": "BOX",
+          "links": null,
+          "label": "原始大小"
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: ImageScaleByAspectRatio V2"
+      },
+      "widgets_values": [
+        "original",
+        1,
+        1,
+        "letterbox",
+        "lanczos",
+        "8",
+        "shortest",
+        1024,
+        "#000000"
+      ],
+      "_widget_cache_map": {},
+      "color": "rgba(38, 73, 116, 0.7)"
+    },
+    {
+      "id": 75,
+      "type": "GrowMaskWithBlur",
+      "pos": {
+        "0": -2675.86279296875,
+        "1": 984.9073486328125
+      },
+      "size": {
+        "0": 210,
+        "1": 271.87103271484375
+      },
+      "flags": {},
+      "order": 40,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 149,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            150
+          ],
+          "slot_index": 0,
+          "label": "遮罩"
+        },
+        {
+          "name": "mask_inverted",
+          "type": "MASK",
+          "links": null,
+          "label": "反转遮罩"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GrowMaskWithBlur"
+      },
+      "widgets_values": [
+        5,
+        0.5,
+        true,
+        false,
+        1,
+        1,
+        1,
+        true
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 76,
+      "type": "InpaintCrop",
+      "pos": {
+        "0": -2896.86279296875,
+        "1": 1354.9073486328125
+      },
+      "size": {
+        "0": 210,
+        "1": 386
+      },
+      "flags": {},
+      "order": 46,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 148,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 150,
+          "label": "遮罩"
+        },
+        {
+          "name": "optional_context_mask",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "上下文遮罩(可选)"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "stitch",
+          "type": "STITCH",
+          "links": [
+            155
+          ],
+          "slot_index": 0,
+          "label": "接缝"
+        },
+        {
+          "name": "cropped_image",
+          "type": "IMAGE",
+          "links": [
+            151
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "cropped_mask",
+          "type": "MASK",
+          "links": [
+            152,
+            154
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintCrop"
+      },
+      "widgets_values": [
+        20,
+        1.2,
+        true,
+        16,
+        false,
+        16,
+        "bicubic",
+        "ranged size",
+        1024,
+        1024,
+        1,
+        512,
+        512,
+        768,
+        768,
+        32
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 80,
+      "type": "SetNode",
+      "pos": {
+        "0": -2887.86279296875,
+        "1": 1788.9073486328125
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 50,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "STITCH",
+          "type": "STITCH",
+          "link": 155
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": null,
+          "label": "输出"
+        }
+      ],
+      "properties": {
+        "previousName": "接缝3"
+      },
+      "widgets_values": [
+        "接缝3"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 77,
+      "type": "Context Big (rgthree)",
+      "pos": {
+        "0": -2629.86279296875,
+        "1": 1842.9073486328125
+      },
+      "size": {
+        "0": 317.4000244140625,
+        "1": 466
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 51,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "base_ctx",
+          "type": "RGTHREE_CONTEXT",
+          "link": null,
+          "label": "上下文",
+          "dir": 3
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型",
+          "dir": 3
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP",
+          "dir": 3
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE",
+          "dir": 3
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件",
+          "dir": 3
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "负面条件",
+          "dir": 3
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "link": null,
+          "label": "Latent",
+          "dir": 3
+        },
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 151,
+          "label": "图像",
+          "dir": 3
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "label": "随机种",
+          "dir": 3
+        },
+        {
+          "name": "steps",
+          "type": "INT",
+          "link": null,
+          "label": "步数",
+          "dir": 3
+        },
+        {
+          "name": "step_refiner",
+          "type": "INT",
+          "link": null,
+          "label": "Refiner步数",
+          "dir": 3
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "label": "CFG",
+          "dir": 3
+        },
+        {
+          "name": "ckpt_name",
+          "type": [
+            "01、药师の推荐模型/【精品漫画V2150】breakdomain_M2150.safetensors",
+            "01、药师の推荐模型/儿童摄影｜WFChild_v1.0.ckpt",
+            "01、药师の推荐模型/基础课必装模型/【欧美模特】realisticVisionV51_v51VAE.safetensors",
+            "01、药师の推荐模型/基础课必装模型/【锐利画风】revAnimated_v122.safetensors",
+            "3D可爱化模型_V4.0.safetensors",
+            "AD1.5_archi.OS.safetensors",
+            "ADXL_archi.OS.safetensors",
+            "CHEYENNE_v16VAEBaked.safetensors",
+            "DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-1024-no-watermark-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter-CIL-512-no-watermark-fixed-pruned-fp16.safetensors",
+            "DynamiCrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_fp16_pruned.safetensors",
+            "DynamiCrafter/dynamicrafter_512_interp_fp16_pruned.safetensors",
+            "DynamiCrafter/tooncrafter_512_interp-pruned-fp16.safetensors",
+            "F.1基础算法模型-哩布在线可运行_F.1-dev-fp8.safetensors",
+            "FaceSR_512_latest_net_G.pth",
+            "Kolors/网络开源/全能/电商摄影丨可图大模型/电商摄影丨可图大模型_1.0.ckpt",
+            "LEOSAM是只兔狲/LEOSAM AIArt 兔狲插画 SDXL大模型_v2.safetensors",
+            "LEOSAM是只兔狲/LEOSAM HelloWorld 新世界  SDXL大模型_v3.2 AutoDPO.safetensors",
+            "LEOSAM是只兔狲/LEOSAM's MoonFilm  胶片风真实感大模型_2.0.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldSDXL_helloworldSDXL32DPO.safetensors",
+            "LEOSAM是只兔狲/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "Realistic_lighting_fusion.safetensors",
+            "RealitiesEdgeXLLIGHTNING_TURBOV7.safetensors",
+            "SD1.5/Q版/mw_可爱Q版3D角色IP设计pro_1.1.safetensors",
+            "SD1.5/Q版/qteamixQ_omegaFp16.safetensors",
+            "SD1.5/一麻袋自研/Realisticporn V3.safetensors",
+            "SD1.5/人像/realisticVisionV60B1_v60B1VAE.safetensors",
+            "SD1.5/动漫/AnythingXL_xl.safetensors",
+            "SD1.5/动漫/Dream Anime XL  筑梦动漫XL_v4.0 - 余晖缱绻.safetensors",
+            "SD1.5/动漫/NoobAI-XL (NAI-XL)_Early AccessVer.safetensors",
+            "SD1.5/动漫/aio_v10.safetensors",
+            "SD1.5/动漫/animagineXLV31_v31.safetensors",
+            "SD1.5/动漫/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SD1.5/动漫/kohakuXLAlpha_nyan.safetensors",
+            "SD1.5/动漫/sdxlYamersAnime_stageAnima.safetensors",
+            "SD1.5/动漫/shikianimexl_v10.safetensors",
+            "SD1.5/动漫/xlVibratoryRollerHans_v20.safetensors",
+            "SD1.5/网络开源/二次元/revAnimated_v2Rebirth.safetensors",
+            "SD1.5/网络开源/产品/MooMooE-Commerce_v1.safetensors",
+            "SD1.5/网络开源/产品/七夜_3D电商展台 _ 多风格三维海报场景_V1.0.safetensors",
+            "SD1.5/网络开源/产品/水下特写_1.safetensors",
+            "SD1.5/网络开源/产品/电商产品摄影MAX_v1.0.safetensors",
+            "SD1.5/网络开源/人像/【真实系】中式审美 小红书风格 网红_v1.0.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家 V4 （更适合电商真写实摄影）_摄影玩家 Vfour.safetensors",
+            "SD1.5/网络开源/人像/摄影玩家_Mix90(更真实写实，电商，摄影，美女)_Mix90（beta）.safetensors",
+            "SD1.5/网络开源/人像/极氪摄影PRO-V8纯净质感_极氪摄影PRO-V8纯净质感.safetensors",
+            "SD1.5/网络开源/人像/真实世界 _ real world_v1.0.safetensors",
+            "SD1.5/网络开源/室内/室内_v1.0.safetensors",
+            "SD1.5/网络开源/绘画/helloArtOil官方版_v1.0kVAE.safetensors",
+            "SD1.5/网络开源/通用/Realistic Vision_V6.0 B1.safetensors",
+            "SD1.5/网络开源/通用/chilloutmix_NiPrunedFp32_v1.0.safetensors",
+            "SD1.5/网络开源/通用/dreamshaper_8_v8.safetensors",
+            "SD1.5/网络开源/通用/majicMIX realistic 麦橘写实_v7.safetensors",
+            "SD1.5/网络开源/通用/photonLCM_v10.safetensors",
+            "SD1.5/网络开源/通用/photon_v1.safetensors",
+            "SD1.5/网络开源/通用/真实世界 _ real world_v1.0.safetensors",
+            "SD3.5/sd3.5_large.safetensors",
+            "SD3.5/sd3.5_large_turbo.safetensors",
+            "SDXL/4Guofeng4XL_v12.safetensors",
+            "SDXL/Adam-Doll.XL丨玩偶盲盒丨3D手办_V2.safetensors",
+            "SDXL/Cooi 二次元  SDXL_1.0.safetensors",
+            "SDXL/Juggernaut_X_RunDiffusion.safetensors",
+            "SDXL/MOHAWK_v20.safetensors",
+            "SDXL/MR 3DQ _SDXL V0.2.safetensors",
+            "SDXL/SDXL原神base丨漠北_v4.6.safetensors",
+            "SDXL/SDXL古风汉服MAX_V2.0.safetensors",
+            "SDXL/SDXL古风汉服MAX_v1.0.safetensors",
+            "SDXL/XLGufengxl_gufengxl10.safetensors",
+            "SDXL/YFilter_SDXL_RealMix_V2.safetensors",
+            "SDXL/aio_v10.safetensors",
+            "SDXL/animeChangefulXL_v10ReleasedCandidate.safetensors",
+            "SDXL/kohakuXLAlpha_nyan.safetensors",
+            "SDXL/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "SDXL/sdxlYamersAnime_stageAnima.safetensors",
+            "SDXL/shikianimexl_v10.safetensors",
+            "SDXL/喵咔幻想与现实-XL_国风v1.0(分支模型).safetensors",
+            "SDXL/基础模型/基础模型XL _xl_1.0.safetensors",
+            "SDXL/梦碎 XL真实感大模型  NeverDream_FUSION-V1.safetensors",
+            "SDXL/竹羽原创插画艺术模型Illustration Art ZY SDXL V1.0_v1.0.safetensors",
+            "SDXL/网络开源/二次元/PVCStyleModelMovable_pony160.safetensors",
+            "SDXL/网络开源/二次元/autismmixSDXL_autismmixConfetti.safetensors",
+            "SDXL/网络开源/二次元/ponyDiffusionV6XL_v6StartWithThisOne.safetensors",
+            "SDXL/网络开源/二次元/prefectPonyXL_v2CleanedStyle.safetensors",
+            "SDXL/网络开源/产品/ChiyeMix-产品摄影XL-莫兰迪配色室内_1.0.safetensors",
+            "SDXL/网络开源/产品/SDXL电商摄影大模型MAX_v1.0.safetensors",
+            "SDXL/网络开源/产品/XL电商展台_v1.safetensors",
+            "SDXL/网络开源/产品/ZOZ_商业摄影设计_XL_001.safetensors",
+            "SDXL/网络开源/产品/jewelry黄金钻石珠宝水晶翡翠饰品_v1.0.safetensors",
+            "SDXL/网络开源/产品/珠宝大模型-XL_珠宝大模型-XL.ckpt",
+            "SDXL/网络开源/产品/电商产品摄影综合版-sdxl_1.0.safetensors",
+            "SDXL/网络开源/产品/真境写真XL Elite KV _ 电商产品摄影海报视觉设计_VisionX 万物绘.safetensors",
+            "SDXL/网络开源/人像/MYHuman-墨幽人造人XL_2020.safetensors",
+            "SDXL/网络开源/人像/Ming_全能人物光影模型_V1_sdxl_V1.safetensors",
+            "SDXL/网络开源/人像/RealMythXL_国风人像商业写实摄影古风武侠电影感_V7.safetensors",
+            "SDXL/网络开源/人像/RealVisXL V5.0_V5.0 闪电(内嵌VAE).safetensors",
+            "SDXL/网络开源/人像/SDSW1.1-更符合东亚人审美的摄影大模型（极速版）_SDSW1.1.safetensors",
+            "SDXL/网络开源/人像/SDXL 1.0 ArienMixXL 亚洲人像_V4.5.safetensors",
+            "SDXL/网络开源/人像/SDXL古风汉服MAX_v3.0.safetensors",
+            "SDXL/网络开源/人像/XXMix_9realisticSDXL_v1.safetensors",
+            "SDXL/网络开源/人像/人像摄影-电商模特_棚拍-超质感-服装电商_2.0.safetensors",
+            "SDXL/网络开源/人像/摄影玩家 Vision _ 商业电商摄影写真实写实大师_摄影玩家 Vone .safetensors",
+            "SDXL/网络开源/人像/摄影风_超写实人像_WDR_Turbo_灵犀世界_极速版.safetensors",
+            "SDXL/网络开源/人像/梦碎_ XL真实感大模型 _ NeverDream_FUSION-V1.safetensors",
+            "SDXL/网络开源/人像/真境写真XL Apex _ 商业电商摄影真实写实大师_真境写真XL_v4.safetensors",
+            "SDXL/网络开源/人像/真实人像-电商模特_1.0.safetensors",
+            "SDXL/网络开源/人像/绘梦胶片写真 _ FILM写实摄影大模型_V_0.5_film.safetensors",
+            "SDXL/网络开源/室内/ARC空间设计师XL _ 室内建筑景观Design大模型_ARC_0.4 .safetensors",
+            "SDXL/网络开源/室内/XL室内设计大模型（老陈）_V3.0.safetensors",
+            "SDXL/网络开源/艺术/SC-Countryside2.5D-XL _ V2田园畅想_V2.0.safetensors",
+            "SDXL/网络开源/通用/Dream Tech XL _ 筑梦工业XL_v7.0 - 逐光之途.safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2 Turbo DPMpp _v2 Turbo DPMpp .safetensors",
+            "SDXL/网络开源/通用/DreamShaper XL v2.1 Turbo 闪电_v2.1 Turbo.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper10_SDXLHyper_v1.safetensors",
+            "SDXL/网络开源/通用/Dreamshaper_XL_Lightning_inpaintinh_优秀Dreamshapher XL修复模型_V1.safetensors",
+            "SDXL/网络开源/通用/LEOSAM HelloWorld 新世界 _ SDXL大模型_v7.0.safetensors",
+            "SDXL/网络开源/通用/artUniverse_sdxlV40Photoart.safetensors",
+            "SDXL/网络开源/通用/leosamsHelloworldXL_helloworldXL70.safetensors",
+            "SDXL/网络开源/通用/美女DreamShaper XL1.0_alpha2 (xl1.0).safetensors",
+            "SDXL_Hyper/Juggernaut_X_RunDiffusion_Hyper.safetensors",
+            "SDXL_Lighting/enjoyXLSuperRealistic_v50lightning.safetensors",
+            "SDXL_Lighting/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "SDXL_Turbo/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "SUPIR/SUPIR-v0F.ckpt",
+            "SUPIR/SUPIR-v0F_fp16.safetensors",
+            "SUPIR/SUPIR-v0Q.ckpt",
+            "SUPIR/SUPIR-v0Q_fp16.safetensors",
+            "Setting_9_epoch_100_latest_net_G.pth",
+            "anythingelseV4_v45.safetensors",
+            "bopbtl/detection/FT_Epoch_latest.pt",
+            "bopbtl/mapping_Patch_Attention/latest_net_D.pth",
+            "bopbtl/mapping_Patch_Attention/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_net_D.pth",
+            "bopbtl/mapping_quality/latest_net_mapping_net.pth",
+            "bopbtl/mapping_quality/latest_optimizer_D.pth",
+            "bopbtl/mapping_quality/latest_optimizer_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_net_D.pth",
+            "bopbtl/mapping_scratch/latest_net_mapping_net.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_D.pth",
+            "bopbtl/mapping_scratch/latest_optimizer_mapping_net.pth",
+            "detection/FT_Epoch_latest.pt",
+            "dreamshaper8S+2FXL_v2.1Turbo.safetensors",
+            "dynamicrafter/dynamicrafter_1024_fp16_pruned.safetensors",
+            "flux-dev-fp8.safetensors",
+            "flux1-dev-bnb-nf4.safetensors",
+            "flux1-dev-fp8-with_clip_vae.safetensors",
+            "flux1-schnell-fp8-with_clip_vae.safetensors",
+            "inpaint/XL_S_dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/dreamshaperXL_lightningInpaint.safetensors",
+            "inpaint/epicrealism_pureEvolutionV5-inpainting.safetensors",
+            "juggernautXL_v9-Lightning_4S_V9 + RDPhoto 2.safetensors",
+            "juggerxlInpaint_juggerInpaintV8.safetensors",
+            "ltx-video-2b-v0.9.1.safetensors",
+            "majicMIX realistic 麦橘写实_v7.safetensors",
+            "noosphere.safetensors",
+            "noosphere_v42.safetensors",
+            "realvisxlV40_v40Bakedvae.safetensors",
+            "sd1.5/TQing_v3.4_v3.4.safetensors",
+            "sd1.5/chilloutmix_NiPrunedFp32Fix.safetensors",
+            "sd1.5/dreamshaper_8.safetensors",
+            "sd1.5/epicrealism_naturalSinRC1VAE.safetensors",
+            "sd1.5/ghostmix_v20Bakedvae.safetensors",
+            "sd1.5/helloArtOil官方版_v1.0kVAE.safetensors",
+            "sd1.5/majicmixRealistic_v7.safetensors",
+            "sd1.5/photonLCM_v10.safetensors",
+            "sd1.5/photon_v1.safetensors",
+            "sd1.5/v1-5-pruned-emaonly.safetensors",
+            "sd1.5/xsarchitectural_v11.ckpt",
+            "sd1.5/墨幽人造人_v1080.safetensors",
+            "sd1.5/手绘插画chinese_style_v1.0.safetensors",
+            "sd1.5/手绘插画chinese_style_v2.0.safetensors",
+            "sd3/sd3_medium.safetensors",
+            "sd3/sd3_medium_incl_clips.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp16.safetensors",
+            "sd3/sd3_medium_incl_clips_t5xxlfp8.safetensors",
+            "sdxl/AdamMix_SDXL_doll丨玩偶盲盒_v1.1.safetensors",
+            "sdxl/AnythingXL_xl.safetensors",
+            "sdxl/Juggernaut_X_RunDiffusion.safetensors",
+            "sdxl/LEOSAM_HelloWorld_新世界_SDXL大模型_v7.0.safetensors",
+            "sdxl/LightningUltraHyperSD_lightningXLV2.safetensors",
+            "sdxl/PVCStyleModelMovable_beta27Realistic.safetensors",
+            "sdxl/PVC手办风格__万物皆可胶XL_BETA1.2.safetensors",
+            "sdxl/RealVisXL_V4.0.safetensors",
+            "sdxl/STOIQONewrealityxl_XLLight10.safetensors",
+            "sdxl/albedobaseXL_v21.safetensors",
+            "sdxl/amalgamationxl_v2XLightning2.safetensors",
+            "sdxl/animagineXLV31_v31.safetensors",
+            "sdxl/animeIllustDiffusion_v08.safetensors",
+            "sdxl/disneyrealcartoonmix_v10.safetensors",
+            "sdxl/dreamshaperXL_lightningDPMSDE.safetensors",
+            "sdxl/dreamshaperXL_v21TurboDPMSDE.safetensors",
+            "sdxl/epicrealismXL_v7FinalDestination.safetensors",
+            "sdxl/iniverseMixXLSFWNSFW_ponyV11XLLoraComp.safetensors",
+            "sdxl/juggernautXL_v8Rundiffusion.safetensors",
+            "sdxl/juggernautXL_v9Rdphoto2Lightning.safetensors",
+            "sdxl/juggernautXL_v9Rundiffusionphoto2.safetensors",
+            "sdxl/juggernautXL_version2.safetensors",
+            "sdxl/kohaku-xl-delta-base.safetensors",
+            "sdxl/kohaku-xl-delta-rev1.safetensors",
+            "sdxl/kohaku-xl-epsilon-rev3.safetensors",
+            "sdxl/kohakuXLEpsilon_rev2.safetensors",
+            "sdxl/photoRealisticXL_photoRealisticXLII.safetensors",
+            "sdxl/playgroundAisPlayground_playgroundV25Fp16.safetensors",
+            "sdxl/pony-diffusion-v6.safetensors",
+            "sdxl/realismEngineSDXL_v30VAE.safetensors",
+            "sdxl/realvisxlV40_v40LightningBakedvae.safetensors",
+            "sdxl/sd_xl_base_0.9.safetensors",
+            "sdxl/sd_xl_base_1.0.safetensors",
+            "sdxl/sd_xl_base_1.0_0.9vae.safetensors",
+            "sdxl/starlightXLAnimated_v3.safetensors",
+            "sdxl/tPonynai3_v55.safetensors",
+            "sdxl/xxmix9realisticsdxl_v10.safetensors",
+            "sdxl/一站式电商大模型-场景-产品-主图_1.0.safetensors",
+            "sdxl/真境写真XL-vone_（专注电商真写实摄影）_真境写真XL_v3.safetensors",
+            "stablesr_768v_000139.ckpt",
+            "sv3d/sv3d_p.safetensors",
+            "sv3d/sv3d_u.safetensors",
+            "svd/AnimateLCM-SVD-xt-1-1_fp16_comfy.safetensors",
+            "svd/AnimateLCM-SVD-xt-1.1.safetensors",
+            "svd/AnimateLCM-SVD-xt.safetensors",
+            "svd/svd.safetensors",
+            "svd/svd_image_decoder.safetensors",
+            "svd/svd_xt.safetensors",
+            "svd/svd_xt_1_1.safetensors",
+            "svd/svd_xt_image_decoder.safetensors",
+            "svd_xt-fp16.safetensors",
+            "toonyouJP_alpha1.safetensors",
+            "whitepony4-classic.safetensors",
+            "xxmix9realistic_v40.safetensors",
+            "万享XL_超写实摄影V8.4_V8.4.safetensors",
+            "乱芳华_1.0.safetensors",
+            "比鲁斯建筑室内通用大模型SD1.5_SD1.5.safetensors",
+            "真境写真XL_Elite_KV_电商产品摄影海报视觉设计_VisionX_万物绘.safetensors",
+            "真界_Hyper-V1.2-mj.safetensors",
+            "真界_Hyper-V1.2.safetensors",
+            "老王_Architecutral_MIX V0.3_V0.3.safetensors",
+            "腾讯混元-DiT_HunyuanDiT-v1.2.safetensors",
+            "首发推荐｜SHMILY梦幻水彩_v1.0.safetensors"
+          ],
+          "link": null,
+          "label": "模型名称",
+          "dir": 3
+        },
+        {
+          "name": "sampler",
+          "type": [
+            "euler",
+            "euler_cfg_pp",
+            "euler_ancestral",
+            "euler_ancestral_cfg_pp",
+            "heun",
+            "heunpp2",
+            "dpm_2",
+            "dpm_2_ancestral",
+            "lms",
+            "dpm_fast",
+            "dpm_adaptive",
+            "dpmpp_2s_ancestral",
+            "dpmpp_2s_ancestral_cfg_pp",
+            "dpmpp_sde",
+            "dpmpp_sde_gpu",
+            "dpmpp_2m",
+            "dpmpp_2m_cfg_pp",
+            "dpmpp_2m_sde",
+            "dpmpp_2m_sde_gpu",
+            "dpmpp_3m_sde",
+            "dpmpp_3m_sde_gpu",
+            "ddpm",
+            "lcm",
+            "ipndm",
+            "ipndm_v",
+            "deis",
+            "res_multistep",
+            "ddim",
+            "uni_pc",
+            "uni_pc_bh2"
+          ],
+          "link": null,
+          "label": "采样器",
+          "dir": 3
+        },
+        {
+          "name": "scheduler",
+          "type": [
+            "normal",
+            "karras",
+            "exponential",
+            "sgm_uniform",
+            "simple",
+            "ddim_uniform",
+            "beta",
+            "linear_quadratic",
+            "kl_optimal"
+          ],
+          "link": null,
+          "label": "调度器",
+          "dir": 3
+        },
+        {
+          "name": "clip_width",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP宽度",
+          "dir": 3
+        },
+        {
+          "name": "clip_height",
+          "type": "INT",
+          "link": null,
+          "label": "CLIP高度",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_g",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_pos_l",
+          "type": "STRING",
+          "link": null,
+          "label": "正面文本L",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_g",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本G",
+          "dir": 3
+        },
+        {
+          "name": "text_neg_l",
+          "type": "STRING",
+          "link": null,
+          "label": "负面文本L",
+          "dir": 3
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 152,
+          "label": "遮罩",
+          "dir": 3
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": null,
+          "label": "ControlNet",
+          "dir": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTEXT",
+          "type": "RGTHREE_CONTEXT",
+          "links": [
+            153
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "上下文",
+          "dir": 4
+        },
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": null,
+          "shape": 3,
+          "label": "模型",
+          "dir": 4
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP",
+          "dir": 4
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": null,
+          "shape": 3,
+          "label": "VAE",
+          "dir": 4
+        },
+        {
+          "name": "POSITIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "正面条件",
+          "dir": 4
+        },
+        {
+          "name": "NEGATIVE",
+          "type": "CONDITIONING",
+          "links": null,
+          "shape": 3,
+          "label": "负面条件",
+          "dir": 4
+        },
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": null,
+          "shape": 3,
+          "label": "Latent",
+          "dir": 4
+        },
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 7,
+          "shape": 3,
+          "label": "图像",
+          "dir": 4
+        },
+        {
+          "name": "SEED",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "随机种",
+          "dir": 4
+        },
+        {
+          "name": "STEPS",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "步数",
+          "dir": 4
+        },
+        {
+          "name": "STEP_REFINER",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "Refiner步数",
+          "dir": 4
+        },
+        {
+          "name": "CFG",
+          "type": "FLOAT",
+          "links": null,
+          "shape": 3,
+          "label": "CFG",
+          "dir": 4
+        },
+        {
+          "name": "CKPT_NAME",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "模型名称",
+          "dir": 4
+        },
+        {
+          "name": "SAMPLER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "采样器",
+          "dir": 4
+        },
+        {
+          "name": "SCHEDULER",
+          "type": "COMBO",
+          "links": null,
+          "shape": 3,
+          "label": "调度器",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_WIDTH",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP宽度",
+          "dir": 4
+        },
+        {
+          "name": "CLIP_HEIGHT",
+          "type": "INT",
+          "links": null,
+          "shape": 3,
+          "label": "CLIP高度",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_POS_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "正面文本L",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_G",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本G",
+          "dir": 4
+        },
+        {
+          "name": "TEXT_NEG_L",
+          "type": "STRING",
+          "links": null,
+          "shape": 3,
+          "label": "负面文本L",
+          "dir": 4
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 21,
+          "shape": 3,
+          "label": "遮罩",
+          "dir": 4
+        },
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": null,
+          "shape": 3,
+          "label": "ControlNet",
+          "dir": 4
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 79,
+      "type": "MaskPreview+",
+      "pos": {
+        "0": -2670.86279296875,
+        "1": 1304.9073486328125
+      },
+      "size": {
+        "0": 281.3941345214844,
+        "1": 429.6564636230469
+      },
+      "flags": {},
+      "order": 52,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": 154,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "MaskPreview+"
+      },
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 48,
+      "type": "SaveImage",
+      "pos": {
+        "0": -2423,
+        "1": 29
+      },
+      "size": {
+        "0": 355.350341796875,
+        "1": 483.0460205078125
+      },
+      "flags": {},
+      "order": 33,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 102,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 83,
+      "type": "GetNode",
+      "pos": {
+        "0": -2354.07177734375,
+        "1": 1501.306640625
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 12,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            159
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "缩放后图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 84,
+      "type": "GetNode",
+      "pos": {
+        "0": -2352.07177734375,
+        "1": 1611.306640625
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 13,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "STITCH",
+          "type": "STITCH",
+          "links": [
+            156
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "接缝3"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 85,
+      "type": "GetNode",
+      "pos": {
+        "0": -2351.07177734375,
+        "1": 1712.306640625
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            157
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "渲染好的图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 82,
+      "type": "Image Comparer (rgthree)",
+      "pos": {
+        "0": -1991,
+        "1": 978
+      },
+      "size": {
+        "0": 430.6890563964844,
+        "1": 780.45947265625
+      },
+      "flags": {},
+      "order": 39,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 160,
+          "label": "图像_A",
+          "dir": 3
+        },
+        {
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 159,
+          "label": "图像_B",
+          "dir": 3
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "comparer_mode": "Slide"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_rhmtz_00013_.png&type=temp&subfolder=&rand=0.10508670066189385"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_rhmtz_00014_.png&type=temp&subfolder=&rand=0.3289126165764331"
+          }
+        ]
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 86,
+      "type": "InpaintStitch",
+      "pos": {
+        "0": -2337,
+        "1": 1835
+      },
+      "size": {
+        "0": 300,
+        "1": 80
+      },
+      "flags": {
+        "collapsed": true
+      },
+      "order": 26,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "stitch",
+          "type": "STITCH",
+          "link": 156,
+          "label": "接缝"
+        },
+        {
+          "name": "inpainted_image",
+          "type": "IMAGE",
+          "link": 157,
+          "label": "图像"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            158,
+            160
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "InpaintStitch"
+      },
+      "widgets_values": [
+        "bislerp"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 81,
+      "type": "SaveImage",
+      "pos": {
+        "0": -2361,
+        "1": 973
+      },
+      "size": {
+        "0": 355.350341796875,
+        "1": 483.0460205078125
+      },
+      "flags": {},
+      "order": 38,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 158,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 73,
+      "type": "LoadImage",
+      "pos": {
+        "0": -3435,
+        "1": 972
+      },
+      "size": {
+        "0": 521.3054809570312,
+        "1": 839.3280029296875
+      },
+      "flags": {},
+      "order": 15,
+      "mode": 2,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            146
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [
+            147
+          ],
+          "slot_index": 1,
+          "label": "遮罩"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "水印图片-1.png",
+        "image"
+      ],
+      "_widget_cache_map": {
+        "水印图片-1.png": {
+          "value": "img/88c950c811bd45b9ab75dc37e9f3ce80/a0ea501d4d8abe18f1a6c0067202e9d8d28e419ff7ba78d7e73a4deb6185ecd8.png",
+          "name": "水印图片-1.png",
+          "url": "https://liblibai-tmp-image.liblib.cloud/img/88c950c811bd45b9ab75dc37e9f3ce80/a0ea501d4d8abe18f1a6c0067202e9d8d28e419ff7ba78d7e73a4deb6185ecd8.png",
+          "width": 1024,
+          "height": 1536
+        }
+      }
+    },
+    {
+      "id": 16,
+      "type": "LoadImage",
+      "pos": {
+        "0": -5274,
+        "1": -989
+      },
+      "size": {
+        "0": 420,
+        "1": 580
+      },
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            62,
+            117
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "label": "遮罩"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "水印图片-1.png",
+        "image"
+      ],
+      "_widget_cache_map": {
+        "水印图片-1.png": {
+          "value": "img/88c950c811bd45b9ab75dc37e9f3ce80/fc79bae89ef0b0a6d250d69fbc748ea87be905e620bf75b39839ef11215d245d.png",
+          "name": "水印图片-1.png",
+          "url": "https://liblibai-tmp-image.liblib.cloud/img/88c950c811bd45b9ab75dc37e9f3ce80/fc79bae89ef0b0a6d250d69fbc748ea87be905e620bf75b39839ef11215d245d.png",
+          "width": 1024,
+          "height": 1536
+        }
+      }
+    },
+    {
+      "id": 53,
+      "type": "SetNode",
+      "pos": {
+        "0": -4815,
+        "1": -983
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "link": 117
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [],
+          "slot_index": 0,
+          "label": "输出"
+        }
+      ],
+      "properties": {
+        "previousName": "原始图像"
+      },
+      "widgets_values": [
+        "原始图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 55,
+      "type": "SetNode",
+      "pos": {
+        "0": -4813,
+        "1": -877
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 41,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "link": 118
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "*",
+          "links": [],
+          "slot_index": 0,
+          "label": "输出"
+        }
+      ],
+      "properties": {
+        "previousName": "缩放后图像"
+      },
+      "widgets_values": [
+        "缩放后图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 1,
+      "type": "KSampler",
+      "pos": {
+        "0": -3790.680419921875,
+        "1": -897.0285034179688
+      },
+      "size": {
+        "0": 320,
+        "1": 510
+      },
+      "flags": {},
+      "order": 58,
+      "mode": 2,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 1,
+          "label": "模型"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 15,
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 17,
+          "label": "负面条件"
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 18,
+          "label": "Latent"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            7
+          ],
+          "slot_index": 0,
+          "label": "Latent"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        429210132308443,
+        "randomize",
+        20,
+        1,
+        "dpmpp_2m",
+        "sgm_uniform",
+        1
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 54,
+      "type": "GetNode",
+      "pos": {
+        "0": -3428,
+        "1": -895
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            119,
+            120
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {},
+      "widgets_values": [
+        "缩放后图像"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 14,
+      "type": "Florence2ModelLoader",
+      "pos": {
+        "0": -3424,
+        "1": -791
+      },
+      "size": {
+        "0": 310,
+        "1": 106
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "lora",
+          "type": "PEFTLORA",
+          "link": null,
+          "shape": 7,
+          "label": "LoRA"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "links": [
+            20
+          ],
+          "slot_index": 0,
+          "label": "Florence2"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Florence2ModelLoader"
+      },
+      "widgets_values": [
+        "microsoft/Florence-2-large",
+        "fp16",
+        "sdpa"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 15,
+      "type": "Florence2Run",
+      "pos": {
+        "0": -3418,
+        "1": -641
+      },
+      "size": {
+        "0": 300,
+        "1": 357
+      },
+      "flags": {},
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 119,
+          "label": "图像"
+        },
+        {
+          "name": "florence2_model",
+          "type": "FL2MODEL",
+          "link": 20,
+          "label": "Florence2"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            24
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": [
+            26,
+            66
+          ],
+          "slot_index": 1,
+          "label": "遮罩"
+        },
+        {
+          "name": "caption",
+          "type": "STRING",
+          "links": null,
+          "label": "caption"
+        },
+        {
+          "name": "data",
+          "type": "JSON",
+          "links": null,
+          "label": "json数据"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Florence2Run"
+      },
+      "widgets_values": [
+        "",
+        "ocr_with_region",
+        true,
+        false,
+        1024,
+        3,
+        true,
+        "",
+        1118888549454961,
+        "randomize"
+      ],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 23,
+      "type": "LayerUtility: ImageScaleByAspectRatio V2",
+      "pos": {
+        "0": -4834,
+        "1": -742
+      },
+      "size": {
+        "0": 315,
+        "1": 330
+      },
+      "flags": {},
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 62,
+          "shape": 7,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": null,
+          "shape": 7,
+          "label": "遮罩"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            118
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "slot_index": 1,
+          "label": "遮罩"
+        },
+        {
+          "name": "original_size",
+          "type": "BOX",
+          "links": null,
+          "label": "原始大小"
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LayerUtility: ImageScaleByAspectRatio V2"
+      },
+      "widgets_values": [
+        "original",
+        1,
+        1,
+        "letterbox",
+        "lanczos",
+        "8",
+        "shortest",
+        1024,
+        "#000000"
+      ],
+      "_widget_cache_map": {},
+      "color": "rgba(38, 73, 116, 0.7)"
+    },
+    {
+      "id": 38,
+      "type": "Any Switch (rgthree)",
+      "pos": {
+        "0": -3822,
+        "1": -220
+      },
+      "size": {
+        "0": 140,
+        "1": 106
+      },
+      "flags": {},
+      "order": 55,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "any_01",
+          "type": "RGTHREE_CONTEXT",
+          "link": 79,
+          "dir": 3,
+          "label": "输入_01"
+        },
+        {
+          "name": "any_02",
+          "type": "RGTHREE_CONTEXT",
+          "link": 85,
+          "dir": 3,
+          "label": "输入_02"
+        },
+        {
+          "name": "any_03",
+          "type": "RGTHREE_CONTEXT",
+          "link": 153,
+          "dir": 3,
+          "label": "输入_03"
+        },
+        {
+          "name": "any_04",
+          "type": "RGTHREE_CONTEXT",
+          "link": null,
+          "dir": 3,
+          "label": "输入_04"
+        },
+        {
+          "name": "any_05",
+          "type": "RGTHREE_CONTEXT",
+          "link": null,
+          "dir": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "*",
+          "type": "RGTHREE_CONTEXT",
+          "links": [
+            82
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "CONTEXT",
+          "dir": 4
+        }
+      ],
+      "properties": {},
+      "widgets_values": [],
+      "_widget_cache_map": {}
+    },
+    {
+      "id": 27,
+      "type": "Fast Groups Muter (rgthree)",
+      "pos": {
+        "0": -4998,
+        "1": -1380
+      },
+      "size": {
+        "0": 630.9180297851562,
+        "1": 250
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null,
+          "slot_index": 0,
+          "label": "可选连接"
+        }
+      ],
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "",
+        "showNav": true,
+        "sort": "position",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default"
+      }
+    },
+    {
+      "id": 52,
+      "type": "Note",
+      "pos": {
+        "0": -5001,
+        "1": -1624
+      },
+      "size": {
+        "0": 760.0899658203125,
+        "1": 150.27122497558594
+      },
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [],
+      "properties": {},
+      "widgets_values": [
+        "***为了节省时间***\n***可以先打开一，或二，或三手动，其他不打开，确认好遮罩再打开fill重绘和对应的图像对比。\n\n搭配两个自动识别模块和一个手动模块~可自由选择\n一个是florence2 ，识别文字比较强，遮罩生成面积大\n一个是Gdino，可自行添加需要识别的东西，但是识别不是很准\n一个是自己手动用遮罩编辑器涂抹，虽然失去自动功能，但是效果好\n已添加禁用框模块，默认只跑florence，如果不是很理想就关掉florence2 ，开下方的Gdino模块\n要用那个模块就打开对应的模块\n后续添加研究把高清放大和修复瑕疵也放进去\n我是个新手小白，大佬们有什么改进的方法也可以评论指导一下~~\n"
+      ],
+      "_widget_cache_map": {},
+      "color": "#432",
+      "bgcolor": "#653"
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      1,
+      0,
+      "MODEL"
+    ],
+    [
+      2,
+      4,
+      0,
+      5,
+      0,
+      "CLIP"
+    ],
+    [
+      7,
+      1,
+      0,
+      9,
+      0,
+      "LATENT"
+    ],
+    [
+      8,
+      8,
+      0,
+      9,
+      1,
+      "VAE"
+    ],
+    [
+      15,
+      13,
+      0,
+      1,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      17,
+      13,
+      1,
+      1,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      18,
+      13,
+      2,
+      1,
+      3,
+      "LATENT"
+    ],
+    [
+      19,
+      8,
+      0,
+      13,
+      2,
+      "VAE"
+    ],
+    [
+      20,
+      14,
+      0,
+      15,
+      1,
+      "FL2MODEL"
+    ],
+    [
+      24,
+      15,
+      0,
+      17,
+      0,
+      "IMAGE"
+    ],
+    [
+      26,
+      15,
+      1,
+      18,
+      0,
+      "MASK"
+    ],
+    [
+      44,
+      26,
+      0,
+      19,
+      1,
+      "MASK"
+    ],
+    [
+      54,
+      29,
+      0,
+      28,
+      0,
+      "SAM_MODEL"
+    ],
+    [
+      55,
+      30,
+      0,
+      28,
+      1,
+      "GROUNDING_DINO_MODEL"
+    ],
+    [
+      60,
+      28,
+      0,
+      33,
+      0,
+      "IMAGE"
+    ],
+    [
+      61,
+      28,
+      1,
+      32,
+      0,
+      "MASK"
+    ],
+    [
+      62,
+      16,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      66,
+      15,
+      1,
+      26,
+      0,
+      "MASK"
+    ],
+    [
+      67,
+      28,
+      1,
+      34,
+      0,
+      "MASK"
+    ],
+    [
+      68,
+      34,
+      0,
+      35,
+      1,
+      "MASK"
+    ],
+    [
+      75,
+      19,
+      1,
+      37,
+      7,
+      "IMAGE"
+    ],
+    [
+      77,
+      19,
+      2,
+      37,
+      21,
+      "MASK"
+    ],
+    [
+      79,
+      37,
+      0,
+      38,
+      0,
+      "*"
+    ],
+    [
+      80,
+      39,
+      7,
+      13,
+      3,
+      "IMAGE"
+    ],
+    [
+      81,
+      39,
+      21,
+      13,
+      4,
+      "MASK"
+    ],
+    [
+      82,
+      38,
+      0,
+      39,
+      0,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      83,
+      35,
+      1,
+      40,
+      7,
+      "IMAGE"
+    ],
+    [
+      84,
+      35,
+      2,
+      40,
+      21,
+      "MASK"
+    ],
+    [
+      85,
+      40,
+      0,
+      38,
+      1,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      102,
+      44,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ],
+    [
+      103,
+      44,
+      0,
+      47,
+      0,
+      "IMAGE"
+    ],
+    [
+      109,
+      5,
+      0,
+      13,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      115,
+      4,
+      0,
+      51,
+      0,
+      "CLIP"
+    ],
+    [
+      116,
+      51,
+      0,
+      13,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      117,
+      16,
+      0,
+      53,
+      0,
+      "*"
+    ],
+    [
+      118,
+      23,
+      0,
+      55,
+      0,
+      "*"
+    ],
+    [
+      119,
+      54,
+      0,
+      15,
+      0,
+      "IMAGE"
+    ],
+    [
+      120,
+      54,
+      0,
+      19,
+      0,
+      "IMAGE"
+    ],
+    [
+      121,
+      56,
+      0,
+      28,
+      2,
+      "IMAGE"
+    ],
+    [
+      122,
+      56,
+      0,
+      35,
+      0,
+      "IMAGE"
+    ],
+    [
+      127,
+      9,
+      0,
+      57,
+      0,
+      "*"
+    ],
+    [
+      130,
+      59,
+      0,
+      44,
+      1,
+      "IMAGE"
+    ],
+    [
+      131,
+      60,
+      0,
+      20,
+      1,
+      "IMAGE"
+    ],
+    [
+      132,
+      61,
+      0,
+      25,
+      1,
+      "IMAGE"
+    ],
+    [
+      134,
+      19,
+      0,
+      63,
+      0,
+      "*"
+    ],
+    [
+      135,
+      64,
+      0,
+      20,
+      0,
+      "STITCH"
+    ],
+    [
+      136,
+      20,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      137,
+      20,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      138,
+      35,
+      0,
+      65,
+      0,
+      "*"
+    ],
+    [
+      139,
+      66,
+      0,
+      44,
+      0,
+      "STITCH"
+    ],
+    [
+      140,
+      67,
+      0,
+      47,
+      1,
+      "IMAGE"
+    ],
+    [
+      146,
+      73,
+      0,
+      74,
+      0,
+      "IMAGE"
+    ],
+    [
+      147,
+      73,
+      1,
+      74,
+      1,
+      "MASK"
+    ],
+    [
+      148,
+      74,
+      0,
+      76,
+      0,
+      "IMAGE"
+    ],
+    [
+      149,
+      74,
+      1,
+      75,
+      0,
+      "MASK"
+    ],
+    [
+      150,
+      75,
+      0,
+      76,
+      1,
+      "MASK"
+    ],
+    [
+      151,
+      76,
+      1,
+      77,
+      7,
+      "IMAGE"
+    ],
+    [
+      152,
+      76,
+      2,
+      77,
+      21,
+      "MASK"
+    ],
+    [
+      153,
+      77,
+      0,
+      38,
+      2,
+      "RGTHREE_CONTEXT"
+    ],
+    [
+      154,
+      76,
+      2,
+      79,
+      0,
+      "MASK"
+    ],
+    [
+      155,
+      76,
+      0,
+      80,
+      0,
+      "*"
+    ],
+    [
+      156,
+      84,
+      0,
+      86,
+      0,
+      "STITCH"
+    ],
+    [
+      157,
+      85,
+      0,
+      86,
+      1,
+      "IMAGE"
+    ],
+    [
+      158,
+      86,
+      0,
+      81,
+      0,
+      "IMAGE"
+    ],
+    [
+      159,
+      83,
+      0,
+      82,
+      1,
+      "IMAGE"
+    ],
+    [
+      160,
+      86,
+      0,
+      82,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "三.照片对比3",
+      "bounding": [
+        -2371,
+        899,
+        826,
+        956
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "三.手动选择水印，上传图像右键选择在遮罩编辑器中打开",
+      "bounding": [
+        -3445,
+        898,
+        1065,
+        959
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "二.图片对比2",
+      "bounding": [
+        -2453,
+        -51,
+        906,
+        907
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "一.图片对比1",
+      "bounding": [
+        -2451,
+        -975,
+        902,
+        888
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "二.Gdino模型，输入提示词识别内容，调整阈值大小调试识别",
+      "bounding": [
+        -3445,
+        -52,
+        953,
+        907
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "一.遮罩识别预览  florence2  只识别文字",
+      "bounding": [
+        -3443,
+        -973,
+        949,
+        886
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "Flux的fill模型局部重绘模块，可以先关掉，看遮罩识别是否成功再打开重绘",
+      "bounding": [
+        -4492,
+        -973,
+        1031,
+        596
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {
+        "pinned": true
+      }
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8769226950000008,
+      "offset": [
+        5620.170278342816,
+        1771.848321024969
+      ]
+    },
+    "ue_links": [],
+    "workspace_info": {
+      "id": "RvbaRFprTnQs4KuYeB1AA"
+    },
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ]
+  },
+  "version": 0.4,
+  "seed_widgets": {
+    "1": 0,
+    "15": 8
+  },
+  "widget_idx_map": {
+    "1": {
+      "seed": 0,
+      "sampler_name": 4,
+      "scheduler": 5
+    },
+    "15": {
+      "seed": 8
+    }
+  }
+}

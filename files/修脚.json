@@ -1,0 +1,1459 @@
+{
+  "id": "7d90067e-e48d-4fec-93bd-01a810dae881",
+  "revision": 0,
+  "last_node_id": 57,
+  "last_link_id": 116,
+  "nodes": [
+    {
+      "id": 23,
+      "type": "RandomNoise",
+      "pos": [
+        1407.3958740234375,
+        -28.544910430908203
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "噪波生成",
+          "name": "NOISE",
+          "shape": 3,
+          "type": "NOISE",
+          "links": [
+            33
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "RandomNoise"
+      },
+      "widgets_values": [
+        513368344001421,
+        "randomize"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "SamplerCustomAdvanced",
+      "pos": [
+        1394.3958740234375,
+        107.45508575439453
+      ],
+      "size": [
+        355.20001220703125,
+        326
+      ],
+      "flags": {},
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "噪波生成",
+          "name": "noise",
+          "type": "NOISE",
+          "link": 33
+        },
+        {
+          "label": "引导",
+          "name": "guider",
+          "type": "GUIDER",
+          "link": 34
+        },
+        {
+          "label": "采样器",
+          "name": "sampler",
+          "type": "SAMPLER",
+          "link": 37
+        },
+        {
+          "label": "Sigmas",
+          "name": "sigmas",
+          "type": "SIGMAS",
+          "link": 38
+        },
+        {
+          "label": "Latent",
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 89
+        }
+      ],
+      "outputs": [
+        {
+          "label": "输出",
+          "name": "output",
+          "shape": 3,
+          "type": "LATENT",
+          "slot_index": 0,
+          "links": [
+            40
+          ]
+        },
+        {
+          "label": "降噪输出",
+          "name": "denoised_output",
+          "shape": 3,
+          "type": "LATENT"
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "SamplerCustomAdvanced"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 24,
+      "type": "BasicGuider",
+      "pos": [
+        985.3959350585938,
+        47.4550895690918
+      ],
+      "size": [
+        241.79998779296875,
+        46
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "模型",
+          "name": "model",
+          "type": "MODEL",
+          "link": 111
+        },
+        {
+          "label": "条件",
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 35
+        }
+      ],
+      "outputs": [
+        {
+          "label": "引导",
+          "name": "GUIDER",
+          "shape": 3,
+          "type": "GUIDER",
+          "links": [
+            34
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "BasicGuider"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 9,
+      "type": "SaveImage",
+      "pos": [
+        1843.3958740234375,
+        146.45509338378906
+      ],
+      "size": [
+        260.1073913574219,
+        347.76287841796875
+      ],
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "图像",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 9
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "ComfyUI",
+        ""
+      ]
+    },
+    {
+      "id": 11,
+      "type": "InpaintCrop",
+      "pos": [
+        1257,
+        972
+      ],
+      "size": [
+        443.4000244140625,
+        386
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "图像",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 100
+        },
+        {
+          "label": "遮罩",
+          "name": "mask",
+          "type": "MASK",
+          "link": 101
+        },
+        {
+          "label": "上下文遮罩(可选)",
+          "name": "optional_context_mask",
+          "shape": 7,
+          "type": "MASK"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "接缝",
+          "name": "stitch",
+          "shape": 3,
+          "type": "STITCH",
+          "slot_index": 0,
+          "links": [
+            17
+          ]
+        },
+        {
+          "label": "cropped_image",
+          "name": "cropped_image",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 1,
+          "links": [
+            15
+          ]
+        },
+        {
+          "label": "cropped_mask",
+          "name": "cropped_mask",
+          "shape": 3,
+          "type": "MASK",
+          "slot_index": 2,
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-inpaint-cropandstitch",
+        "ver": "7c7685880dc1ea76fa98ed4a26b9e1ffa527c8e6",
+        "Node name for S&R": "InpaintCrop"
+      },
+      "widgets_values": [
+        40,
+        1,
+        true,
+        16,
+        false,
+        16,
+        "bicubic",
+        "ranged size",
+        1024,
+        1024,
+        1,
+        512,
+        512,
+        768,
+        768,
+        32
+      ]
+    },
+    {
+      "id": 28,
+      "type": "InpaintResize",
+      "pos": [
+        712,
+        966
+      ],
+      "size": [
+        430.8000183105469,
+        170
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "图像",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 99
+        },
+        {
+          "label": "遮罩",
+          "name": "mask",
+          "type": "MASK",
+          "link": 97
+        },
+        {
+          "label": "上下文遮罩(可选)",
+          "name": "optional_context_mask",
+          "shape": 7,
+          "type": "MASK"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "图像",
+          "name": "image",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            100
+          ]
+        },
+        {
+          "label": "遮罩",
+          "name": "mask",
+          "shape": 3,
+          "type": "MASK",
+          "slot_index": 1,
+          "links": [
+            101
+          ]
+        },
+        {
+          "label": "上下文遮罩",
+          "name": "context_mask",
+          "shape": 3,
+          "type": "MASK"
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-inpaint-cropandstitch",
+        "ver": "7c7685880dc1ea76fa98ed4a26b9e1ffa527c8e6",
+        "Node name for S&R": "InpaintResize"
+      },
+      "widgets_values": [
+        "bicubic",
+        "ensure minimum size",
+        1024,
+        1024,
+        1
+      ]
+    },
+    {
+      "id": 10,
+      "type": "InpaintModelConditioning",
+      "pos": [
+        971,
+        264
+      ],
+      "size": [
+        320.2476501464844,
+        138
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "正面条件",
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 20
+        },
+        {
+          "label": "负面条件",
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 21
+        },
+        {
+          "label": "VAE",
+          "name": "vae",
+          "type": "VAE",
+          "link": 31
+        },
+        {
+          "label": "图像",
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 15
+        },
+        {
+          "label": "遮罩",
+          "name": "mask",
+          "type": "MASK",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "label": "正面条件",
+          "name": "positive",
+          "shape": 3,
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            35
+          ]
+        },
+        {
+          "label": "负面条件",
+          "name": "negative",
+          "shape": 3,
+          "type": "CONDITIONING",
+          "slot_index": 1,
+          "links": []
+        },
+        {
+          "label": "Latent",
+          "name": "latent",
+          "shape": 3,
+          "type": "LATENT",
+          "slot_index": 2,
+          "links": [
+            89
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "InpaintModelConditioning"
+      },
+      "widgets_values": [
+        true
+      ]
+    },
+    {
+      "id": 7,
+      "type": "CLIPTextEncode",
+      "pos": [
+        386.3959045410156,
+        257.455078125
+      ],
+      "size": [
+        425.27801513671875,
+        180.6060791015625
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "CLIP",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 109
+        }
+      ],
+      "outputs": [
+        {
+          "label": "条件",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            21
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "Many toes,missing toes,"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "PreviewImage",
+      "pos": [
+        2344,
+        151
+      ],
+      "size": [
+        485.5085144042969,
+        481.2967529296875
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "图像",
+          "name": "images",
+          "type": "IMAGE",
+          "link": 19
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": [
+        ""
+      ]
+    },
+    {
+      "id": 21,
+      "type": "LoadImage",
+      "pos": [
+        234,
+        1036
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "图像",
+          "name": "IMAGE",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": []
+        },
+        {
+          "label": "遮罩",
+          "name": "MASK",
+          "shape": 3,
+          "type": "MASK",
+          "slot_index": 1,
+          "links": [
+            97
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "clipspace/clipspace-mask-59233.png [input]",
+        "image",
+        ""
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 18,
+      "type": "UNETLoader",
+      "pos": [
+        -130,
+        195
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "模型",
+          "name": "MODEL",
+          "shape": 3,
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            107
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "flux原模（黑森林）\\flux1-dev-fp8.safetensors",
+        "fp8_e4m3fn"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "VAELoader",
+      "pos": [
+        -131.6040802001953,
+        324.455078125
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "shape": 3,
+          "type": "VAE",
+          "slot_index": 0,
+          "links": [
+            29,
+            31
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "flux_ae.sft"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "DualCLIPLoader",
+      "pos": [
+        -126.60408782958984,
+        479.455078125
+      ],
+      "size": [
+        315,
+        122
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "CLIP",
+          "name": "CLIP",
+          "shape": 3,
+          "type": "CLIP",
+          "slot_index": 0,
+          "links": [
+            108
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "clip_l.safetensors",
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "flux",
+        "default"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": [
+        1850.3958740234375,
+        28.455089569091797
+      ],
+      "size": [
+        210,
+        46
+      ],
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "Latent",
+          "name": "samples",
+          "type": "LATENT",
+          "link": 40
+        },
+        {
+          "label": "VAE",
+          "name": "vae",
+          "type": "VAE",
+          "link": 29
+        }
+      ],
+      "outputs": [
+        {
+          "label": "图像",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            9,
+            90
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 15,
+      "type": "InpaintStitch",
+      "pos": [
+        2388.39599609375,
+        21.455089569091797
+      ],
+      "size": [
+        315,
+        78
+      ],
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "接缝",
+          "name": "stitch",
+          "type": "STITCH",
+          "link": 17
+        },
+        {
+          "label": "图像",
+          "name": "inpainted_image",
+          "type": "IMAGE",
+          "link": 90
+        }
+      ],
+      "outputs": [
+        {
+          "label": "图像",
+          "name": "image",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            19,
+            115
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfyui-inpaint-cropandstitch",
+        "ver": "7c7685880dc1ea76fa98ed4a26b9e1ffa527c8e6",
+        "Node name for S&R": "InpaintStitch"
+      },
+      "widgets_values": [
+        "bislerp"
+      ]
+    },
+    {
+      "id": 45,
+      "type": "LoadImage",
+      "pos": [
+        -134,
+        1019
+      ],
+      "size": [
+        315,
+        314.0000305175781
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "图像",
+          "name": "IMAGE",
+          "shape": 3,
+          "type": "IMAGE",
+          "slot_index": 0,
+          "links": [
+            99,
+            116
+          ]
+        },
+        {
+          "label": "遮罩",
+          "name": "MASK",
+          "shape": 3,
+          "type": "MASK",
+          "slot_index": 1,
+          "links": []
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "output (2).png",
+        "image",
+        ""
+      ],
+      "color": "#232",
+      "bgcolor": "#353"
+    },
+    {
+      "id": 54,
+      "type": "CR Apply LoRA Stack",
+      "pos": [
+        21.3193359375,
+        -6.379662036895752
+      ],
+      "size": [
+        254.40000915527344,
+        66
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "模型",
+          "name": "model",
+          "type": "MODEL",
+          "link": 107
+        },
+        {
+          "label": "CLIP",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 108
+        },
+        {
+          "label": "LoRA堆",
+          "name": "lora_stack",
+          "type": "LORA_STACK",
+          "link": 106
+        }
+      ],
+      "outputs": [
+        {
+          "label": "模型",
+          "name": "MODEL",
+          "shape": 3,
+          "type": "MODEL",
+          "slot_index": 0,
+          "links": [
+            111,
+            112
+          ]
+        },
+        {
+          "label": "CLIP",
+          "name": "CLIP",
+          "shape": 3,
+          "type": "CLIP",
+          "slot_index": 1,
+          "links": [
+            109,
+            110
+          ]
+        },
+        {
+          "name": "show_help",
+          "shape": 3,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI_Comfyroll_CustomNodes",
+        "ver": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
+        "Node name for S&R": "CR Apply LoRA Stack"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 25,
+      "type": "KSamplerSelect",
+      "pos": [
+        972.3970947265625,
+        149.6650848388672
+      ],
+      "size": [
+        315,
+        58
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "label": "采样器",
+          "name": "SAMPLER",
+          "shape": 3,
+          "type": "SAMPLER",
+          "links": [
+            37
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "KSamplerSelect"
+      },
+      "widgets_values": [
+        "euler"
+      ]
+    },
+    {
+      "id": 57,
+      "type": "Image Comparer (rgthree)",
+      "pos": [
+        2271.24365234375,
+        728.16064453125
+      ],
+      "size": [
+        598.797607421875,
+        707.8886108398438
+      ],
+      "flags": {},
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "dir": 3,
+          "label": "图像_A",
+          "name": "image_a",
+          "type": "IMAGE",
+          "link": 116
+        },
+        {
+          "dir": 3,
+          "label": "图像_B",
+          "name": "image_b",
+          "type": "IMAGE",
+          "link": 115
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "cnr_id": "rgthree-comfy",
+        "ver": "b84f39c7c224de765de0b54c55b967329011819d",
+        "comparer_mode": "Slide"
+      },
+      "widgets_values": [
+        [
+          {
+            "name": "A",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_qzjgm_00015_.png&type=temp&subfolder=&rand=0.34705574404964157"
+          },
+          {
+            "name": "B",
+            "selected": true,
+            "url": "/api/view?filename=rgthree.compare._temp_qzjgm_00016_.png&type=temp&subfolder=&rand=0.6745210677066752"
+          }
+        ]
+      ]
+    },
+    {
+      "id": 6,
+      "type": "CLIPTextEncode",
+      "pos": [
+        393.3959045410156,
+        5.455089569091797
+      ],
+      "size": [
+        422.84503173828125,
+        164.31304931640625
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "CLIP",
+          "name": "clip",
+          "type": "CLIP",
+          "link": 110
+        }
+      ],
+      "outputs": [
+        {
+          "label": "条件",
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "slot_index": 0,
+          "links": [
+            20
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "foot，Perfect feet,  toenails painted red,feet,\n\n\n"
+      ]
+    },
+    {
+      "id": 26,
+      "type": "BasicScheduler",
+      "pos": [
+        980.29541015625,
+        471.650146484375
+      ],
+      "size": [
+        315,
+        106
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "模型",
+          "name": "model",
+          "type": "MODEL",
+          "link": 112
+        }
+      ],
+      "outputs": [
+        {
+          "label": "Sigmas",
+          "name": "SIGMAS",
+          "shape": 3,
+          "type": "SIGMAS",
+          "links": [
+            38
+          ]
+        }
+      ],
+      "properties": {
+        "cnr_id": "comfy-core",
+        "ver": "0.3.27",
+        "Node name for S&R": "BasicScheduler"
+      },
+      "widgets_values": [
+        "normal",
+        10,
+        0.6000000000000001
+      ]
+    },
+    {
+      "id": 53,
+      "type": "CR LoRA Stack",
+      "pos": [
+        -652,
+        29
+      ],
+      "size": [
+        315,
+        342
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "label": "LoRA堆",
+          "name": "lora_stack",
+          "shape": 7,
+          "type": "LORA_STACK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LORA_STACK",
+          "shape": 3,
+          "type": "LORA_STACK",
+          "slot_index": 0,
+          "links": [
+            106
+          ]
+        },
+        {
+          "name": "show_help",
+          "shape": 3,
+          "type": "STRING",
+          "links": null
+        }
+      ],
+      "properties": {
+        "cnr_id": "ComfyUI_Comfyroll_CustomNodes",
+        "ver": "d78b780ae43fcf8c6b7c6505e6ffb4584281ceca",
+        "Node name for S&R": "CR LoRA Stack"
+      },
+      "widgets_values": [
+        "On",
+        "脚，修脚，脚模，玉足_v1.0.safetensors",
+        0.6000000000000001,
+        1,
+        "Off",
+        "None",
+        0.5,
+        1,
+        "Off",
+        "None",
+        1,
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      9,
+      8,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      11,
+      1,
+      10,
+      3,
+      "IMAGE"
+    ],
+    [
+      16,
+      11,
+      2,
+      10,
+      4,
+      "MASK"
+    ],
+    [
+      17,
+      11,
+      0,
+      15,
+      0,
+      "STITCH"
+    ],
+    [
+      19,
+      15,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      20,
+      6,
+      0,
+      10,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      21,
+      7,
+      0,
+      10,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      29,
+      20,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      31,
+      20,
+      0,
+      10,
+      2,
+      "VAE"
+    ],
+    [
+      33,
+      23,
+      0,
+      22,
+      0,
+      "NOISE"
+    ],
+    [
+      34,
+      24,
+      0,
+      22,
+      1,
+      "GUIDER"
+    ],
+    [
+      35,
+      10,
+      0,
+      24,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      37,
+      25,
+      0,
+      22,
+      2,
+      "SAMPLER"
+    ],
+    [
+      38,
+      26,
+      0,
+      22,
+      3,
+      "SIGMAS"
+    ],
+    [
+      40,
+      22,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      89,
+      10,
+      2,
+      22,
+      4,
+      "LATENT"
+    ],
+    [
+      90,
+      8,
+      0,
+      15,
+      1,
+      "IMAGE"
+    ],
+    [
+      97,
+      21,
+      1,
+      28,
+      1,
+      "MASK"
+    ],
+    [
+      99,
+      45,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      100,
+      28,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      101,
+      28,
+      1,
+      11,
+      1,
+      "MASK"
+    ],
+    [
+      106,
+      53,
+      0,
+      54,
+      2,
+      "LORA_STACK"
+    ],
+    [
+      107,
+      18,
+      0,
+      54,
+      0,
+      "MODEL"
+    ],
+    [
+      108,
+      19,
+      0,
+      54,
+      1,
+      "CLIP"
+    ],
+    [
+      109,
+      54,
+      1,
+      7,
+      0,
+      "CLIP"
+    ],
+    [
+      110,
+      54,
+      1,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      111,
+      54,
+      0,
+      24,
+      0,
+      "MODEL"
+    ],
+    [
+      112,
+      54,
+      0,
+      26,
+      0,
+      "MODEL"
+    ],
+    [
+      115,
+      15,
+      0,
+      57,
+      1,
+      "IMAGE"
+    ],
+    [
+      116,
+      45,
+      0,
+      57,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "id": 1,
+      "title": "Flux",
+      "bounding": [
+        -186,
+        -146,
+        3275,
+        1606
+      ],
+      "color": "#b58b2a",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 2,
+      "title": "Flux图生图流程 内补修复",
+      "bounding": [
+        -183,
+        -97,
+        3214,
+        804
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 3,
+      "title": "输出结果图",
+      "bounding": [
+        2282,
+        -97,
+        615,
+        780
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 4,
+      "title": "输入图片",
+      "bounding": [
+        -157,
+        848,
+        752,
+        548
+      ],
+      "color": "#8A8",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "id": 5,
+      "title": "图像内补修复",
+      "bounding": [
+        652,
+        856,
+        1136,
+        541
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.5445000000000082,
+      "offset": [
+        2475.0601898446475,
+        1442.3621860901553
+      ]
+    },
+    "0246.VERSION": [
+      0,
+      0,
+      4
+    ],
+    "ue_links": [],
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}

@@ -1,0 +1,2567 @@
+{
+  "last_node_id": 465,
+  "last_link_id": 787,
+  "nodes": [
+    {
+      "id": 228,
+      "type": "DualCLIPLoader",
+      "pos": {
+        "0": -10030,
+        "1": 2530
+      },
+      "size": {
+        "0": 648.2481079101562,
+        "1": 106
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            350
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "CLIP"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DualCLIPLoader"
+      },
+      "widgets_values": [
+        "t5xxl_fp8_e4m3fn.safetensors",
+        "clip_l.safetensors",
+        "flux"
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 239,
+      "type": "LongCLIPTextEncodeFlux",
+      "pos": {
+        "0": -9330,
+        "1": 2530
+      },
+      "size": {
+        "0": 340,
+        "1": 60
+      },
+      "flags": {},
+      "order": 17,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 350,
+          "label": "clip"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            419
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "CLIP"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LongCLIPTextEncodeFlux"
+      },
+      "widgets_values": [
+        "longclip-L.pt"
+      ]
+    },
+    {
+      "id": 233,
+      "type": "EmptyLatentImage",
+      "pos": {
+        "0": -9200,
+        "1": 2790
+      },
+      "size": {
+        "0": 210,
+        "1": 110
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            455
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "Latent"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        768,
+        1280,
+        1
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 316,
+      "type": "Cfg Literal",
+      "pos": {
+        "0": -9198,
+        "1": 2962
+      },
+      "size": {
+        "0": 210,
+        "1": 60
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "FLOAT",
+          "type": "FLOAT",
+          "links": [
+            494
+          ],
+          "slot_index": 0,
+          "label": "FLOAT"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Cfg Literal"
+      },
+      "widgets_values": [
+        1
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 451,
+      "type": "FluxGuidance",
+      "pos": {
+        "0": -9202,
+        "1": 3085
+      },
+      "size": {
+        "0": 210,
+        "1": 58
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 726,
+          "label": "条件"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            785
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FluxGuidance"
+      },
+      "widgets_values": [
+        3.5
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 300,
+      "type": "Anything Everywhere3",
+      "pos": {
+        "0": -8852,
+        "1": 2783
+      },
+      "size": {
+        "0": 210,
+        "1": 66
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 27,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "LATENT",
+          "type": "*",
+          "link": 455,
+          "shape": 7,
+          "label": "输入",
+          "color_on": "#FF9CF9"
+        },
+        {
+          "name": "FLOAT",
+          "type": "*",
+          "link": 494,
+          "shape": 7,
+          "label": "输入",
+          "color_on": ""
+        },
+        {
+          "name": "CONDITIONING",
+          "type": "*",
+          "link": 785,
+          "shape": 7,
+          "label": "输入",
+          "color_on": "#FFA931"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Anything Everywhere3",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 387,
+      "type": "ConditioningZeroOut",
+      "pos": {
+        "0": -10256,
+        "1": 4272
+      },
+      "size": {
+        "0": 200,
+        "1": 30
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "条件"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            601
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": [],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 328,
+      "type": "UpscaleModelLoader",
+      "pos": {
+        "0": -10330,
+        "1": 3264
+      },
+      "size": {
+        "0": 400,
+        "1": 60
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "UPSCALE_MODEL",
+          "type": "UPSCALE_MODEL",
+          "links": [
+            498
+          ],
+          "slot_index": 0,
+          "label": "放大模型"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UpscaleModelLoader"
+      },
+      "widgets_values": [
+        "4x_NMKD-Siax_200k.pth"
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 422,
+      "type": "easy cleanGpuUsed",
+      "pos": {
+        "0": -9830,
+        "1": 3277
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 22,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 679,
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy cleanGpuUsed"
+      },
+      "widgets_values": [],
+      "color": "#222",
+      "bgcolor": "#000",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 426,
+      "type": "easy clearCacheAll",
+      "pos": {
+        "0": -9564,
+        "1": 3273
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 23,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 685,
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy clearCacheAll"
+      },
+      "widgets_values": [],
+      "color": "#222",
+      "bgcolor": "#000",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 464,
+      "type": "SaveImage",
+      "pos": {
+        "0": -9904,
+        "1": 3420
+      },
+      "size": [
+        553.8002374146872,
+        825.3198865627064
+      ],
+      "flags": {},
+      "order": 25,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 787,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "MoYou"
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 327,
+      "type": "UltimateSDUpscale",
+      "pos": {
+        "0": -10301,
+        "1": 3395
+      },
+      "size": {
+        "0": 315,
+        "1": 794.000244140625
+      },
+      "flags": {},
+      "order": 18,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": null,
+          "label": "图像"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 601,
+          "label": "负面条件"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE"
+        },
+        {
+          "name": "upscale_model",
+          "type": "UPSCALE_MODEL",
+          "link": 498,
+          "label": "放大模型"
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          },
+          "label": "随机种"
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "cfg"
+          },
+          "label": "CFG"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            679,
+            685,
+            745,
+            787
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltimateSDUpscale"
+      },
+      "widgets_values": [
+        2,
+        247671237454364,
+        "randomize",
+        20,
+        8,
+        "euler",
+        "sgm_uniform",
+        0.2,
+        "Linear",
+        768,
+        1280,
+        10,
+        32,
+        "Half Tile",
+        1,
+        128,
+        10,
+        16,
+        true,
+        false
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 231,
+      "type": "UNETLoader",
+      "pos": {
+        "0": -9752,
+        "1": 2375
+      },
+      "size": {
+        "0": 762.5587158203125,
+        "1": 82
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            418
+          ],
+          "slot_index": 0,
+          "shape": 3,
+          "label": "模型"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader"
+      },
+      "widgets_values": [
+        "MYHuman-Flux_1.3.safetensors",
+        "fp8_e4m3fn"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 292,
+      "type": "Anything Everywhere3",
+      "pos": {
+        "0": -8829,
+        "1": 2369
+      },
+      "size": {
+        "0": 210,
+        "1": 66
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 21,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "MODEL",
+          "type": "*",
+          "link": 418,
+          "shape": 7,
+          "label": "输入",
+          "color_on": "#B39DDB"
+        },
+        {
+          "name": "CLIP",
+          "type": "*",
+          "link": 419,
+          "shape": 7,
+          "label": "输入2",
+          "color_on": "#FFD500"
+        },
+        {
+          "name": "VAE",
+          "type": "*",
+          "link": 420,
+          "shape": 7,
+          "label": "输入3",
+          "color_on": "#FF6E6E"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Anything Everywhere3",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 431,
+      "type": "UltralyticsDetectorProvider",
+      "pos": {
+        "0": -7677.046875,
+        "1": 3374.421875
+      },
+      "size": {
+        "0": 340,
+        "1": 80
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BBOX_DETECTOR",
+          "type": "BBOX_DETECTOR",
+          "links": [
+            690
+          ],
+          "slot_index": 0,
+          "label": "BBox检测"
+        },
+        {
+          "name": "SEGM_DETECTOR",
+          "type": "SEGM_DETECTOR",
+          "links": [
+            691
+          ],
+          "slot_index": 1,
+          "label": "SEGM检测"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltralyticsDetectorProvider"
+      },
+      "widgets_values": [
+        "bbox/hand_yolov8s.pt"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 433,
+      "type": "ConditioningZeroOut",
+      "pos": {
+        "0": -7242.046875,
+        "1": 3378.421875
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "条件"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            688
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": [],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 425,
+      "type": "easy clearCacheAll",
+      "pos": {
+        "0": -8139.697265625,
+        "1": 3365.10693359375
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 30,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 683,
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy clearCacheAll"
+      },
+      "widgets_values": [],
+      "color": "#222",
+      "bgcolor": "#000",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 398,
+      "type": "easy cleanGpuUsed",
+      "pos": {
+        "0": -8460.701171875,
+        "1": 3366.10693359375
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 28,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 644,
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy cleanGpuUsed"
+      },
+      "widgets_values": [],
+      "color": "#222",
+      "bgcolor": "#000",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 311,
+      "type": "UltralyticsDetectorProvider",
+      "pos": {
+        "0": -9140.701171875,
+        "1": 3354.10693359375
+      },
+      "size": {
+        "0": 340,
+        "1": 80
+      },
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "BBOX_DETECTOR",
+          "type": "BBOX_DETECTOR",
+          "links": [
+            474
+          ],
+          "slot_index": 0,
+          "label": "BBox检测"
+        },
+        {
+          "name": "SEGM_DETECTOR",
+          "type": "SEGM_DETECTOR",
+          "links": [
+            462
+          ],
+          "label": "SEGM检测"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UltralyticsDetectorProvider"
+      },
+      "widgets_values": [
+        "bbox/face_yolov8m.pt"
+      ],
+      "color": "#323",
+      "bgcolor": "#535",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 331,
+      "type": "ConditioningZeroOut",
+      "pos": {
+        "0": -8721.701171875,
+        "1": 3381.10693359375
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "条件"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            504
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": [],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 307,
+      "type": "FaceDetailer",
+      "pos": {
+        "0": -9111.701171875,
+        "1": 3547.10693359375
+      },
+      "size": [
+        498.24315715931516,
+        1301.030717104918
+      ],
+      "flags": {},
+      "order": 24,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 745,
+          "label": "图像"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 504,
+          "label": "负面条件"
+        },
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 474,
+          "label": "BBox检测"
+        },
+        {
+          "name": "sam_model_opt",
+          "type": "SAM_MODEL",
+          "link": null,
+          "shape": 7,
+          "label": "SAM模型"
+        },
+        {
+          "name": "segm_detector_opt",
+          "type": "SEGM_DETECTOR",
+          "link": 462,
+          "shape": 7,
+          "label": "Segm检测"
+        },
+        {
+          "name": "detailer_hook",
+          "type": "DETAILER_HOOK",
+          "link": null,
+          "shape": 7,
+          "label": "细化约束"
+        },
+        {
+          "name": "scheduler_func_opt",
+          "type": "SCHEDULER_FUNC",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          },
+          "label": "随机种"
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "cfg"
+          },
+          "label": "CFG"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            644,
+            645,
+            683,
+            695
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "cropped_refined",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 6,
+          "label": "细化图像"
+        },
+        {
+          "name": "cropped_enhanced_alpha",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 6,
+          "label": "细化部分"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "label": "遮罩"
+        },
+        {
+          "name": "detailer_pipe",
+          "type": "DETAILER_PIPE",
+          "links": null,
+          "label": "细化节点束"
+        },
+        {
+          "name": "cnet_images",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 6,
+          "label": "ControlNet图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FaceDetailer"
+      },
+      "widgets_values": [
+        384,
+        true,
+        1024,
+        204515040739893,
+        "randomize",
+        20,
+        1,
+        "euler",
+        "sgm_uniform",
+        0.35000000000000003,
+        5,
+        true,
+        true,
+        0.5,
+        10,
+        3,
+        "center-1",
+        0,
+        0.93,
+        0,
+        0.7,
+        "False",
+        10,
+        "Her face is small and well-defined, with skin as smooth and delicate as porcelain, fair with a natural blush. Her forehead is broad, smooth and flawless, with clear hairline, adding a touch of nobility to her appearance.\n\nHer eyebrows are long and curved, with a moderate shade of eyebrow color, perfectly outlining her lively gaze. Her eyes were big and bright, with clear eyeballs and slightly raised corners, revealing a playful expression.\n\nHer nose bridge is straight, the tip of her nose is small and delicate, and the lines of her nostrils are soft, making her side profile more three-dimensional. Her lips are rosy and plump, with beautiful lips. Her upper lip is thin and light, and her lower lip is full. When gently closed, she appears gentle and charming.\n\nThe chin is pointed and the lines are smooth, perfectly matching the face shape, making the entire facial contour more delicate. Her cheeks are soft, and when she smiles, a shallow dimple appears on each side, adding a touch of sweetness.",
+        1,
+        false,
+        20,
+        true
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 435,
+      "type": "easy cleanGpuUsed",
+      "pos": {
+        "0": -6957.046875,
+        "1": 3379.421875
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 35,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 694,
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy cleanGpuUsed"
+      },
+      "widgets_values": [],
+      "color": "#222",
+      "bgcolor": "#000",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 436,
+      "type": "easy clearCacheAll",
+      "pos": {
+        "0": -6634.046875,
+        "1": 3378.421875
+      },
+      "size": {
+        "0": 210,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 34,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "anything",
+          "type": "*",
+          "link": 693,
+          "label": "输入任何"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "output",
+          "type": "*",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "easy clearCacheAll"
+      },
+      "widgets_values": [],
+      "color": "#222",
+      "bgcolor": "#000",
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 319,
+      "type": "SaveImage",
+      "pos": {
+        "0": -8529.701171875,
+        "1": 3558.10693359375
+      },
+      "size": [
+        699.2276779585063,
+        1227.1314285091885
+      ],
+      "flags": {},
+      "order": 29,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 645,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "MoYou"
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 429,
+      "type": "FaceDetailer",
+      "pos": {
+        "0": -7635.046875,
+        "1": 3547.421875
+      },
+      "size": [
+        529.1295059452541,
+        1392.7267785826461
+      ],
+      "flags": {},
+      "order": 31,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 695,
+          "label": "图像"
+        },
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型"
+        },
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 688,
+          "label": "负面条件"
+        },
+        {
+          "name": "bbox_detector",
+          "type": "BBOX_DETECTOR",
+          "link": 690,
+          "label": "BBox检测"
+        },
+        {
+          "name": "sam_model_opt",
+          "type": "SAM_MODEL",
+          "link": null,
+          "shape": 7,
+          "label": "SAM模型"
+        },
+        {
+          "name": "segm_detector_opt",
+          "type": "SEGM_DETECTOR",
+          "link": 691,
+          "shape": 7,
+          "label": "Segm检测"
+        },
+        {
+          "name": "detailer_hook",
+          "type": "DETAILER_HOOK",
+          "link": null,
+          "shape": 7,
+          "label": "细化约束"
+        },
+        {
+          "name": "scheduler_func_opt",
+          "type": "SCHEDULER_FUNC",
+          "link": null,
+          "shape": 7
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          },
+          "label": "随机种"
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "cfg"
+          },
+          "label": "CFG"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "links": [
+            692,
+            693,
+            694
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        },
+        {
+          "name": "cropped_refined",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 6,
+          "label": "细化图像"
+        },
+        {
+          "name": "cropped_enhanced_alpha",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 6,
+          "label": "细化部分"
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null,
+          "label": "遮罩"
+        },
+        {
+          "name": "detailer_pipe",
+          "type": "DETAILER_PIPE",
+          "links": null,
+          "label": "细化节点束"
+        },
+        {
+          "name": "cnet_images",
+          "type": "IMAGE",
+          "links": null,
+          "shape": 6,
+          "label": "ControlNet图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "FaceDetailer"
+      },
+      "widgets_values": [
+        384,
+        true,
+        1024,
+        727570775404932,
+        "randomize",
+        20,
+        1,
+        "euler",
+        "sgm_uniform",
+        0.55,
+        5,
+        true,
+        true,
+        0.5,
+        10,
+        3,
+        "center-1",
+        0,
+        0.93,
+        0,
+        0.7,
+        "False",
+        10,
+        "These hands are like cherry blossoms in early spring, delicate and full of vitality. Fingers are slender, fingertips are round, shining with a youthful luster, as warm as pearls. The nails are carefully trimmed to present a natural curvature, like a delicate miniature painting, revealing delicacy and elegance.\nThe palm is soft and elastic, with clear palm prints that seem like the whispers of time, telling the story of youth. The lines at the wrist are smooth, and the skin is silky smooth. With the ups and downs of the movements, it displays a unique vitality and softness. These hands can play beautiful melodies lightly and skillfully depict the colors of life. They are symbols of youth, transmitters of vitality, and the most beautiful poems in life.\n",
+        1,
+        false,
+        20,
+        true
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 432,
+      "type": "SaveImage",
+      "pos": {
+        "0": -7006.046875,
+        "1": 3505.421875
+      },
+      "size": [
+        769.4193582280641,
+        1425.4129587367588
+      ],
+      "flags": {},
+      "order": 33,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 692,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "MoYou"
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 267,
+      "type": "Fast Groups Bypasser (rgthree)",
+      "pos": {
+        "0": -8863,
+        "1": 2998
+      },
+      "size": [
+        296.9968479877425,
+        106
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "OPT_CONNECTION",
+          "type": "*",
+          "links": null,
+          "label": "可选连接"
+        }
+      ],
+      "properties": {
+        "matchColors": "",
+        "matchTitle": "",
+        "showNav": true,
+        "sort": "position",
+        "customSortAlphabet": "",
+        "toggleRestriction": "default"
+      },
+      "color": "#432",
+      "bgcolor": "#653"
+    },
+    {
+      "id": 229,
+      "type": "VAELoader",
+      "pos": {
+        "0": -9247,
+        "1": 2659
+      },
+      "size": [
+        254.3344431869191,
+        58
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 11,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            420
+          ],
+          "slot_index": 0,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "ae.safetensors"
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 396,
+      "type": "ConditioningZeroOut",
+      "pos": {
+        "0": -8727,
+        "1": 2665
+      },
+      "size": {
+        "0": 140,
+        "1": 26
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "条件"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            635
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": [],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 298,
+      "type": "Seed Everywhere",
+      "pos": {
+        "0": -8846,
+        "1": 2511
+      },
+      "size": [
+        267.135206084582,
+        82
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "INT",
+          "type": "INT",
+          "links": null,
+          "slot_index": 0,
+          "label": "整数"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Seed Everywhere",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [
+        1050340210900959,
+        "randomize"
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 310,
+      "type": "SAMLoader",
+      "pos": {
+        "0": -8512,
+        "1": 2366
+      },
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "SAM_MODEL",
+          "type": "SAM_MODEL",
+          "links": [
+            697
+          ],
+          "slot_index": 0,
+          "label": "SAM模型"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SAMLoader"
+      },
+      "widgets_values": [
+        "sam_vit_b_01ec64.pth",
+        "Prefer GPU"
+      ],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 8,
+      "type": "VAEDecode",
+      "pos": {
+        "0": -8144,
+        "1": 2485
+      },
+      "size": {
+        "0": 210,
+        "1": 46
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 26,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 448,
+          "label": "Latent"
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null,
+          "label": "VAE"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            696
+          ],
+          "slot_index": 0,
+          "label": "图像"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 326,
+      "type": "Anything Everywhere3",
+      "pos": {
+        "0": -7870,
+        "1": 2423
+      },
+      "size": {
+        "0": 210,
+        "1": 66
+      },
+      "flags": {
+        "collapsed": false
+      },
+      "order": 32,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "SAM_MODEL",
+          "type": "*",
+          "link": 697,
+          "shape": 7,
+          "label": "输入",
+          "color_on": ""
+        },
+        {
+          "name": "IMAGE",
+          "type": "*",
+          "link": 696,
+          "shape": 7,
+          "label": "输入",
+          "color_on": "#64B5F6"
+        },
+        {
+          "name": "anything",
+          "type": "*",
+          "link": null,
+          "shape": 7,
+          "label": "输入"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "Anything Everywhere3",
+        "group_restricted": 0,
+        "color_restricted": 0
+      },
+      "widgets_values": [],
+      "category": "Custom Nodes"
+    },
+    {
+      "id": 465,
+      "type": "SaveImage",
+      "pos": {
+        "0": -8067,
+        "1": 2613
+      },
+      "size": [
+        451.6306548066814,
+        546.0323890264422
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": null,
+          "label": "图像"
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "MoYou"
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 296,
+      "type": "KSampler",
+      "pos": {
+        "0": -8490,
+        "1": 2624
+      },
+      "size": {
+        "0": 315,
+        "1": 474
+      },
+      "flags": {},
+      "order": 19,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": null,
+          "label": "模型"
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": null,
+          "label": "正面条件"
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 635,
+          "label": "负面条件"
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": null,
+          "label": "Latent"
+        },
+        {
+          "name": "seed",
+          "type": "INT",
+          "link": null,
+          "widget": {
+            "name": "seed"
+          },
+          "label": "随机种"
+        },
+        {
+          "name": "cfg",
+          "type": "FLOAT",
+          "link": null,
+          "widget": {
+            "name": "cfg"
+          },
+          "label": "CFG"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            448
+          ],
+          "slot_index": 0,
+          "label": "Latent"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        520750724203281,
+        "randomize",
+        20,
+        1,
+        "euler",
+        "sgm_uniform",
+        1
+      ],
+      "category": "Primitive Nodes"
+    },
+    {
+      "id": 294,
+      "type": "CLIPTextEncode",
+      "pos": {
+        "0": -10128,
+        "1": 2700
+      },
+      "size": [
+        838.1504648958562,
+        427.5033472366631
+      ],
+      "flags": {
+        "collapsed": false
+      },
+      "order": 16,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": null,
+          "label": "CLIP"
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            726
+          ],
+          "slot_index": 0,
+          "label": "条件"
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "This is a clear mobile selfie photo with a daily style. In the picture, there is a woman wearing a white short-sleeved shirt and a black pleated skirt, with a blue and white striped tie. She has long black hair, sitting on a wooden chair with her hands resting on her knees, facing the camera, and her eyes are looking at the camera. She appears to be around 20 years old, slim, and her expression is calm. Her outfit consists of a white short-sleeved shirt, a blue and white striped tie, and a black pleated skirt. Her hair is flowing freely without bangs. The background is a white wall, hanging some black and white comics.",
+        true
+      ],
+      "color": "#232",
+      "bgcolor": "#353",
+      "category": "Primitive Nodes"
+    }
+  ],
+  "links": [
+    [
+      350,
+      228,
+      0,
+      239,
+      0,
+      "CLIP"
+    ],
+    [
+      418,
+      231,
+      0,
+      292,
+      0,
+      "MODEL"
+    ],
+    [
+      419,
+      239,
+      0,
+      292,
+      1,
+      "CLIP"
+    ],
+    [
+      420,
+      229,
+      0,
+      292,
+      2,
+      "VAE"
+    ],
+    [
+      448,
+      296,
+      0,
+      8,
+      0,
+      "LATENT"
+    ],
+    [
+      455,
+      233,
+      0,
+      300,
+      0,
+      "LATENT"
+    ],
+    [
+      462,
+      311,
+      1,
+      307,
+      8,
+      "SEGM_DETECTOR"
+    ],
+    [
+      474,
+      311,
+      0,
+      307,
+      6,
+      "BBOX_DETECTOR"
+    ],
+    [
+      475,
+      239,
+      0,
+      294,
+      0,
+      "CLIP"
+    ],
+    [
+      476,
+      239,
+      0,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      477,
+      295,
+      0,
+      297,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      478,
+      229,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      479,
+      231,
+      0,
+      296,
+      0,
+      "MODEL"
+    ],
+    [
+      480,
+      295,
+      0,
+      296,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      481,
+      233,
+      0,
+      296,
+      3,
+      "LATENT"
+    ],
+    [
+      482,
+      298,
+      0,
+      296,
+      4,
+      "INT"
+    ],
+    [
+      483,
+      316,
+      0,
+      296,
+      5,
+      "FLOAT"
+    ],
+    [
+      484,
+      231,
+      0,
+      307,
+      1,
+      "MODEL"
+    ],
+    [
+      485,
+      239,
+      0,
+      307,
+      2,
+      "CLIP"
+    ],
+    [
+      486,
+      229,
+      0,
+      307,
+      3,
+      "VAE"
+    ],
+    [
+      487,
+      295,
+      0,
+      307,
+      4,
+      "CONDITIONING"
+    ],
+    [
+      488,
+      298,
+      0,
+      307,
+      11,
+      "INT"
+    ],
+    [
+      489,
+      316,
+      0,
+      307,
+      12,
+      "FLOAT"
+    ],
+    [
+      494,
+      316,
+      0,
+      300,
+      1,
+      "FLOAT"
+    ],
+    [
+      498,
+      328,
+      0,
+      327,
+      5,
+      "UPSCALE_MODEL"
+    ],
+    [
+      504,
+      331,
+      0,
+      307,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      563,
+      8,
+      0,
+      128,
+      0,
+      "IMAGE"
+    ],
+    [
+      564,
+      239,
+      0,
+      294,
+      0,
+      "CLIP"
+    ],
+    [
+      565,
+      229,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      566,
+      231,
+      0,
+      359,
+      0,
+      "MODEL"
+    ],
+    [
+      567,
+      295,
+      0,
+      370,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      568,
+      295,
+      0,
+      367,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      569,
+      298,
+      0,
+      367,
+      4,
+      "INT"
+    ],
+    [
+      570,
+      316,
+      0,
+      367,
+      5,
+      "FLOAT"
+    ],
+    [
+      571,
+      229,
+      0,
+      368,
+      1,
+      "VAE"
+    ],
+    [
+      572,
+      8,
+      0,
+      365,
+      0,
+      "IMAGE"
+    ],
+    [
+      573,
+      8,
+      0,
+      371,
+      0,
+      "IMAGE"
+    ],
+    [
+      574,
+      231,
+      0,
+      296,
+      0,
+      "MODEL"
+    ],
+    [
+      575,
+      295,
+      0,
+      296,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      576,
+      233,
+      0,
+      296,
+      3,
+      "LATENT"
+    ],
+    [
+      577,
+      298,
+      0,
+      296,
+      4,
+      "INT"
+    ],
+    [
+      578,
+      316,
+      0,
+      296,
+      5,
+      "FLOAT"
+    ],
+    [
+      579,
+      295,
+      0,
+      297,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      601,
+      387,
+      0,
+      327,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      635,
+      396,
+      0,
+      296,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      644,
+      307,
+      0,
+      398,
+      0,
+      "*"
+    ],
+    [
+      645,
+      307,
+      0,
+      319,
+      0,
+      "IMAGE"
+    ],
+    [
+      679,
+      327,
+      0,
+      422,
+      0,
+      "*"
+    ],
+    [
+      683,
+      307,
+      0,
+      425,
+      0,
+      "*"
+    ],
+    [
+      685,
+      327,
+      0,
+      426,
+      0,
+      "*"
+    ],
+    [
+      688,
+      433,
+      0,
+      429,
+      5,
+      "CONDITIONING"
+    ],
+    [
+      690,
+      431,
+      0,
+      429,
+      6,
+      "BBOX_DETECTOR"
+    ],
+    [
+      691,
+      431,
+      1,
+      429,
+      8,
+      "SEGM_DETECTOR"
+    ],
+    [
+      692,
+      429,
+      0,
+      432,
+      0,
+      "IMAGE"
+    ],
+    [
+      693,
+      429,
+      0,
+      436,
+      0,
+      "*"
+    ],
+    [
+      694,
+      429,
+      0,
+      435,
+      0,
+      "*"
+    ],
+    [
+      695,
+      307,
+      0,
+      429,
+      0,
+      "IMAGE"
+    ],
+    [
+      696,
+      8,
+      0,
+      326,
+      1,
+      "IMAGE"
+    ],
+    [
+      697,
+      310,
+      0,
+      326,
+      0,
+      "SAM_MODEL"
+    ],
+    [
+      726,
+      294,
+      0,
+      451,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      745,
+      327,
+      0,
+      307,
+      0,
+      "IMAGE"
+    ],
+    [
+      751,
+      8,
+      0,
+      307,
+      0,
+      "IMAGE"
+    ],
+    [
+      752,
+      231,
+      0,
+      307,
+      1,
+      "MODEL"
+    ],
+    [
+      753,
+      239,
+      0,
+      307,
+      2,
+      "CLIP"
+    ],
+    [
+      754,
+      229,
+      0,
+      307,
+      3,
+      "VAE"
+    ],
+    [
+      755,
+      310,
+      0,
+      307,
+      7,
+      "SAM_MODEL"
+    ],
+    [
+      756,
+      298,
+      0,
+      307,
+      11,
+      "INT"
+    ],
+    [
+      757,
+      316,
+      0,
+      307,
+      12,
+      "FLOAT"
+    ],
+    [
+      758,
+      239,
+      0,
+      384,
+      0,
+      "CLIP"
+    ],
+    [
+      759,
+      8,
+      0,
+      128,
+      0,
+      "IMAGE"
+    ],
+    [
+      760,
+      231,
+      0,
+      296,
+      0,
+      "MODEL"
+    ],
+    [
+      761,
+      295,
+      0,
+      296,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      762,
+      233,
+      0,
+      296,
+      3,
+      "LATENT"
+    ],
+    [
+      763,
+      298,
+      0,
+      296,
+      4,
+      "INT"
+    ],
+    [
+      764,
+      316,
+      0,
+      296,
+      5,
+      "FLOAT"
+    ],
+    [
+      765,
+      229,
+      0,
+      8,
+      1,
+      "VAE"
+    ],
+    [
+      766,
+      295,
+      0,
+      385,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      767,
+      295,
+      0,
+      331,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      768,
+      295,
+      0,
+      396,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      769,
+      239,
+      0,
+      294,
+      0,
+      "CLIP"
+    ],
+    [
+      770,
+      8,
+      0,
+      454,
+      0,
+      "IMAGE"
+    ],
+    [
+      771,
+      239,
+      0,
+      6,
+      0,
+      "CLIP"
+    ],
+    [
+      785,
+      451,
+      0,
+      300,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      787,
+      327,
+      0,
+      464,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [
+    {
+      "title": "修手",
+      "bounding": [
+        -7747,
+        3237,
+        1561,
+        1790
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "SD放大",
+      "bounding": [
+        -10390,
+        3163,
+        1126,
+        1208
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    },
+    {
+      "title": "面部细化",
+      "bounding": [
+        -9239,
+        3203,
+        1472,
+        1691
+      ],
+      "color": "#3f789e",
+      "font_size": 24,
+      "flags": {}
+    }
+  ],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.3073560549142879,
+      "offset": [
+        12466.950515750088,
+        -1731.8276613521705
+      ]
+    },
+    "workspace_info": {
+      "id": "B3wRLnWhjwUqrvLJjjSBQ",
+      "saveLock": false,
+      "cloudID": null,
+      "coverMediaPath": null
+    }
+  },
+  "version": 0.4
+}
